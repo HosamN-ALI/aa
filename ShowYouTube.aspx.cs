@@ -1,0 +1,433 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
+using MySql.Data.MySqlClient;
+using System.Net;
+using System.Text;
+using System.IO;
+using System.Xml;
+using System.Runtime.Serialization.Json;
+
+public partial class ShowYouTube : System.Web.UI.Page
+{
+    enum VideoType
+    {
+        YouTube = 0,
+        Vimeo = 1
+    }
+    VideoType videoType = VideoType.YouTube;
+
+    protected string FloatDir = "right";
+    string ConnStr = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString1"].ConnectionString;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!Request.IsLocal && !Request.IsSecureConnection)
+        {
+            Response.Redirect(Request.Url.ToString().Replace("http:", "https:"));
+        }
+
+        ogUrl.Attributes["content"] = Request.Url.ToString();
+        string vidID = "";
+        int langId = 1;
+
+        var youtubeKey  = Request.QueryString.AllKeys.Where(d => d.Equals("ytu", StringComparison.OrdinalIgnoreCase) || d.Equals("youtube", StringComparison.OrdinalIgnoreCase)).FirstOrDefault();
+        bool isYtu = (!string.IsNullOrWhiteSpace(Request.QueryString[youtubeKey]));
+        bool isVimeo = (!string.IsNullOrWhiteSpace(Request.QueryString["vimeo"]));
+
+        if (isYtu || isVimeo)
+        {
+            Regex youTubeRegEx = new Regex(@"youtu(?:\.be|be\.com)/(?:.*v(?:/|=)|(?:.*/)?)([a-zA-Z0-9-_]+)");
+            if (isYtu && youTubeRegEx.IsMatch(Request.QueryString[youtubeKey]))
+            {
+                vidID = youTubeRegEx.Match(Request.QueryString[youtubeKey]).Value.Replace("youtube.com/watch?v=", "");
+            }
+            else if (isYtu)
+            {
+                vidID = Request.QueryString[youtubeKey];
+            }
+            else if (isVimeo)
+            {
+                vidID = Request.QueryString["vimeo"];
+                videoType = VideoType.Vimeo;
+            }
+
+            string srcIframeVideo = "";
+
+            switch (videoType)
+            {
+                case VideoType.YouTube:
+                    srcIframeVideo = "\"https://www.youtube.com/embed/" + vidID + "/?autoplay=1&rel=0\"";
+                    break;
+                case VideoType.Vimeo:
+                    srcIframeVideo = "\"https://player.vimeo.com/video/" + vidID + "?autoplay=1&loop=1&autopause=0\"";
+                    break;
+
+            }
+
+
+            YouTubeCode.Text = "<iframe id=\"youTubeIframe\" style=\"margin: auto; position: absolute; top: 0; left: 0; bottom: 0; right: 0;\"  src=" + srcIframeVideo + " frameborder=\"0\" allowfullscreen></iframe>";
+
+        }
+
+        if (Request.QueryString["showLike"] != null && Request.QueryString["showLike"] == "true")
+        {
+            likeDiv.Visible = true;
+            FacebookLike.Attributes["data-href"] = Request.Url.ToString();
+        }
+
+        if (Request.QueryString["lang"] != null)
+        {
+            int.TryParse(Request.QueryString["lang"], out langId);
+        }
+        string langCode = Defaults.GetLangCodeFromLangID(langId);
+        int domainID = Domain.getDomainByUrl(Request.Url.Host.ToString().Replace("multimedia", "n"));
+
+        //MySqlDataReader MyReader;
+
+        //using (MySqlConnection con = new MySqlConnection(ConnStr))
+        //{
+        //	string theQS = "";
+        //	if (Request.QueryString != null)
+        //	{
+        //		theQS = Request.QueryString.ToString();
+        //	}
+
+        //	con.Open();
+        //	MySqlCommand cmd = new MySqlCommand();
+        //	cmd.Connection = con;
+        //	//cmd.CommandText = "INSERT INTO sendingusers.tempLandingUsers (IP, VisitedAt,LandingORView,query) VALUES ('" + HttpContext.Current.Request.UserHostAddress + "',now(),1,'" + theQS.Replace("'", "''") + "') ";
+        //	//cmd.ExecuteNonQuery();
+
+        //	MyReader = cmd.ExecuteReader();
+        //	if (MyReader.Read())
+        //	{
+        string langDir = Defaults.GetPages(46, langCode, domainID);
+        PageBody.Style.Add("direction", langDir);
+
+        Page.Title = Defaults.GetPages(81, langCode, domainID) + " - " + vidID;
+        //TopTitleText.Controls.AddAt(0, new Literal() { Text = Defaults.GetPages(82, langCode, domainID) + "<br/>" });
+        //TopTitleLogoImg.Alt = Defaults.GetPages(83, langCode, domainID);
+        FooterSpan.InnerHtml = Defaults.GetPages(84, langCode, domainID);
+        //	}
+        //	MyReader.Close();
+        //	con.Close();
+        //}
+        //if (langId != 1)
+        //{
+        //TopTitleLogoImg.Src = Domain.getParamsByDomain(siteParamType.secureSitePath, domainID) + "/" + Domain.getParamsByDomain(langCode == "Heb" ? siteParamType.TopLogo : siteParamType.TopLogo2, domainID);
+        //TopTitleText.Style["direction"] = Defaults.GetPages(62, langCode, domainID);
+        string TextAling = Defaults.GetPages(61, langCode, domainID);
+        //TopTitleLogoLink.Style["direction"] = TextAling;
+        //TopTitleLogoImg.Style["float"] = TextAling;
+        //TopTitleLogoLink.Style["float"] = TextAling;
+        //}
+
+        if (vidID != "")
+        {
+            try
+            {
+                string url = "";
+
+                switch (videoType)
+                {
+                    case VideoType.YouTube:
+                        string YOUR_API_KEY = "AIzaSyC4C0Ol2yopgsXZyE0DdTke7QvpavAz2KU";
+                        url = "https://www.googleapis.com/youtube/v3/videos?id=" + vidID + "&key=" + YOUR_API_KEY + "&part=snippet,contentDetails,statistics,status";
+                        break;
+                    case VideoType.Vimeo:
+                        url = "http://vimeo.com/api/v2/video/" + vidID + ".json";
+                        break;
+                }
+
+
+                WebRequest myHttpWebRequest = (HttpWebRequest)HttpWebRequest.Create(url);
+                myHttpWebRequest.Method = "GET";
+                myHttpWebRequest.ContentType = "text/xml; encoding='utf-8'";
+
+                //Get Response
+                string jsonText;
+                using (WebResponse response = myHttpWebRequest.GetResponse())
+                {
+                    using (Stream dataStream = response.GetResponseStream())
+                    {
+                        using (StreamReader reader = new StreamReader(dataStream))
+                        {
+                            jsonText = reader.ReadToEnd();
+                        }
+                    }
+                }
+
+                if (!string.IsNullOrWhiteSpace(jsonText))
+                {
+
+                    switch (videoType)
+                    {
+                        case VideoType.YouTube:
+
+                            string txtStart = "\"publishedAt\"";
+                            string txtEnd = "Z\",";
+                            if (jsonText.Contains(txtStart))
+                            {
+
+                                var start = jsonText.IndexOf(txtStart);
+
+                                if (start > -1)
+                                {
+                                    var end = jsonText.IndexOf(txtEnd, start);
+
+                                    if (end > -1)
+                                    {
+                                        jsonText = jsonText.Remove(start, (end - start + txtEnd.Length));
+                                    }
+                                }
+                            }
+
+                            RootYouTube vidUT = Deserialize<RootYouTube>(jsonText);
+                            if (vidUT != null && vidUT.items != null && vidUT.items.Count > 0 && vidUT.items[0].snippet != null)
+                            {
+                                if (!string.IsNullOrWhiteSpace(vidUT.items[0].snippet.title))
+                                {
+                                    Page.Title = vidUT.items[0].snippet.title;
+                                    ogTitle.Content = Page.Title;
+                                }
+                                if (!string.IsNullOrWhiteSpace(vidUT.items[0].snippet.description))
+                                {
+                                    ogDescription.Content = vidUT.items[0].snippet.description;
+                                }
+
+
+                                if (vidUT.items[0].snippet.thumbnails != null)
+                                {
+                                    if (vidUT.items[0].snippet.thumbnails.@default != null)
+                                    {
+                                        ogImage.Content = vidUT.items[0].snippet.thumbnails.@default.url;
+                                        if (vidUT.items[0].snippet.thumbnails.@default.url.StartsWith("https://"))
+                                        {
+                                            if ((!string.IsNullOrWhiteSpace(ogImage.Attributes["property"])) && (!ogImage.Attributes["property"].EndsWith(":secure_url")))
+                                            {
+                                                ogImage.Attributes["property"] += ":secure_url";
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            break;
+                        case VideoType.Vimeo:
+                            List<RootVimeo> vidVI = Deserialize<List<RootVimeo>>(jsonText);
+                            if (vidVI != null && vidVI.Count > 0 && vidVI[0] != null)
+                            {
+                                if (!string.IsNullOrWhiteSpace(vidVI[0].title))
+                                {
+                                    Page.Title = vidVI[0].title;
+                                    ogTitle.Content = Page.Title;
+                                }
+                                if (!string.IsNullOrWhiteSpace(vidVI[0].description))
+                                {
+                                    ogDescription.Content = vidVI[0].description;
+                                }
+
+                                if (!string.IsNullOrWhiteSpace(vidVI[0].thumbnail_small))
+                                {
+                                    ogImage.Content = vidVI[0].thumbnail_small;
+                                    if (vidVI[0].thumbnail_small.StartsWith("https://"))
+                                    {
+                                        if ((!string.IsNullOrWhiteSpace(ogImage.Attributes["property"])) && (!ogImage.Attributes["property"].EndsWith(":secure_url")))
+                                        {
+                                            ogImage.Attributes["property"] += ":secure_url";
+                                        }
+                                    }
+                                }
+                            }
+                            break;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
+    }
+
+    /// <summary>
+    /// Vimeo Class
+    /// </summary>
+    public class RootVimeo
+    {
+        public int id { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
+        public string url { get; set; }
+        public string upload_date { get; set; }
+        public string thumbnail_small { get; set; }
+        public string thumbnail_medium { get; set; }
+        public string thumbnail_large { get; set; }
+        public int user_id { get; set; }
+        public string user_name { get; set; }
+        public string user_url { get; set; }
+        public string user_portrait_small { get; set; }
+        public string user_portrait_medium { get; set; }
+        public string user_portrait_large { get; set; }
+        public string user_portrait_huge { get; set; }
+        public int stats_number_of_likes { get; set; }
+        public int stats_number_of_plays { get; set; }
+        public int stats_number_of_comments { get; set; }
+        public int duration { get; set; }
+        public int width { get; set; }
+        public int height { get; set; }
+        public string tags { get; set; }
+        public string embed_privacy { get; set; }
+    }
+
+
+
+    /// <summary>
+    /// YouTube Class
+    /// </summary>
+    public class Default
+    {
+        public string url { get; set; }
+        public int width { get; set; }
+        public int height { get; set; }
+    }
+
+    public class Medium
+    {
+        public string url { get; set; }
+        public int width { get; set; }
+        public int height { get; set; }
+    }
+
+    public class High
+    {
+        public string url { get; set; }
+        public int width { get; set; }
+        public int height { get; set; }
+    }
+
+    public class Standard
+    {
+        public string url { get; set; }
+        public int width { get; set; }
+        public int height { get; set; }
+    }
+
+    public class Maxres
+    {
+        public string url { get; set; }
+        public int width { get; set; }
+        public int height { get; set; }
+    }
+
+    public class Thumbnails
+    {
+        public Default @default { get; set; }
+        public Medium medium { get; set; }
+        public High high { get; set; }
+        public Standard standard { get; set; }
+        public Maxres maxres { get; set; }
+    }
+
+    public class Localized
+    {
+        public string title { get; set; }
+        public string description { get; set; }
+    }
+
+    public class Snippet
+    {
+        public DateTime publishedAt { get; set; }
+        public string channelId { get; set; }
+        public string title { get; set; }
+        public string description { get; set; }
+        public Thumbnails thumbnails { get; set; }
+        public string channelTitle { get; set; }
+        public List<string> tags { get; set; }
+        public string categoryId { get; set; }
+        public string liveBroadcastContent { get; set; }
+        public Localized localized { get; set; }
+    }
+
+    public class ContentRating
+    {
+    }
+
+    public class ContentDetails
+    {
+        public string duration { get; set; }
+        public string dimension { get; set; }
+        public string definition { get; set; }
+        public string caption { get; set; }
+        public bool licensedContent { get; set; }
+        public ContentRating contentRating { get; set; }
+        public string projection { get; set; }
+    }
+
+    public class Status
+    {
+        public string uploadStatus { get; set; }
+        public string privacyStatus { get; set; }
+        public string license { get; set; }
+        public bool embeddable { get; set; }
+        public bool publicStatsViewable { get; set; }
+        public bool madeForKids { get; set; }
+    }
+
+    public class Statistics
+    {
+        public string viewCount { get; set; }
+        public string likeCount { get; set; }
+        public string dislikeCount { get; set; }
+        public string favoriteCount { get; set; }
+        public string commentCount { get; set; }
+    }
+
+    public class Item
+    {
+        public string kind { get; set; }
+        public string etag { get; set; }
+        public string id { get; set; }
+        public Snippet snippet { get; set; }
+        public ContentDetails contentDetails { get; set; }
+        public Status status { get; set; }
+        public Statistics statistics { get; set; }
+    }
+
+    public class PageInfo
+    {
+        public int totalResults { get; set; }
+        public int resultsPerPage { get; set; }
+    }
+
+    public class RootYouTube
+    {
+        public string kind { get; set; }
+        public string etag { get; set; }
+        public List<Item> items { get; set; }
+        public PageInfo pageInfo { get; set; }
+    }
+
+    public static string Serialize<T>(T obj)
+    {
+        DataContractJsonSerializer serializer = new DataContractJsonSerializer(obj.GetType());
+        MemoryStream ms = new MemoryStream();
+        serializer.WriteObject(ms, obj);
+        string retVal = Encoding.UTF8.GetString(ms.ToArray());
+        return retVal;
+    }
+
+    public static T Deserialize<T>(string json)
+    {
+        T obj = Activator.CreateInstance<T>();
+        MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(json));
+        DataContractJsonSerializer serializer = new DataContractJsonSerializer(obj.GetType());
+        obj = (T)serializer.ReadObject(ms);
+        ms.Close();
+        return obj;
+    }
+}

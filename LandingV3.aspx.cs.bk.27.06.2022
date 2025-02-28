@@ -1,0 +1,327 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Web;
+using System.Web.Script.Serialization;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class LandingV3 : System.Web.UI.Page
+{
+    static Dictionary<string, string> pages = new System.Collections.Generic.Dictionary<string, string>();
+    static readonly object _lock = new object();
+
+    public class Collects
+    {
+        public class Link
+        {
+            public string href { get; set; }
+            public string target { get; set; }
+            public string componentId { get; set; }
+        }
+        public class Font
+        {
+            public string _id { get; set; }
+            public string[] language { get; set; }
+            public string name { get; set; }
+            public string cssRule { get; set; }
+            public string url { get; set; }
+        }
+
+        public List<Font> fonts { get; set; }
+
+        public List<Link> links { get; set; }
+    }
+
+    public class Data
+    {
+        public string siteId { get; set; }
+        public string mode { get; set; }
+        public string domain { get; set; }
+        public Collects collects { get; set; }
+        public string html { get; set; }
+    }
+
+    public class Root
+    {
+        public int status { get; set; }
+        public string message { get; set; }
+        public Data data { get; set; }
+    }
+
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        string pageID = Request.QueryString["pageID"];
+        string html = string.Empty;
+
+        lock (_lock)
+        {
+            try
+            {
+                KeyValuePair<string, Defaults.CreV3_PageOption> rss = default(KeyValuePair<string, Defaults.CreV3_PageOption>);
+                if (Request.QueryString[Defaults.actionName] == Defaults.rebuildName)
+                {
+                    pages.Remove(pageID);
+                    lock (Defaults.friendlyMapID_creaditorV3)
+                    {
+                        if (!string.IsNullOrWhiteSpace(Request.RawUrl))
+                        {
+                            rss = Defaults.friendlyMapID_creaditorV3.FirstOrDefault(d => d.Value.id == pageID);
+                            if (!string.IsNullOrWhiteSpace(rss.Key))
+                            {
+                                var allRemove = Defaults.friendlyMapID_creaditorV3.Where(d => d.Value.id == pageID).ToList();
+                                foreach (var item in allRemove)
+                                {
+                                    Defaults.friendlyMapID_creaditorV3.Remove(item.Key);
+                                }
+                            }
+                        }
+                    }
+                }
+                if (!pages.TryGetValue(pageID, out html))
+                {
+                    //ServicePointManager.Expect100Continue = true;
+                    //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                    //ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(AcceptAllCertifications);
+                    //ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+
+                    string url = @"https://render.creaditor.ai";
+
+
+                    //HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                    //request.AutomaticDecompression = DecompressionMethods.GZip;
+
+                    //using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    //using (Stream stream = response.GetResponseStream())
+                    //using (StreamReader reader = new StreamReader(stream))
+                    //{
+                    //    html = reader.ReadToEnd();
+                    //    reader.Close();
+                    //    stream.Close();
+                    //    response.Close();
+                    //    //html = html.Replace("/static/",(adiComp+"static/"));
+                    //}
+
+                    if (string.IsNullOrWhiteSpace(rss.Key))
+                    {
+                        rss = Defaults.friendlyMapID_creaditorV3.FirstOrDefault(d => d.Value.id == pageID);
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(rss.Key))
+                    {
+                        if (!rss.Value.isPublished)
+                        {
+                            Server.Transfer("404.aspx" );
+                        }
+                    }
+
+                    Uri domain = new Uri(Request.Url.Scheme + "://" + rss.Key);
+
+                    string myDomain = domain.ToString();
+
+                    if (!string.IsNullOrWhiteSpace(domain.Query))
+                    {
+                        myDomain = myDomain.Replace(domain.Query, "");
+                    }
+                    myDomain = myDomain.Replace((Request.Url.Scheme + "://"), "");
+
+                    // Create a request using a URL that can receive a post. 
+                    WebRequest request = WebRequest.Create(url);
+                    // Set the Method property of the request to POST.
+                    request.Method = "POST";
+                    // Create POST data and convert it to a byte array.
+                    string postData = "{\"siteId\":\"" + pageID + "\", \"domain\" :\"" + myDomain + "\", \"mode\" :\"production\",\"rebuild\":\"true\", \"options\":{ }, \"transforms\":[] }";
+                    byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+                    // Set the ContentType property of the WebRequest.
+                    request.ContentType = "application/JSON";
+                    // Set the ContentLength property of the WebRequest.
+                    request.ContentLength = byteArray.Length;
+                    // Get the request stream.
+                    Stream dataStream = request.GetRequestStream();
+                    // Write the data to the request stream.
+                    dataStream.Write(byteArray, 0, byteArray.Length);
+                    // Close the Stream object.
+                    dataStream.Close();
+                    // Get the response.
+                    WebResponse response = request.GetResponse();
+                    // Display the status.
+                    Console.WriteLine(((HttpWebResponse)response).StatusDescription);
+                    // Get the stream containing content returned by the server.
+                    dataStream = response.GetResponseStream();
+                    // Open the stream using a StreamReader for easy access.
+                    StreamReader reader = new StreamReader(dataStream);
+                    // Read the content.
+                    string responseFromServer = reader.ReadToEnd();
+                    // Display the content.
+                    //Console.WriteLine(responseFromServer);
+                    // Clean up the streams.
+                    reader.Close();
+                    dataStream.Close();
+                    response.Close();
+
+
+                    Root ResPage = new JavaScriptSerializer().Deserialize<Root>(responseFromServer);
+
+
+                    html = ResPage.data.html;
+
+                    ////var ff = File.OpenRead(@"C:\Users\דודי\Downloads\sample-zip-file.zip");
+                    //var ff = File.OpenRead(@"C:\Users\דודי\Downloads\XXX.zip");
+
+                    ////using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    ////using (Stream stream = response.GetResponseStream())
+                    //{
+                    //    //using (var file = File.OpenRead(path))
+                    //    //using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
+
+                    //    stremExtractZip(ff, @"C:\test\");
+                    //}
+
+
+
+
+                    //HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("http://www.w3schools.com/images/myw3schoolsimage.jpg");
+                    //webRequest.Method = "GET";
+                    //webRequest.Timeout = 3000;
+                    //Somewhere();
+                    //var ff = webRequest.BeginGetResponse(new AsyncCallback(PlayResponeAsync), webRequest);
+
+
+                    //HttpWebRequest wr = (HttpWebRequest)WebRequest.Create("http://www.w3schools.com/images/myw3schoolsimage.jpg");
+
+
+                    //HttpWebResponse ws = (HttpWebResponse)wr.GetResponse();
+                    //Stream str = ws.GetResponseStream();
+                    //byte[] inBuf = new byte[100000];
+                    //int bytesToRead = (int)inBuf.Length;
+                    //int bytesRead = 0;
+                    //while (bytesToRead > 0)
+                    //{
+                    //    int n = str.Read(inBuf, bytesRead, bytesToRead);
+                    //    if (n == 0)
+                    //        break;
+                    //    bytesRead += n;
+                    //    bytesToRead -= n;
+                    //}
+                    //FileStream fstr = new FileStream("weather.jpg", FileMode.OpenOrCreate,
+                    //FileAccess.Write);
+                    //fstr.Write(inBuf, 0, bytesRead);
+                    //str.Close();
+                    //fstr.Close();
+
+
+
+                    //html = "<img src='/userfiles/site14/images/SMSFUTURES3.png'/>";
+                    pages.Add(pageID, html);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            finally { }
+        }
+        //Response.WriteFile(@"newLanding/index.html");
+        Response.Write(html);
+
+        Response.End();
+    }
+
+    //public bool AcceptAllCertifications(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certification, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
+    //{
+    //    return true;
+    //}
+
+    //private void stremExtractZip(Stream stream_data, string path)
+    //{
+    //    if (stream_data != null && (!string.IsNullOrWhiteSpace(path)))
+    //    {
+    //        using (var zip = new ZipArchive(stream_data, ZipArchiveMode.Read))
+    //        {
+    //            MemoryStream ms;
+    //            Stream streamFile;
+    //            byte[] data_byteArry;
+    //            using (ms = new MemoryStream())
+    //            {
+    //                foreach (ZipArchiveEntry entry in zip.Entries)
+    //                {
+
+    //                    if (!string.IsNullOrWhiteSpace(entry.Name))
+    //                    {
+    //                        using (streamFile = entry.Open())
+    //                        {
+    //                            streamFile.CopyTo(ms);
+    //                            data_byteArry = ms.ToArray();
+
+    //                            string ff1 = path + entry.FullName;
+    //                            string _Directory = (path + entry.FullName.Remove(entry.FullName.LastIndexOf(entry.Name) - 1, entry.Name.Length + 1));
+    //                            if (!Directory.Exists(_Directory))
+    //                            {
+    //                                Directory.CreateDirectory(_Directory);
+    //                            }
+
+    //                            if (data_byteArry.Length > 0)
+    //                            {
+    //                                File.WriteAllBytes(ff1, data_byteArry);
+    //                            }
+    //                        }
+    //                        ms.Flush();
+    //                        ms.SetLength(0);
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+    //private static void PlayResponeAsync(IAsyncResult asyncResult)
+    //{
+    //    long total = 0;
+    //    long received = 0;
+    //    HttpWebRequest webRequest = (HttpWebRequest)asyncResult.AsyncState;
+
+
+    //    ServicePointManager.Expect100Continue = true;
+    //    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+    //    try
+    //    {
+    //        using (HttpWebResponse webResponse = (HttpWebResponse)webRequest.EndGetResponse(asyncResult))
+    //        {
+    //            byte[] buffer = new byte[1024];
+
+
+
+    //            // FileStream fileStream = new FileStream("myw3schoolsimage.jpg", FileMode.CreateNew);
+
+    //            using (var fileStream = new FileStream("myw3schoolsimage.jpg", FileMode.Create))
+    //            using (var writer = new StreamWriter(fileStream))
+
+    //            using (Stream input = webResponse.GetResponseStream())
+    //            {
+    //                total = input.Length;
+
+    //                int size = input.Read(buffer, 0, buffer.Length);
+    //                while (size > 0)
+    //                {
+    //                    fileStream.Write(buffer, 0, size);
+    //                    received += size;
+
+    //                    size = input.Read(buffer, 0, buffer.Length);
+    //                }
+    //            }
+
+    //            //fileStream.Flush();
+    //            //fileStream.Close();
+    //        }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //    }
+    //}
+}

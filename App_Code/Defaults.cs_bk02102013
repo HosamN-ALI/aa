@@ -1,0 +1,857 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using MySql.Data.MySqlClient;
+using System.Collections;
+using System.Data;
+
+/// <summary>
+/// A class that spacefies the default values and methods for the site
+/// </summary>
+public static class Defaults
+{
+    private static List<SendMsgNewsletter> newsList = new List<SendMsgNewsletter>();
+	private static List<SendMsgMinisite> MinisiteList = new List<SendMsgMinisite>();
+
+
+	private static string sitePath = "http://www.sendMsg.co.il";
+
+	public static string SitePath 
+	{
+		get { return sitePath; }
+	}
+
+	public static string ConnStr = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString1"].ConnectionString;
+	
+	public static Control getControlByID(Control root, Type type, string ID) //a recusrion to get all the controlls in the page
+	{
+		List<Control> list = new List<Control>();
+		foreach (Control c in root.Controls)
+		{
+			if (c.GetType() == type && c.ID == ID)
+			{
+				return c;
+			}
+
+			if (c.Controls.Count > 0)
+			{
+				if (getControlByID(c, type, ID) != null)
+				{
+					return (getControlByID(c, type, ID));
+				}
+			}
+		}
+		return null;
+	}
+    
+	public static void DelFromTable(int landingID)
+    {
+		for (int i = 0; i < MinisiteList.Count; i++)
+		{
+			if (MinisiteList[i].landingID == landingID)
+			{
+				MinisiteList.Remove(MinisiteList[i]);
+				break;
+			}
+		}
+    }
+
+
+    public static SendMsgMinisite GetMiniste(int siteID, int landingID, MySqlConnection conn)
+    {
+		SendMsgMinisite myMinisite = new SendMsgMinisite();
+		lock (MinisiteList)
+		{
+			List<SendMsgMinisite> delFromMemo = new List<SendMsgMinisite>();
+			for (int i = 0; i < MinisiteList.Count; i++)
+			{
+				if (MinisiteList[i].landingDate < DateTime.Now.AddHours(-10) && MinisiteList[i].landingID != landingID)
+				{
+					delFromMemo.Add(MinisiteList[i]);
+				}
+				else if(MinisiteList[i].landingID == landingID)
+				{
+					myMinisite = MinisiteList[i];
+				}
+			}
+			for (int i = 0; i < delFromMemo.Count; i++)
+			{
+				MinisiteList.Remove(delFromMemo[i]);
+			}
+		}
+
+        
+        if (myMinisite.landingID == 0)
+        {
+			string sql = "SELECT landingContent,landingTitle,landingColor, siteID, ShowFacebook,showShare, landingLang, ShowFBComments, IndexInGoogle, tplDir, analyticsCode,(SELECT contentNetworkActive FROM tblSites where tblSites.SIteID=landingPages.siteID) AS contentNetworkActive,PromoShowOnSide,PromoOnSideType,PromoShowOnBottom,PromoOnBottomType,PromoShowOnTop,PromoOnTopType,LandingPageWidth, (SELECT SiteStatus FROM tblSites where tblSites.SIteID=landingPages.siteID) AS SiteStatus FROM landingPages WHERE siteID=" + siteID + " AND landingID=" + landingID;
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                myMinisite.landingContent= dr["landingContent"].ToString();
+                myMinisite.landingTitle= dr["landingTitle"].ToString();
+                myMinisite.landingColor= dr["landingColor"].ToString();
+				myMinisite.siteID = int.Parse(dr["siteID"].ToString());
+                myMinisite.ShowFacebook= (dr["ShowFacebook"].ToString()=="1"?true:false);
+                myMinisite.showShare= (dr["showShare"].ToString()=="1"?true:false);
+                myMinisite.landingLang= int.Parse(dr["landingLang"].ToString());
+                myMinisite.ShowFBComments= (dr["ShowFBComments"].ToString()=="1"?true:false);
+				myMinisite.IndexInGoogle = (dr["IndexInGoogle"].ToString() == "1" ? true : false);
+				myMinisite.tplDir= int.Parse(dr["tplDir"].ToString());
+                myMinisite.SiteStatus= int.Parse(dr["SiteStatus"].ToString());
+                myMinisite.landingDate= DateTime.Now;
+                myMinisite.landingID= landingID;
+				myMinisite.analyticsCode = dr["analyticsCode"].ToString();
+                myMinisite.promoShowOnSide = (dr["PromoShowOnSide"].ToString()=="1"?true:false);
+				myMinisite.contentNetworkActive = (dr["contentNetworkActive"].ToString() == "1" ? true : false);
+                myMinisite.promoOnSideType = int.Parse(dr["PromoOnSideType"].ToString());
+                myMinisite.promoShowOnBottom = (dr["PromoShowOnBottom"].ToString() == "1" ? true : false);
+                myMinisite.promoOnBottomType = int.Parse(dr["PromoOnBottomType"].ToString());
+                myMinisite.promoShowOnTop = (dr["PromoShowOnTop"].ToString() == "1" ? true : false);
+                myMinisite.promoOnTopType = int.Parse(dr["PromoOnTopType"].ToString());
+                myMinisite.landingPageWidth = dr["LandingPageWidth"].ToString();
+				lock (MinisiteList)
+				{
+					MinisiteList.Add(myMinisite);
+				}
+            }
+          
+            dr.Close();
+
+        }      
+
+        return myMinisite;
+    }
+
+
+    public static SendMsgNewsletter GetNewsLetter(int siteID, int msgID, MySqlConnection conn)
+    {
+        SendMsgNewsletter myNewsletter = new SendMsgNewsletter();
+		lock (newsList)
+		{
+			List<SendMsgNewsletter> delFromMemo = new List<SendMsgNewsletter>();
+			for (int i = 0; i < newsList.Count; i++)
+			{
+				if (newsList[i].MsgDate < DateTime.Now.AddHours(-10) && newsList[i].msgID != msgID)
+				{
+					delFromMemo.Add(newsList[i]);
+				}
+				else if (newsList[i].msgID == msgID)
+				{
+					myNewsletter = newsList[i];
+				}
+			}
+			for (int i = 0; i < delFromMemo.Count; i++)
+			{
+				newsList.Remove(delFromMemo[i]);
+			}
+		}
+
+		if (myNewsletter.msgID == 0)
+        {
+            string sql = "SELECT MsgContent,MsgSubj, siteID, MsgLangID,RemoveCredits FROM SentMsgs WHERE siteID=" + siteID + " AND MsgID=" + msgID;
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                myNewsletter.MsgContent = dr["MsgContent"].ToString();
+                myNewsletter.MsgSubj = dr["MsgSubj"].ToString();
+                myNewsletter.siteID = int.Parse(dr["siteID"].ToString());
+                myNewsletter.MsgDate = DateTime.Now;
+                myNewsletter.msgID = msgID;
+				myNewsletter.RemoveCredits = (dr["RemoveCredits"].ToString() == "1" ? true : false);
+
+				lock (newsList)
+				{
+					newsList.Add(myNewsletter);
+				}
+            }
+            
+            dr.Close();
+        }
+        else
+        {
+            //myDataRow2["MsgSubj"] = "שלח מסר";
+        }
+		if (myNewsletter.siteID != 0)
+		{
+			if (myNewsletter.MsgSubj.ToString().Trim() == "")
+			{
+				myNewsletter.MsgSubj = "שלח מסר";
+			}
+		}
+        return myNewsletter;
+    }
+
+	public static List<Control> getControls(Control root, Type type) //a recusrion to get all the controlls in the page
+	{
+
+		List<Control> list = new List<Control>();
+		foreach (Control c in root.Controls)
+		{
+			if (c.GetType() == type)
+			{
+				list.Add(c);
+			}
+
+			if (c.Controls.Count > 0)
+			{
+				list.AddRange(getControls(c, type));
+			}
+		}
+		return list;
+	}
+
+	public static string[] getEmailsByML(int MLID, int siteID, string WhereQuery)
+	{
+		//only returning users that were not deleted or self removed
+
+		string[] Users = { };
+		List<string> UsersArr = new List<string>();
+		MySqlDataReader MyReader = null;
+		string sqlToSend = "SELECT eMail FROM (" + getMLSpecs(MLID, siteID, true, true, WhereQuery) + ") AS t1 WHERE AddRem=1 ";
+
+		using (MySqlConnection con = new MySqlConnection(ConnStr))
+		{
+			con.Open();
+			MySqlCommand cmd = new MySqlCommand(sqlToSend, con);
+
+			MyReader = cmd.ExecuteReader();
+			while (MyReader.Read())
+			{
+				UsersArr.Add(MyReader["eMail"].ToString());
+			}
+			MyReader.Close();
+			con.Close();
+		}
+
+
+		Users = UsersArr.ToArray();
+		return Users;
+	}
+
+	public static string[] getUsersByML(int MLID, int siteID, string WhereQuery)
+	{
+		//only returning users that were not deleted or self removed
+		
+		string[] Users = { };
+		List<string> UsersArr = new List<string>();
+		MySqlDataReader MyReader = null;
+		string sqlToSend = "SELECT ID FROM (" + getMLSpecs(MLID, siteID, true, true, WhereQuery) + ") AS t1 WHERE AddRem=1 ";
+		
+		using (MySqlConnection con = new MySqlConnection(ConnStr))
+		{
+			con.Open();
+			MySqlCommand cmd = new MySqlCommand(sqlToSend,con);
+
+			MyReader = cmd.ExecuteReader();
+			while(MyReader.Read())
+			{
+				UsersArr.Add(MyReader["id"].ToString());
+			}
+			MyReader.Close();
+			con.Close();
+		}
+
+
+		Users = UsersArr.ToArray();
+		return Users;
+	}
+
+	public static int getUsersCountByML(int MLID, int siteID, bool bySpec, bool ByStat, string WhereQuery)
+	{
+		int UserCount = 0;
+
+		//only returning users that were not deleted or self removed
+
+		string[] Users = { };
+		List<string> UsersArr = new List<string>();
+		MySqlDataReader MyReader = null;
+		string sqlToSend = "SELECT COUNT(ID) AS UserCount FROM (" + getMLSpecs(MLID, siteID, bySpec, ByStat, WhereQuery) + ") AS t1 WHERE AddRem=1 ";
+
+		using (MySqlConnection con = new MySqlConnection(ConnStr))
+		{
+			con.Open();
+			MySqlCommand cmd = new MySqlCommand(sqlToSend, con);
+
+			MyReader = cmd.ExecuteReader();
+			if (MyReader.Read())
+			{
+				int.TryParse(MyReader["UserCount"].ToString(), out UserCount);
+			}
+			con.Close();
+		}
+
+
+		
+		return UserCount;
+	}
+
+
+
+	public static int getUsersRemovedCountByML(int MLID, int siteID, string WhereQuery)
+	{
+		int UserCount = 0;
+
+		//only returning users that were not deleted or self removed
+
+		string[] Users = { };
+		List<string> UsersArr = new List<string>();
+		MySqlDataReader MyReader = null;
+		string sqlToSend = "SELECT COUNT(ID) AS UserCount FROM (" + getMLSpecs(MLID, siteID, false, true, WhereQuery) + ") AS t1 WHERE AddRem=0 ";
+
+		using (MySqlConnection con = new MySqlConnection(ConnStr))
+		{
+			con.Open();
+			MySqlCommand cmd = new MySqlCommand(sqlToSend, con);
+
+			MyReader = cmd.ExecuteReader();
+			if (MyReader.Read())
+			{
+				int.TryParse(MyReader["UserCount"].ToString(), out UserCount);
+			}
+			con.Close();
+		}
+
+
+
+		return UserCount;
+	}
+
+    public static string getMLSpecs(int MLID, int siteID, bool bySpec, bool ByStat, string WhereQuery)//only returning users that were not deleted or self removed
+    {
+
+        MySqlDataReader MyReader = null;
+        string specsSQL = "";
+        string sqlToSend = "";
+
+        if (bySpec == false && ByStat == false)
+        {
+            throw new Exception("the list must be by specification, by static or by both");
+        }
+
+        //using (MySqlConnection con = new MySqlConnection(ConnStr))
+        {
+            if (bySpec)
+            {
+                sqlToSend += "SELECT ID, 1 as AddRem, eMail FROM tblUsers" + siteID + " WHERE (NOT isDel=1 OR isDel is null) ";
+                if (!string.IsNullOrEmpty(WhereQuery))
+                {
+                    if (WhereQuery.Contains("statAddDate"))
+                    {
+
+                    }
+                    else
+                    {
+                        sqlToSend += " AND " + WhereQuery + " ";
+                    }
+                }
+
+                string MLSpecsWhereQuery = " " + MLSpecsToSearch(MLID.ToString());
+                sqlToSend += MLSpecsWhereQuery;
+            }
+
+            if (bySpec && ByStat)
+            {
+                sqlToSend += "UNION ";
+            }
+            if (ByStat)
+            {
+                string whereOnremovedfromlist = "";
+                if (WhereQuery != "")
+                {
+                    whereOnremovedfromlist = " AND `mlstat`.xtblMLStat" + siteID + ".SelfRemDate is null";
+                }
+                sqlToSend += "SELECT UserID AS ID, AddRem, eMail FROM `mlstat`.xtblMLStat" + siteID + " INNER JOIN tblUsers" + siteID + " ON tblUsers" + siteID + ".id = `mlstat`.xtblMLStat" + siteID + ".UserID WHERE `mlstat`.xtblMLStat" + siteID + ".SiteID=" + siteID + whereOnremovedfromlist + " AND `mlstat`.xtblMLStat" + siteID + ".MLID=" + MLID + " AND (NOT isDel=1 OR isDel is null)";
+                if (!string.IsNullOrEmpty(WhereQuery))
+                { sqlToSend += " AND " + WhereQuery + " "; }
+            }
+
+        }
+        return sqlToSend;
+    }
+
+    public enum SearchActionType
+    {
+        ContainsTheValue = 0,
+        NotContainsTheValue = 1,
+        EqualsTo = 2,
+        NotEqualsTo = 3,
+        ContainsNoValue = 4,
+        ContainsAnyValue = 5,
+        EqualsToPeriodFromCurrentTime = 6
+    }
+
+    public static string MLSpecsToSearch(string MLID)
+    {
+        string sqlSearchActionQuery = "";
+        MySqlDataReader MyReader = null;
+        SearchActionType actionType = SearchActionType.ContainsTheValue;
+        string sql = "SELECT FieldID,fieldVal,siteID,SearchActionType FROM tblmlspecs WHERE MLID=" + MLID.Replace("'", "''");
+        using (MySqlConnection con = new MySqlConnection(ConnStr))
+        {
+            con.Open();
+            MySqlCommand cmd = new MySqlCommand(sql, con);
+            try
+            {
+                MyReader = cmd.ExecuteReader();
+            }
+            catch (MySqlException)
+            {
+                
+            }
+
+            int siteID = 0;
+            while (MyReader.Read())
+            {
+                int.TryParse(MyReader["siteID"].ToString(), out siteID);
+                Dictionary<string, string> fieldTypes = GetFieldTypes(siteID);
+                actionType = GetSearchActionType(MyReader["SearchActionType"].ToString());
+                string fieldID = MyReader["FieldID"].ToString();
+                string fieldVal = MyReader["fieldVal"].ToString();
+                string fieldType = GetFieldTypeNum(fieldID);
+
+                if (MyReader["FieldID"].ToString() == "isEmpty")
+                {
+                    sqlSearchActionQuery += " AND 1=2 ";
+                }
+                else
+                {
+                    sqlSearchActionQuery += GetSqlSearchActionQuery(actionType, fieldType, fieldID, fieldVal);
+                }
+            }
+            MyReader.Close();
+            con.Close();
+        }
+
+        return sqlSearchActionQuery;
+    }
+
+    public static string GetSqlSearchActionQuery(SearchActionType actionType, string fieldType, string searchFieldName, string searchFieldValue)
+    {
+        //string sqlSearchActionQuery = " 1=1 ";        
+        string sqlSearchActionQuery = " ";
+        bool isEmptyValue = String.IsNullOrEmpty(searchFieldValue);
+        bool isInt = false;
+        bool isValidName = false;
+        bool isDateFrom = false;
+        bool isDateTo = false;
+        bool isPeriodFrom = false;
+        bool isPeriodTo = false;
+        bool isRangeFrom = false;
+        bool isRangeTo = false;
+        switch (fieldType)
+        {
+            case "3":
+            case "8":
+                isInt = true;
+                break;
+        }
+
+        if (searchFieldName.Contains("DateFrom"))
+        {
+            isDateFrom = true;
+            searchFieldName = searchFieldName.Replace("'", "").Replace("DateFrom", "");
+        }
+        else if (searchFieldName.Contains("DateTo"))
+        {
+            isDateTo = true;
+            searchFieldName = searchFieldName.Replace("'", "").Replace("DateTo", "");
+        }
+        else if (searchFieldName.Contains("fromPeriod"))
+        {
+            isPeriodFrom = true;
+            searchFieldName = searchFieldName.Replace("'", "").Replace("fromPeriod", "");
+            string[] period = searchFieldValue.Split('_');
+            int days = 0;
+            int units = 0;
+            int.TryParse(period[0], out days);
+            int.TryParse(period[1], out units);
+            days = days * units;
+            searchFieldValue = days.ToString();
+        }
+        else if (searchFieldName.Contains("toPeriod"))
+        {
+            isPeriodTo = true;
+            searchFieldName = searchFieldName.Replace("'", "").Replace("toPeriod", "");
+            string[] period = searchFieldValue.Split('_');
+            int days = 0;
+            int units = 0;
+            int.TryParse(period[0], out days);
+            int.TryParse(period[1], out units);
+            days = days * units;
+            searchFieldValue = days.ToString();
+        }
+        else if (searchFieldName.Contains("rangeFrom"))
+        {
+            isRangeFrom = true;
+            searchFieldName = searchFieldName.Replace("'", "").Replace("rangeFrom", "");
+        }
+        else if (searchFieldName.Contains("rangeTo"))
+        {
+            isRangeTo = true;
+            searchFieldName = searchFieldName.Replace("'", "").Replace("rangeTo", "");
+        }
+        else if (searchFieldName.Contains("Select"))
+        {
+            fieldType = "3";
+            isInt = true;
+            searchFieldName = searchFieldName.Replace("'", "").Replace("Select", "");
+        }
+        else
+        {
+            int searchFieldNameInt = 0;
+            isValidName = int.TryParse(searchFieldName, out searchFieldNameInt);
+        }
+
+
+        switch (actionType)
+        {
+            #region EqualsTo
+            case SearchActionType.EqualsTo:
+                if (!isEmptyValue)
+                {
+                    if (isDateFrom)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND (DATE(`{0}`)>=DATE('{1}')) ", searchFieldName, searchFieldValue);
+                    }
+                    else if (isDateTo)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND (DATE(`{0}`)<=DATE('{1}')) ", searchFieldName, searchFieldValue);
+                    }
+                    else if (isRangeFrom)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND (`{0}`>={1}) ", searchFieldName, searchFieldValue);
+                    }
+                    else if (isRangeTo)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND (`{0}`<={1}) ", searchFieldName, searchFieldValue);
+                    }
+                    else if (isInt)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND `{0}`={1} ", searchFieldName, searchFieldValue);
+                    }
+                    else
+                    {
+                        sqlSearchActionQuery += String.Format(" AND `{0}`='{1}' ", searchFieldName, searchFieldValue);
+                    }
+                }
+
+                break;
+            #endregion
+
+            #region NotEqualsTo
+            case SearchActionType.NotEqualsTo:
+
+                if (!isEmptyValue)
+                {
+                    if (isDateFrom)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND (DATE(`{0}`)<DATE('{1}')) ", searchFieldName, searchFieldValue);
+                    }
+                    else if (isDateTo)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND (DATE(`{0}`)>DATE('{1}')) ", searchFieldName, searchFieldValue);
+                    }
+                    else if (isRangeFrom)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND (`{0}`<{1}) ", searchFieldName, searchFieldValue);
+                    }
+                    else if (isRangeTo)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND (`{0}`>{1}) ", searchFieldName, searchFieldValue);
+                    }
+                    else if (isInt)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND `{0}`<>{1} ", searchFieldName, searchFieldValue);
+                    }
+                    else
+                    {
+                        sqlSearchActionQuery += String.Format(" AND `{0}`<>'{1}' ", searchFieldName, searchFieldValue);
+                    }
+                }
+
+                break;
+            #endregion
+
+            #region ContainsTheValue
+            case SearchActionType.ContainsTheValue:
+                if (!isEmptyValue)
+                {
+
+                    if (isDateFrom)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND (DATE(`{0}`)>=DATE('{1}')) ", searchFieldName, searchFieldValue);
+                    }
+                    else if (isDateTo)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND (DATE(`{0}`)<=DATE('{1}')) ", searchFieldName, searchFieldValue);
+                    }
+                    else if (isRangeFrom)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND (`{0}`>={1}) ", searchFieldName, searchFieldValue);
+                    }
+                    else if (isRangeTo)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND (`{0}`<={1}) ", searchFieldName, searchFieldValue);
+                    }
+                    else if (isInt)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND `{0}`={1} ", searchFieldName, searchFieldValue);
+                    }
+                    else
+                    {
+                        sqlSearchActionQuery += String.Format(" AND `{0}` LIKE '%{1}%' ", searchFieldName, searchFieldValue);
+                    }
+                }
+                break;
+            #endregion
+
+            #region NotContainsTheValue
+            case SearchActionType.NotContainsTheValue:
+                if (!isEmptyValue)
+                {
+                    if (isInt)
+                    { }
+                    else
+                    {
+                        sqlSearchActionQuery += String.Format(" AND `{0}` NOT LIKE '%{1}%' ", searchFieldName, searchFieldValue);
+                    }
+                }
+
+                break;
+            #endregion
+
+            #region ContainsNoValue
+            case SearchActionType.ContainsNoValue:
+                if (isInt)
+                {
+                    sqlSearchActionQuery += String.Format(" AND (`{0}` IS NULL OR `{0}`=0) ", searchFieldName);
+                }
+                else if (isRangeFrom || isRangeTo)
+                {
+                    sqlSearchActionQuery += String.Format(" AND (`{0}` IS NULL) ", searchFieldName);
+                }
+                else
+                {
+                    sqlSearchActionQuery += String.Format(" AND (`{0}` IS NULL OR `{0}`='') ", searchFieldName);
+                }
+
+                break;
+            #endregion
+
+            #region ContainsAnyValue
+            case SearchActionType.ContainsAnyValue:
+
+                if (isRangeFrom || isRangeTo)
+                {
+                    sqlSearchActionQuery += String.Format(" AND (`{0}` IS NOT NULL) ", searchFieldName);
+                }
+                else if (isInt)
+                {
+                    sqlSearchActionQuery += String.Format(" AND (`{0}` IS NOT NULL AND NOT `{0}`=0) ", searchFieldName);
+                }
+                else
+                {
+                    sqlSearchActionQuery += String.Format(" AND (`{0}` IS NOT NULL AND NOT `{0}`='') ", searchFieldName);
+                }
+
+                break;
+            #endregion
+
+            #region EqualsToPeriodFromCurrentTime
+            case SearchActionType.EqualsToPeriodFromCurrentTime:
+                if (!isEmptyValue)
+                {
+                    if (isPeriodFrom)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND (DATE(`{0}`) >= DATE(DATE_ADD(NOW(),INTERVAL {1} DAY))) ", searchFieldName, searchFieldValue);
+                    }
+                    else if (isPeriodTo)
+                    {
+                        sqlSearchActionQuery += String.Format(" AND (DATE(`{0}`) <= DATE(DATE_ADD(NOW(),INTERVAL {1} DAY))) ", searchFieldName, searchFieldValue);
+                    }
+                }
+                break;
+            #endregion
+
+            default:
+                break;
+        }
+
+        if (!String.IsNullOrEmpty(sqlSearchActionQuery))
+        {
+            sqlSearchActionQuery = " AND (NOT isDel=1 OR isDel is null) " + sqlSearchActionQuery;
+        }
+
+        return sqlSearchActionQuery;
+    }        
+
+
+    private static string GetFieldTypeNum(string fieldID)
+    {
+        string fieldType = "1";
+
+        if (fieldID.Contains("DateFrom"))
+        {
+            fieldType = "6";
+        }
+        else if (fieldID.Contains("DateTo"))
+        {
+            fieldType = "6";
+        }
+        else if (fieldID.Contains("fromPeriod"))
+        {
+            fieldType = "1";
+        }
+        else if (fieldID.Contains("toPeriod"))
+        {
+            fieldType = "1";
+        }
+        else if (fieldID.Contains("rangeFrom"))
+        {
+            fieldType = "8";
+        }
+        else if (fieldID.Contains("rangeTo"))
+        {
+            fieldType = "8";
+        }
+        else if (fieldID.Contains("Select"))
+        {
+            fieldType = "3";
+        }
+        else if (fieldID.Contains("Email"))
+        {
+            fieldType = "1";
+        }
+        else if (fieldID.Contains("cellPhone"))
+        {
+            fieldType = "1";
+        }
+        else if (fieldID.Contains("getNewsletter"))
+        {
+            fieldType = "3";
+        }
+        return fieldType;
+    }
+
+    public static Dictionary<string, string> GetFieldTypes(int siteID)
+    {
+        Dictionary<string, string> fieldTypes = new Dictionary<string, string>();
+        using (MySqlConnection conn = new MySqlConnection(ConnStr))
+        {
+            string sql = String.Format("SELECT FieldNum,fieldType FROM tblaliasforusers WHERE SiteID={0}", siteID);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                fieldTypes.Add(dr["FieldNum"].ToString(), dr["fieldType"].ToString());
+            }
+            dr.Close();
+            conn.Close();
+        }
+        return fieldTypes;
+    }
+
+    public static SearchActionType GetSearchActionType(string actionTypeNum)
+    {
+        int actionTypeNumInt = 0;
+        SearchActionType sat = SearchActionType.ContainsTheValue;
+        if (int.TryParse(actionTypeNum, out actionTypeNumInt))
+        {
+            try
+            {
+                sat = (SearchActionType)actionTypeNumInt;
+            }
+            catch { }
+        }
+        return sat;
+    }
+
+	//public static string CreatePreview(string tplID, string siteID)
+	//{
+	//    string msgSubj = "";
+	//    string msgBody = "";
+	//    MySqlCommand cmd = new MySqlCommand();
+	//    string sql = "";
+	//    string siteID = Session["siteID"].ToString();
+
+	//    using (MySqlConnection con = new MySqlConnection(ConnStr))
+	//    {
+	//        con.Open();
+	//        cmd.Connection = con;
+	//        cmd.CommandText = "SELECT tblnewslettertpl.tplContent AS tplContent, tblnewslettertpl.tplTitle AS tplTitle, tblnewslettertpl.tplDir, tblnewslettertpl.tplColor FROM tblnewslettertpl WHERE tblnewslettertpl.siteID=" + Session["siteID"] + " AND tplID=" + Request.QueryString["tplID"];
+	//        MyReader = cmd.ExecuteReader();
+	//        if (MyReader.Read())
+	//        {
+	//            msgSubj = Languages.GetText("TestMessage") + " : " + MyReader["tplTitle"].ToString();
+	//            msgContent = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\" ><body";
+	//            if (MyReader["tplColor"].ToString() != "")
+	//            {
+	//                msgContent += " style=\"background-color:" + MyReader["tplColor"].ToString() + ";\"";
+	//            }
+	//            msgContent += "><div dir=\"rtl\" style=\"direction:rtl;text-align:center; width:100%; \"><table cellpadding=\"0\" cellspacing=\"0\"; style=\"margin:auto; width:980px\">";
+
+	//            msgContent += "<tr><td style=\"direction:";
+	//            if (MyReader["tplDir"].ToString() == "1")
+	//            {
+	//                msgContent += "ltr; text-align:left;";
+	//            }
+	//            else
+	//            {
+	//                msgContent += "rtl; text-align:right;";
+	//            }
+
+	//            if (MyReader["tplColor"].ToString() != "")
+	//            {
+	//                msgContent += "background-color:" + MyReader["tplColor"].ToString() + ";";
+	//            }
+	//            msgContent += "\">" + MyReader["tplContent"].ToString() + "</td></tr>";
+	//            msgContent += "</table></div></body></html>";
+	//        }
+	//        MyReader.Close();
+	//    }
+	//    return "";
+	//}
+	
+}
+
+public class SendMsgMinisite
+{
+	public string landingContent;
+	public string landingTitle;
+	public string landingColor;
+	public int siteID;
+	public bool ShowFacebook;
+	public bool showShare;
+	public int landingLang;
+	public bool ShowFBComments;
+	public bool IndexInGoogle;
+	public int tplDir;
+	public int SiteStatus;
+	public DateTime landingDate;
+	public int landingID;
+	public string analyticsCode;
+	public bool contentNetworkActive;
+	public bool promoShowOnSide;
+    public int promoOnSideType;
+    public bool promoShowOnBottom;
+    public int promoOnBottomType;
+    public bool promoShowOnTop;
+    public int promoOnTopType;
+    public string landingPageWidth;
+}
+
+public class SendMsgNewsletter
+{
+	    public string MsgContent;
+		public string MsgSubj;
+		public int siteID;
+		public int MsgLangID;
+		public int msgID;
+		public DateTime MsgDate;
+		public bool RemoveCredits;
+}

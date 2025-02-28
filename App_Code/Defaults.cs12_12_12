@@ -1,0 +1,568 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using MySql.Data.MySqlClient;
+using System.Collections;
+using System.Data;
+
+/// <summary>
+/// A class that spacefies the default values and methods for the site
+/// </summary>
+public static class Defaults
+{
+    private static List<SendMsgNewsletter> newsList = new List<SendMsgNewsletter>();
+	private static List<SendMsgMinisite> MinisiteList = new List<SendMsgMinisite>();
+
+
+	private static string sitePath = "http://www.sendMsg.co.il";
+
+	public static string SitePath 
+	{
+		get { return sitePath; }
+	}
+
+	public static string ConnStr = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString1"].ConnectionString;
+	
+	public static Control getControlByID(Control root, Type type, string ID) //a recusrion to get all the controlls in the page
+	{
+		List<Control> list = new List<Control>();
+		foreach (Control c in root.Controls)
+		{
+			if (c.GetType() == type && c.ID == ID)
+			{
+				return c;
+			}
+
+			if (c.Controls.Count > 0)
+			{
+				if (getControlByID(c, type, ID) != null)
+				{
+					return (getControlByID(c, type, ID));
+				}
+			}
+		}
+		return null;
+	}
+    
+	public static void DelFromTable(int landingID)
+    {
+		for (int i = 0; i < MinisiteList.Count; i++)
+		{
+			if (MinisiteList[i].landingID == landingID)
+			{
+				MinisiteList.Remove(MinisiteList[i]);
+				break;
+			}
+		}
+    }
+
+
+    public static SendMsgMinisite GetMiniste(int siteID, int landingID, MySqlConnection conn)
+    {
+		SendMsgMinisite myMinisite = new SendMsgMinisite();
+		lock (MinisiteList)
+		{
+			List<SendMsgMinisite> delFromMemo = new List<SendMsgMinisite>();
+			for (int i = 0; i < MinisiteList.Count; i++)
+			{
+				if (MinisiteList[i].landingDate < DateTime.Now.AddHours(-10) && MinisiteList[i].landingID != landingID)
+				{
+					delFromMemo.Add(MinisiteList[i]);
+				}
+				else if(MinisiteList[i].landingID == landingID)
+				{
+					myMinisite = MinisiteList[i];
+				}
+			}
+			for (int i = 0; i < delFromMemo.Count; i++)
+			{
+				MinisiteList.Remove(delFromMemo[i]);
+			}
+		}
+
+        
+        if (myMinisite.landingID == 0)
+        {
+			string sql = "SELECT landingContent,landingTitle,landingColor, siteID, ShowFacebook,showShare, landingLang, ShowFBComments, IndexInGoogle, tplDir, analyticsCode, (SELECT SiteStatus FROM tblSites where tblSites.SIteID=landingPages.siteID) AS SiteStatus FROM landingPages WHERE siteID=" + siteID + " AND landingID=" + landingID;
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                myMinisite.landingContent= dr["landingContent"].ToString();
+                myMinisite.landingTitle= dr["landingTitle"].ToString();
+                myMinisite.landingColor= dr["landingColor"].ToString();
+				myMinisite.siteID = int.Parse(dr["siteID"].ToString());
+                myMinisite.ShowFacebook= (dr["ShowFacebook"].ToString()=="1"?true:false);
+                myMinisite.showShare= (dr["showShare"].ToString()=="1"?true:false);
+                myMinisite.landingLang= int.Parse(dr["landingLang"].ToString());
+                myMinisite.ShowFBComments= (dr["ShowFBComments"].ToString()=="1"?true:false);
+				myMinisite.IndexInGoogle = (dr["IndexInGoogle"].ToString() == "1" ? true : false);
+				myMinisite.tplDir= int.Parse(dr["tplDir"].ToString());
+                myMinisite.SiteStatus= int.Parse(dr["SiteStatus"].ToString());
+                myMinisite.landingDate= DateTime.Now;
+                myMinisite.landingID= landingID;
+				myMinisite.analyticsCode = dr["analyticsCode"].ToString();
+				lock (MinisiteList)
+				{
+					MinisiteList.Add(myMinisite);
+				}
+            }
+          
+            dr.Close();
+
+        }      
+
+        return myMinisite;
+    }
+
+
+    public static SendMsgNewsletter GetNewsLetter(int siteID, int msgID, MySqlConnection conn)
+    {
+        SendMsgNewsletter myNewsletter = new SendMsgNewsletter();
+		lock (newsList)
+		{
+			List<SendMsgNewsletter> delFromMemo = new List<SendMsgNewsletter>();
+			for (int i = 0; i < newsList.Count; i++)
+			{
+				if (newsList[i].MsgDate < DateTime.Now.AddHours(-10) && newsList[i].msgID != msgID)
+				{
+					delFromMemo.Add(newsList[i]);
+				}
+				else if (newsList[i].msgID == msgID)
+				{
+					myNewsletter = newsList[i];
+				}
+			}
+			for (int i = 0; i < delFromMemo.Count; i++)
+			{
+				newsList.Remove(delFromMemo[i]);
+			}
+		}
+
+		if (myNewsletter.msgID == 0)
+        {
+            string sql = "SELECT MsgContent,MsgSubj, siteID, MsgLangID,RemoveCredits FROM SentMsgs WHERE siteID=" + siteID + " AND MsgID=" + msgID;
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader dr = cmd.ExecuteReader();
+            if (dr.Read())
+            {
+                myNewsletter.MsgContent = dr["MsgContent"].ToString();
+                myNewsletter.MsgSubj = dr["MsgSubj"].ToString();
+                myNewsletter.siteID = int.Parse(dr["siteID"].ToString());
+                myNewsletter.MsgDate = DateTime.Now;
+                myNewsletter.msgID = msgID;
+				myNewsletter.RemoveCredits = (dr["RemoveCredits"].ToString() == "1" ? true : false);
+
+				lock (newsList)
+				{
+					newsList.Add(myNewsletter);
+				}
+            }
+            
+            dr.Close();
+        }
+        else
+        {
+            //myDataRow2["MsgSubj"] = "שלח מסר";
+        }
+		if (myNewsletter.siteID != 0)
+		{
+			if (myNewsletter.MsgSubj.ToString().Trim() == "")
+			{
+				myNewsletter.MsgSubj = "שלח מסר";
+			}
+		}
+        return myNewsletter;
+    }
+
+	public static List<Control> getControls(Control root, Type type) //a recusrion to get all the controlls in the page
+	{
+
+		List<Control> list = new List<Control>();
+		foreach (Control c in root.Controls)
+		{
+			if (c.GetType() == type)
+			{
+				list.Add(c);
+			}
+
+			if (c.Controls.Count > 0)
+			{
+				list.AddRange(getControls(c, type));
+			}
+		}
+		return list;
+	}
+
+	public static string[] getEmailsByML(int MLID, int siteID, string WhereQuery)
+	{
+		//only returning users that were not deleted or self removed
+
+		string[] Users = { };
+		List<string> UsersArr = new List<string>();
+		MySqlDataReader MyReader = null;
+		string sqlToSend = "SELECT eMail FROM (" + getMLSpecs(MLID, siteID, true, true, WhereQuery) + ") AS t1 WHERE AddRem=1 ";
+
+		using (MySqlConnection con = new MySqlConnection(ConnStr))
+		{
+			con.Open();
+			MySqlCommand cmd = new MySqlCommand(sqlToSend, con);
+
+			MyReader = cmd.ExecuteReader();
+			while (MyReader.Read())
+			{
+				UsersArr.Add(MyReader["eMail"].ToString());
+			}
+			MyReader.Close();
+			con.Close();
+		}
+
+
+		Users = UsersArr.ToArray();
+		return Users;
+	}
+
+	public static string[] getUsersByML(int MLID, int siteID, string WhereQuery)
+	{
+		//only returning users that were not deleted or self removed
+		
+		string[] Users = { };
+		List<string> UsersArr = new List<string>();
+		MySqlDataReader MyReader = null;
+		string sqlToSend = "SELECT ID FROM (" + getMLSpecs(MLID, siteID, true, true, WhereQuery) + ") AS t1 WHERE AddRem=1 ";
+		
+		using (MySqlConnection con = new MySqlConnection(ConnStr))
+		{
+			con.Open();
+			MySqlCommand cmd = new MySqlCommand(sqlToSend,con);
+
+			MyReader = cmd.ExecuteReader();
+			while(MyReader.Read())
+			{
+				UsersArr.Add(MyReader["id"].ToString());
+			}
+			MyReader.Close();
+			con.Close();
+		}
+
+
+		Users = UsersArr.ToArray();
+		return Users;
+	}
+
+	public static int getUsersCountByML(int MLID, int siteID, bool bySpec, bool ByStat, string WhereQuery)
+	{
+		int UserCount = 0;
+
+		//only returning users that were not deleted or self removed
+
+		string[] Users = { };
+		List<string> UsersArr = new List<string>();
+		MySqlDataReader MyReader = null;
+		string sqlToSend = "SELECT COUNT(ID) AS UserCount FROM (" + getMLSpecs(MLID, siteID, bySpec, ByStat, WhereQuery) + ") AS t1 WHERE AddRem=1 ";
+
+		using (MySqlConnection con = new MySqlConnection(ConnStr))
+		{
+			con.Open();
+			MySqlCommand cmd = new MySqlCommand(sqlToSend, con);
+
+			MyReader = cmd.ExecuteReader();
+			if (MyReader.Read())
+			{
+				int.TryParse(MyReader["UserCount"].ToString(), out UserCount);
+			}
+			con.Close();
+		}
+
+
+		
+		return UserCount;
+	}
+
+
+
+	public static int getUsersRemovedCountByML(int MLID, int siteID, string WhereQuery)
+	{
+		int UserCount = 0;
+
+		//only returning users that were not deleted or self removed
+
+		string[] Users = { };
+		List<string> UsersArr = new List<string>();
+		MySqlDataReader MyReader = null;
+		string sqlToSend = "SELECT COUNT(ID) AS UserCount FROM (" + getMLSpecs(MLID, siteID, false, true, WhereQuery) + ") AS t1 WHERE AddRem=0 ";
+
+		using (MySqlConnection con = new MySqlConnection(ConnStr))
+		{
+			con.Open();
+			MySqlCommand cmd = new MySqlCommand(sqlToSend, con);
+
+			MyReader = cmd.ExecuteReader();
+			if (MyReader.Read())
+			{
+				int.TryParse(MyReader["UserCount"].ToString(), out UserCount);
+			}
+			con.Close();
+		}
+
+
+
+		return UserCount;
+	}
+
+	public static string getMLSpecs(int MLID, int siteID, bool bySpec, bool ByStat, string WhereQuery)//only returning users that were not deleted or self removed
+	{
+		
+		MySqlDataReader MyReader = null;
+		string specsSQL = "";
+		string sqlToSend = "";
+
+		if (bySpec == false && ByStat == false)
+		{
+			throw new Exception("the list must be by specification, by static or by both");
+		}
+
+		using (MySqlConnection con = new MySqlConnection(ConnStr))
+		{
+			if (bySpec)
+			{
+				sqlToSend += "SELECT ID, 1 as AddRem, eMail FROM tblUsers" + siteID + " WHERE (NOT isDel=1 OR isDel is null) AND `selfRemoveDate` IS NULL ";
+				if (!string.IsNullOrEmpty(WhereQuery))
+				{ sqlToSend += " AND " + WhereQuery + " "; }
+				string sql = "SELECT * FROM tblMLSpecs WHERE MLID=" + MLID + " ";
+				con.Open();
+				MySqlCommand cmd = new MySqlCommand();
+
+				cmd.CommandText = sql;
+				cmd.Connection = con;
+
+				MyReader = cmd.ExecuteReader();
+
+
+				string theName;
+				int theNameInt;
+				bool addAnd = true;
+				while (MyReader.Read())
+				{
+					if (!string.IsNullOrEmpty(MyReader["FieldID"].ToString()) && (int.TryParse(MyReader["FieldID"].ToString(), out theNameInt) || MyReader["FieldID"].ToString() == "eMail" || MyReader["FieldID"].ToString() == "cellPhone"))
+					{
+						theName = MyReader["FieldID"].ToString();
+						if (MyReader["FieldVal"].ToString() != "")
+						{
+							if (addAnd == true)
+							{
+								specsSQL += " AND ";
+							}
+							else
+							{
+
+							}
+							specsSQL += "`" + theName + "` like '%" + MyReader["FieldVal"].ToString() + "%'";
+							addAnd = true;
+						}
+					}
+
+					if (MyReader["FieldID"].ToString().Contains("DateFrom"))
+					{
+						if (!string.IsNullOrEmpty(MyReader["FieldID"].ToString().Replace("DateFrom", "")))
+						{
+							theName = MyReader["FieldID"].ToString().Replace("DateFrom", "");
+							if (MyReader["FieldVal"].ToString() != "")
+							{
+								if (addAnd == true)
+								{
+									specsSQL += " AND ";
+								}
+								else
+								{
+
+								}
+								specsSQL += " `" + theName + "`>='" + MyReader["FieldVal"].ToString() + "' ";
+								addAnd = true;
+							}
+						}
+					}
+
+					if (MyReader["FieldID"].ToString().Contains("DateTo"))
+					{
+						if (!string.IsNullOrEmpty(MyReader["FieldID"].ToString().Replace("DateTo", "")))
+						{
+							theName = MyReader["FieldID"].ToString().Replace("DateTo", "");
+							if (MyReader["FieldVal"].ToString() != "")
+							{
+								if (addAnd == true)
+								{
+									specsSQL += " AND ";
+								}
+								else
+								{
+
+								}
+								specsSQL += "`" + theName + "`<='" + MyReader["FieldVal"].ToString() + "' ";
+								addAnd = true;
+							}
+						}
+					}
+
+
+					if (MyReader["FieldID"].ToString().Contains("rangeFrom"))
+					{
+						if (!string.IsNullOrEmpty(MyReader["FieldID"].ToString().Replace("rangeFrom", "")))
+						{
+							theName = MyReader["FieldID"].ToString().Replace("rangeFrom", "");
+							if (MyReader["FieldVal"].ToString() != "")
+							{
+								if (addAnd == true)
+								{
+									specsSQL += " AND ";
+								}
+								else
+								{
+
+								}
+								specsSQL += "`" + theName + "`>=" + MyReader["FieldVal"].ToString() + " ";
+								addAnd = true;
+							}
+						}
+					}
+
+					if (MyReader["FieldID"].ToString().Contains("rangeTo"))
+					{
+						if (!string.IsNullOrEmpty(MyReader["FieldID"].ToString().Replace("rangeTo", "")))
+						{
+							theName = MyReader["FieldID"].ToString().Replace("rangeTo", "");
+							if (MyReader["FieldVal"].ToString() != "")
+							{
+								if (addAnd == true)
+								{
+									specsSQL += " AND ";
+								}
+								else
+								{
+
+								}
+								specsSQL += "`" + theName + "`<=" + MyReader["FieldVal"].ToString() + " ";
+								addAnd = true;
+							}
+						}
+					}
+
+
+					if (MyReader["FieldID"].ToString() == "Email" || MyReader["FieldID"].ToString() == "cellPhone" || MyReader["FieldID"].ToString() == "getNewsletter")
+					{
+						if (addAnd == true)
+						{
+							specsSQL += " AND ";
+						}
+						else
+						{
+
+						}
+						specsSQL += "`" + MyReader["FieldID"].ToString() + "` like '%" + MyReader["FieldVal"].ToString() + "%' ";
+						addAnd = true;
+					}
+					if (MyReader["FieldID"].ToString() == "isEmpty")
+					{
+						sqlToSend =  sqlToSend.Replace("(NOT isDel=1 OR isDel is null) ", "(NOT isDel=1 OR isDel is null) AND 1=2 ");
+					}
+				}
+				MyReader.Close();
+				sqlToSend += specsSQL;
+				
+			}
+			
+			if (bySpec && ByStat)
+			{
+				sqlToSend += "UNION ";
+			}
+			if (ByStat)
+			{
+				sqlToSend += "SELECT UserID AS ID, AddRem, eMail FROM xtblMLStat" + siteID + " LEFT JOIN tblUsers" + siteID + " ON tblUsers" + siteID + ".id = xtblMLStat" + siteID + ".UserID WHERE xtblMLStat" + siteID + ".SiteID=" + siteID + " AND xtblMLStat" + siteID + ".MLID=" + MLID + " AND (NOT isDel=1 OR isDel is null) AND `selfRemoveDate` IS NULL";
+				if (!string.IsNullOrEmpty(WhereQuery))
+				{ sqlToSend += " AND " + WhereQuery + " "; }
+			}
+			con.Close();
+		}
+		return sqlToSend;
+	}
+
+
+	//public static string CreatePreview(string tplID, string siteID)
+	//{
+	//    string msgSubj = "";
+	//    string msgBody = "";
+	//    MySqlCommand cmd = new MySqlCommand();
+	//    string sql = "";
+	//    string siteID = Session["siteID"].ToString();
+
+	//    using (MySqlConnection con = new MySqlConnection(ConnStr))
+	//    {
+	//        con.Open();
+	//        cmd.Connection = con;
+	//        cmd.CommandText = "SELECT tblnewslettertpl.tplContent AS tplContent, tblnewslettertpl.tplTitle AS tplTitle, tblnewslettertpl.tplDir, tblnewslettertpl.tplColor FROM tblnewslettertpl WHERE tblnewslettertpl.siteID=" + Session["siteID"] + " AND tplID=" + Request.QueryString["tplID"];
+	//        MyReader = cmd.ExecuteReader();
+	//        if (MyReader.Read())
+	//        {
+	//            msgSubj = Languages.GetText("TestMessage") + " : " + MyReader["tplTitle"].ToString();
+	//            msgContent = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"><html xmlns=\"http://www.w3.org/1999/xhtml\" ><body";
+	//            if (MyReader["tplColor"].ToString() != "")
+	//            {
+	//                msgContent += " style=\"background-color:" + MyReader["tplColor"].ToString() + ";\"";
+	//            }
+	//            msgContent += "><div dir=\"rtl\" style=\"direction:rtl;text-align:center; width:100%; \"><table cellpadding=\"0\" cellspacing=\"0\"; style=\"margin:auto; width:980px\">";
+
+	//            msgContent += "<tr><td style=\"direction:";
+	//            if (MyReader["tplDir"].ToString() == "1")
+	//            {
+	//                msgContent += "ltr; text-align:left;";
+	//            }
+	//            else
+	//            {
+	//                msgContent += "rtl; text-align:right;";
+	//            }
+
+	//            if (MyReader["tplColor"].ToString() != "")
+	//            {
+	//                msgContent += "background-color:" + MyReader["tplColor"].ToString() + ";";
+	//            }
+	//            msgContent += "\">" + MyReader["tplContent"].ToString() + "</td></tr>";
+	//            msgContent += "</table></div></body></html>";
+	//        }
+	//        MyReader.Close();
+	//    }
+	//    return "";
+	//}
+	
+}
+
+public class SendMsgMinisite
+{
+	public string landingContent;
+	public string landingTitle;
+	public string landingColor;
+	public int siteID;
+	public bool ShowFacebook;
+	public bool showShare;
+	public int landingLang;
+	public bool ShowFBComments;
+	public bool IndexInGoogle;
+	public int tplDir;
+	public int SiteStatus;
+	public DateTime landingDate;
+	public int landingID;
+	public string analyticsCode;
+
+}
+
+public class SendMsgNewsletter
+{
+	    public string MsgContent;
+		public string MsgSubj;
+		public int siteID;
+		public int MsgLangID;
+		public int msgID;
+		public DateTime MsgDate;
+		public bool RemoveCredits;
+}

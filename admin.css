@@ -1,0 +1,629 @@
+﻿
+body
+{
+	font-family:Arial;
+}
+
+div.pageDiv
+{
+	width:1018px;
+	margin:auto auto auto auto;
+	height:100%; 
+	background:#ffffff; 
+	text-align:center;
+	vertical-align:top;
+}
+
+table.devider
+{
+	width:1018px;
+	height:700px;
+}
+
+td.banner
+{
+	vertical-align:bottom;
+	background-color:#4b99cf;
+	background-position:center top;
+	background-image:url('images/HeaderBack.gif');
+	background-repeat:no-repeat;
+	height: 110px;
+	width: 1018px;
+	text-align:right;
+}
+
+td.bannerHome
+{
+	vertical-align:bottom;
+	background-color:#4b99cf;
+	background-position:center top;
+	background-image:url('images/HeaderBackHome.gif');
+	background-repeat:no-repeat;
+	height: 110px;
+	width: 1018px;
+	text-align:right;
+}
+
+td.right
+{
+	background-image:url("images/RightBorder.gif");
+	background-repeat:repeat-y;
+	background-position:left;
+
+	vertical-align:top;
+	text-align:right;
+	background-color:#f2f2f2;
+	width:140px;
+}
+
+
+td.main
+{
+	vertical-align:top;
+	direction:rtl;
+	background-color:#ffffff;
+	width:900px;
+	height:600px;
+}
+
+td.Defaultmain
+{
+	vertical-align:top;
+	direction:rtl;
+	background-color:#ffffff;
+	width:100%;
+	height:554px;
+}
+
+div.main
+{
+	table-layout:fixed;
+	width:100%; 
+	direction:ltr;
+	vertical-align:top;
+}
+
+td.footer
+{
+	background-color:#ffffff;
+	height:20px
+}
+
+td.rightCell
+{
+width:120px;
+color:#595959;
+vertical-align:middle;
+border-bottom:solid 2px #d0d0d0;
+text-align:right;
+}
+
+td.rightCellSelected
+{
+	width:120px;
+	color:#ffffff;
+	vertical-align:middle;
+	background-color:#0269b1;
+	background-image:url("images/RightBorder.gif");
+	background-repeat:repeat-y;
+	background-position:-2px;
+	border-bottom:solid 2px #d0d0d0;
+	
+}
+
+
+
+td.rightCellHeader
+{
+color:#1071b5;
+font-weight:bold;
+font-family:Arial;
+font-size:16px;
+width:120px;
+text-align:center;
+padding-top:10px;
+}
+
+a.right
+{
+color:#595959;
+font-family:Arial;
+font-size:14px;
+text-decoration:none;
+}
+
+a.rightSelected
+{
+color:#ffffff;
+font-family:Arial;
+font-size:14px;
+text-decoration:none;
+text-align:right;
+}
+
+td.bannerCell
+{
+width:131px;
+height:44px;
+text-align:center;
+color:#ffffff;
+font-family:Arial;
+font-size:15px;
+height:44px;
+}
+
+
+td.bannerCellSelected
+{
+width:131px;
+height:44px;
+text-align:center;
+color:blue;
+background-image:url('images/topMenuSelect.gif');
+background-position:center top;
+background-repeat:no-repeat;
+font-family:Arial;
+font-size:15px;
+}
+
+.LinkButton
+{
+	color:#ffffff;
+	text-decoration:none;
+}
+
+a.banner
+{
+color:#ffffff;
+text-decoration:none;
+border:none;
+}
+
+a.bannerSelected
+{
+color:#1071b5;
+text-decoration:none;
+border:none;
+}
+
+
+.titleSpan
+{
+	color:#0269b1;
+	font-size:22px;
+	font-weight:bold;
+	direction:rtl;
+}
+
+
+tr.resTH
+{
+	background-color:#ffffff;
+	color:#ffffff;
+	font-family:Arial;
+	background-image:url('images/tableTopback.gif');
+	height:41px;
+	direction:inherit;
+}
+
+.resHeader a
+{
+	color:#ffffff;
+	text-decoration:none;
+	font-family:Arial;
+}
+
+tr.resTF
+{
+	background-color:#ffffff;
+	color:#ffffff;
+	font-family:Arial;
+	background-image:url('images/tableButtomBack.gif');
+	background-repeat:repeat-x;
+	height:32px;
+}
+
+a.resTH
+{
+color:#ffffff;
+font-family:Arial;
+font-size:16px;
+text-decoration:none;
+text-align:right;
+}
+
+td.ThRight
+{
+	text-align:right;
+}
+
+td.ThLeft
+{
+	text-align:left;
+}
+
+td.tableRight
+{
+	background-image:url('images/tableRight.gif');
+	background-position:right;
+	background-repeat:repeat-y;
+	text-align:center;
+	font-size:1px;
+}
+
+
+td.tableLeft
+{
+	background-image:url('images/tableLeft.gif');
+	background-position:left;
+	background-repeat:repeat-y;
+	text-align:center;
+	font-size:1px;
+}
+
+tr.resTDeven
+{
+background:#f2f2f2;
+color:#5c5c5c;
+font-size:14px;
+}
+
+tr.resTDeven span a
+{
+	display:none;
+}
+
+tr.resTDuneven
+{
+background:#ffffff;
+color:#5c5c5c;
+font-size:14px;
+}
+
+tr.resTDuneven span a
+{
+	display:none;
+}
+
+tr.resSelect
+{
+	background:#bbdef7;
+	color:#5c5c5c;
+	font-size:14px;
+}
+
+tr.resSelect span
+{
+	background:#bbdef7;
+	color:#000000;
+}
+
+tr.resSelect span a
+{
+	display:inherit;
+	color:#0269b1;
+}
+
+tr.resSelect span span
+{
+	font-weight:bold;
+	display:inherit;
+	color:#cc0000;
+}
+
+.bannerRow
+{
+background-image:url('images/SearchHeaderBack.jpg');
+height:44px;
+}
+
+td.bannerRowRight
+{
+	width:15px;
+}
+
+td.bannerRowLeft
+{
+	width:15px;
+}
+
+.buttomRow
+{
+	background-image:url('images/tableButtomBack.gif');
+	background-repeat:repeat-x;
+	height:29px;
+}
+
+.FwdBwd
+{
+	width:500px;
+	height:39px;
+	background-image:url("images/foundBack.gif");
+	background-repeat:repeat-x;
+	margin: auto auto auto auto;
+}
+
+.displayCalBox
+{
+position:absolute;
+height:400px; 
+overflow:scroll; 
+border:solid 1px #000000;
+text-align:right;
+left:100px;
+top:200px; 
+width:300px;
+display:none; 
+background:#6a95f2;
+margin:auto auto auto auto;
+}
+
+.tblUserCats
+{
+margin:auto auto auto auto;
+}
+
+td.textbox
+{
+	background-image:url("images/TextBoxFull2.gif");
+	background-repeat:no-repeat;
+	background-position:right;
+	text-align:right;
+	padding-right:5px;
+	padding-bottom:5px;
+	height:25px;
+	width:200px;
+}
+
+input.textbox
+{
+	background-color:Transparent;
+	border:none;
+	width:188px;
+	font-size:12px;
+}
+
+select.textbox
+{
+	background-color:Transparent;
+	border:none 0px transparent;
+	width:125px;
+	font-size:12px;
+}
+
+
+td.selectBox
+{
+	background-image:url("images/TextBoxFull2.gif");
+	background-repeat:no-repeat;
+	background-position:right top;
+	text-align:right;
+	padding-right:5px;
+	padding-bottom:5px;
+	height:25px;
+	width:200px;
+}
+
+select.selectBox
+{
+	background-color:Transparent;
+	border:none;
+	width:188px;
+	font-size:12px;
+	cursor:default;
+}
+
+div.selectOver
+{
+	background:#555555;
+}
+
+.tblUserCats
+{
+margin:auto auto auto auto;
+}
+
+.LoginInfo
+{
+	height:71px;
+	width:265px;
+	background-image:url("images/TopLoginInfo.png");
+	background-repeat:no-repeat;
+	text-align:center;
+}
+
+
+td.LogOut
+{
+	height:71px;
+	width:51px;
+	background-image:url("images/TopLogoutOver.png");
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+
+td.Help
+{
+	height:71px;
+	width:51px;
+	background-image:url("images/TopHelpOver.png");
+	background-repeat:no-repeat;
+	cursor:pointer;	
+}
+
+td.OnThisPage
+{
+	height:71px;
+	width:51px;
+	background-image:url("images/TopOnThisPageOver.png");
+	background-repeat:no-repeat;
+	cursor:pointer;	
+}
+
+
+td.percentBar
+{
+	height:21px;
+	background-image:url("images/sendBarBack.gif");
+	background-repeat:repeat-x;
+	color:#ffffff;
+}
+
+td.faderRight
+{
+	background-repeat:repeat-y;
+	width:5px;
+	background-position:left;
+}
+
+td.faderLeft
+{
+	background-repeat:repeat-y;
+	width:5px;
+}
+
+td.LoginInfoCell
+{
+	color:#adadad;
+	text-align:right;
+	direction:rtl;
+	padding:10px 15px 10px 15px;
+	font-family:Arial;
+	font-size:14px;
+}
+
+td.numTotal
+{
+	color:#ffffff;
+	text-align:left;
+	vertical-align:middle;
+	padding-bottom:4px;
+}
+
+span.info
+{
+	text-decoration:underline;
+	color:#1071b5;
+	cursor:pointer;
+}
+
+tr.EnterTH
+{
+	background-color:#ffffff;
+	color:#ffffff;
+	font-family:Arial;
+	background-image:url('images/EntertableTopback.gif');
+	height:40px;
+}
+
+td.EnterTableRight
+{
+	background-image:url('images/EnterTableRight.gif');
+	background-position:right;
+	background-repeat:repeat-y;
+	text-align:center;
+}
+
+td.EnterTableTopSelected
+{
+	vertical-align:bottom;
+}
+
+td.EnterTableTopSelected div
+{
+	background-image:url('images/SelectedBack.gif');
+	background-position:top right;
+	background-repeat:repeat-x;
+	background-color:#ffffff;
+	text-align:center;
+	vertical-align:middle;
+	color:#1071b5;
+	font-size:18px;
+	cursor:default;
+	height:30px;
+}
+
+
+td.EnterTableTop
+{
+	text-align:center;
+	color:#ffffff;
+	vertical-align:middle;
+	font-size:18px;
+	cursor:pointer;
+	height:30px;
+}
+
+td.EnterTableLeft
+{
+	background-image:url('images/EnterTableLeft.gif');
+	background-position:left;
+	background-repeat:repeat-y;
+	text-align:center;
+}
+
+.EnterTableBottomRow
+{
+	background-image:url('images/EnterTableBottom.gif');
+	background-repeat:repeat-x;
+	background-position:bottom;
+	height:6px;
+}
+
+.PageBottomRow
+{
+	background-image:url('images/PageBottom.gif');
+	background-repeat:repeat-x;
+	height:5px;
+}
+
+.PageBottomRow1
+{
+	background-image:url('images/PageBottom1.gif');
+	background-repeat:repeat-x;
+	height:14px;
+	background-position:top;
+}
+
+
+td.ManCatsBannerCell
+{
+height:60px;
+text-align:center;
+color:#ffffff;
+font-family:Arial;
+font-size:15px;
+background-image:url('images/SearchHeaderBack.jpg');
+background-repeat:repeat-x;
+background-position:bottom;
+}
+
+.tbaleCell
+{
+	color:#595959;
+	font-family:Arial;
+	font-size:14px;
+	padding-right:5px;
+	padding-left: 5px;
+}
+
+div.AdminDiv
+{
+	color:#1071b5;
+}
+
+div.AdminDiv span
+{
+	color:#595959;
+	font-size:13px;
+}
+
+div.AdminDiv a
+{
+	color:#1071b5;
+	text-decoration:none;
+	border:none;
+}
+
+
+

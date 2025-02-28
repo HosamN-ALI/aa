@@ -1,0 +1,27 @@
+﻿.adTdClass
+{
+    width:120px;
+}
+
+.contentAdAltTextClass
+{
+    display:block;
+    color:#0269B1;
+    font-weight:bold;
+    font-size:14px;
+    text-decoration:none;
+}
+
+.adTextClass
+{
+    color:#696969;
+    font-size:12px;
+	text-decoration:none;
+}
+
+.contentAdImageClass
+{    
+    max-width:120px;
+	border:none;
+	max-height:90px;
+}

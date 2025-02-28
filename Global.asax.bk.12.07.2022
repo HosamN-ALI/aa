@@ -1,0 +1,635 @@
+﻿<%@ Application Language="C#" %>
+
+<script RunAt="server">
+
+    void Application_Start(object sender, EventArgs e)
+    {
+        // Code that runs on application startup
+        Postfix.Statr();
+        Domain.LoadDomains();
+    }
+    static readonly string[] baseSubDomain = { "n", "newsletters", "multimedia" };
+    void Application_BeginRequest(Object sender, EventArgs e)
+    {
+        try
+        {
+            //if ((HttpContext.Current.Request.Url.ToString().ToLower().Contains(".aspx") || HttpContext.Current.Request.Url.ToString().ToLower().EndsWith("/") || HttpContext.Current.Request.Url.ToString().ToLower().Contains("/?")) && !HttpContext.Current.Request.Url.ToString().ToLower().Contains("sysdown"))
+            //{
+            //	Response.Redirect("SysDown.aspx");
+            //}
+            //string IP_client = Request.ServerVariables["REMOTE_ADDR"];
+            //if (Defaults.IsErrorAttack(IP_client, 50))
+            //{
+            //	string MoreParam = "";
+            //	if (HttpContext.Current.Request.QueryString != null)
+            //	{
+            //		MoreParam = "?" + HttpContext.Current.Request.QueryString.ToString();
+            //	}
+
+            //	if (HttpContext.Current.Request.Form != null && HttpContext.Current.Request.Form.Count > 0)
+            //	{
+            //		if (MoreParam.Contains("?"))
+            //		{
+            //			MoreParam += "&";
+            //		}
+            //		else
+            //		{
+            //			MoreParam += "?";
+
+            //		}
+            //		for (int i = 0; i < HttpContext.Current.Request.Form.Count; i++)
+            //		{
+
+            //			MoreParam += (HttpContext.Current.Request.Form.AllKeys[i] + "=" + HttpContext.Current.Request.Form[i] + "&");
+            //		}
+            //		MoreParam = MoreParam.Remove(MoreParam.LastIndexOf("&"));
+            //	}
+
+            //	Response.Redirect("http://www.interpol.int" + MoreParam);
+            //	//Response.Redirect("http://www.google.co.il" + MoreParam);
+
+            //}
+        }
+        catch
+        {
+        }
+
+        string currentUrl = "";
+        try
+        {
+            bool skip = false;
+            currentUrl = Server.UrlDecode(HttpContext.Current.Request.Url.PathAndQuery);
+            bool isMobile = false;
+
+            //if (currentUrl.ToLower().Contains("ismobile=true"))
+            //{
+            //    currentUrl = currentUrl.ToLower().Replace("?ismobile=true", "");
+            //    isMobile = true;
+            //}
+
+            string friendlyUrl = currentUrl;
+            string friendlySite = currentUrl;
+
+            if (currentUrl.ToLower().EndsWith("robots.txt"))
+            {
+                Context.RewritePath("robotstxt.aspx");
+            }
+            else if (currentUrl.ToLower().EndsWith("sitemap.xml"))
+            {
+                Context.RewritePath("xmlSitemap.aspx");
+            }
+            else if (currentUrl.ToLower() == "/" || currentUrl.ToLower().Contains("aspxerrorpath"))
+            {
+                //Context.RewritePath("~/default.aspx");
+                Context.RewritePath("~/404.aspx");
+
+            }
+            else if (Request.Url.ToString().ToLower().Contains("favicon.ico"))
+            {
+                Context.RewritePath("~/favicon.ico");
+            }
+            else if (currentUrl.ToLower().Contains("showad"))
+            {
+                skip = true;
+                string svcPath = "~/minisites.aspx/showAd";
+
+                int dotaspx = svcPath.IndexOf(".aspx");
+                string path = svcPath.Substring(0, dotaspx + 5);
+                string pathInfo = svcPath.Substring(dotaspx + 5);
+                Context.RewritePath(path, pathInfo, Context.Request.Url.Query.Replace("?", ""));
+
+                //Context.RewritePath("~/minisites.aspx//showAd");
+            }
+            else if (currentUrl.ToLower().Contains("getmobilecontent"))
+            {
+                skip = true;
+                string svcPath = "~/minisites.aspx/GetMobileContent";
+
+                int dotaspx = svcPath.IndexOf(".aspx");
+                string path = svcPath.Substring(0, dotaspx + 5);
+                string pathInfo = svcPath.Substring(dotaspx + 5);
+                Context.RewritePath(path, pathInfo, Context.Request.Url.Query.Replace("?", ""));
+
+                //Context.RewritePath("~/minisites.aspx//showAd");
+            }
+            else if (currentUrl.ToLower().Contains(".ico") || currentUrl.ToLower().Contains(".css") || currentUrl.ToLower().Contains("showad") || currentUrl.ToLower().EndsWith("jpg") || currentUrl.ToLower().EndsWith("gif") || currentUrl.ToLower().EndsWith("png") || currentUrl.ToLower().EndsWith("jpeg") || currentUrl.ToLower().EndsWith("jpeg") || currentUrl.ToLower().EndsWith("css") || currentUrl.ToLower().EndsWith("js") || currentUrl.ToLower().EndsWith("ico") || currentUrl.ToLower().EndsWith("eot") || currentUrl.ToLower().EndsWith("ttf") || currentUrl.ToLower().EndsWith("svg") || currentUrl.ToLower().EndsWith("woff"))
+            {
+                skip = true;
+            }
+            else if (!currentUrl.ToLower().EndsWith("html"))
+            {
+                string[] friendlyUrlArray = { };
+
+                string host = Request.Url.Host;
+                //host = "lazanya.minisite.ms";
+                //host = "comstar.minisite.ms";
+                //host = "n.sendmsg.co.il";
+                string[] domains = host.Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries);
+
+                string shortLanding = Request.Url.ToString();
+                shortLanding = shortLanding.Replace(Request.Url.Authority, host); // for Only LocalHost
+
+                shortLanding = shortLanding.Replace((Request.Url.Scheme + "://"), "");
+                Regex regLandingV3 = new Regex(@"\/c\/([0-9a-z]+)");
+                Match MatchLandingV3 = regLandingV3.Match(shortLanding);
+                if (MatchLandingV3.Success)
+                {
+
+                    //string DelCache = (Request.QueryString[Defaults.actionName] == Defaults.rebuildName ? ("&" + Defaults.actionName + "=" + Defaults.rebuildName) : null);
+                    //currentUrl = "/LandingV3.aspx?pageID=" + Request.Url.Segments[Request.Url.Segments.Length - 1] + (DelCache);
+
+                    currentUrl = Defaults.toLandingV3(Request, Request.Url.Segments[Request.Url.Segments.Length - 1]);
+                    Context.RewritePath("~/" + currentUrl);
+                }
+
+                Regex regShortLanding = new Regex(@"\/n\/(\d+)");
+                Match MatchShortLanding = regShortLanding.Match(shortLanding);
+                if (MatchShortLanding.Success)
+                {
+
+                    if (domains != null && domains.Length > 0)
+                    {
+                        string landingID = MatchShortLanding.Groups[1].ToString();
+                        var subDomain = domains[0].ToLower();
+                        int DomainID = 0;
+                        string domainPath = host.Remove(0, (subDomain.Length + 1));
+                        var domain = Domain.DomainArr.FirstOrDefault(d => d.Value.CookieDomain == domainPath || d.Value.Psl == domainPath);
+
+                        if (!string.IsNullOrWhiteSpace(domain.Key))
+                        {
+                            if (Request.Url.Segments.Length > 1)
+                            {
+                                friendlyUrl = Server.UrlDecode(Request.Url.Segments[1]);
+                                friendlyUrlArray = friendlyUrl.Split('?');
+
+                                if (int.TryParse(domain.Key, out DomainID))
+                                {
+                                    string sql1 = "SELECT SiteID FROM sendermsg.tblManagers Left Join TblSites ON manSiteID = siteID where replace(replace(manUn,'.',''),'_','')= '" + subDomain.FixSqlInjection() + "' AND siteDomainID=" + DomainID + " limit 1";
+
+
+                                    using (MySql.Data.MySqlClient.MySqlConnection con2 = new MySql.Data.MySqlClient.MySqlConnection(Defaults.ConnStr))
+                                    {
+                                        int _friendlySite = 0;
+
+                                        MySql.Data.MySqlClient.MySqlDataReader MyReader2;
+                                        con2.Open();
+                                        MySql.Data.MySqlClient.MySqlCommand cmd2 = new MySql.Data.MySqlClient.MySqlCommand(sql1, con2);
+                                        MyReader2 = cmd2.ExecuteReader();
+                                        if (MyReader2.Read())
+                                        {
+                                            int.TryParse(MyReader2["SiteID"].ToString(), out _friendlySite);
+                                            MyReader2.Close();
+                                        }
+                                        MyReader2.Close();
+
+
+
+                                        if (_friendlySite > 0)
+                                        {
+                                            string sql2 = "SELECT CONCAT('/Minisites.aspx?p=' , landingID , '-' , ((SiteID + 3) * landingID * 36) , '-' , SiteID) AS LandingUrl FROM landingpages WHERE landingID= " + int.Parse(landingID) + " AND siteID=" + _friendlySite;
+
+                                            cmd2.CommandText = sql2;
+                                            MyReader2 = cmd2.ExecuteReader();
+
+                                            if (MyReader2.Read())
+                                            {
+                                                currentUrl = MyReader2["LandingUrl"].ToString();
+                                                if (isMobile)
+                                                {
+                                                    currentUrl += "&ismobile=true";
+                                                }
+                                            }
+                                            else
+                                            {
+                                                currentUrl = "noFURL";
+                                            }
+                                            MyReader2.Close();
+                                            con2.Close();
+                                        }
+
+                                        if (currentUrl != Server.UrlDecode(HttpContext.Current.Request.Url.PathAndQuery) && !skip)
+                                        {
+                                            if (currentUrl == "noFURL")
+                                            {
+                                                try
+                                                {
+                                                    Response.Redirect("https://n.sendmsg.co.il/Minisites.aspx");
+                                                }
+                                                catch (Exception ex) { }
+                                            }
+                                            else
+                                            {
+                                                if (friendlyUrlArray.Length > 1)
+                                                {
+                                                    Context.RewritePath((currentUrl.StartsWith("~") ? currentUrl : "~" + currentUrl) + "&" + friendlyUrlArray[1]);
+                                                }
+                                                else
+                                                {
+                                                    Context.RewritePath(currentUrl.StartsWith("~") ? currentUrl : "~" + currentUrl);
+                                                }
+                                            }
+                                        }
+
+                                    }
+
+
+                                }
+
+                            }
+                        }
+                    }
+                }
+                else if (!MatchLandingV3.Success) // LandingV3  wite friendlyUrl
+                {
+                    lock (Defaults.friendlyMapID_creaditorV3)
+                    {
+                        Defaults.CreV3_PageOption CreV3_PageOption;
+                        if (!Defaults.friendlyMapID_creaditorV3.TryGetValue(shortLanding, out CreV3_PageOption))
+                        {
+
+                            regShortLanding = new Regex(@"\/(\w|[א-ת]|\s)+(((\?|&)[\w|\d]*=[\w|\d]*)*)?");
+                            MatchShortLanding = regShortLanding.Match(HttpContext.Current.Request.Url.PathAndQuery);
+                            if (MatchShortLanding.Success)
+                            {
+                                string LandingV3friendlyUrl = HttpContext.Current.Request.Url.LocalPath.Replace("/", "");
+                                int siteID = Defaults.getSiteID_FromURL(Request, Server, domains, host, friendlyUrl, friendlyUrlArray);
+                                if (siteID > 0)
+                                {
+                                    string res = Defaults.findLandingByNickName(LandingV3friendlyUrl, siteID, shortLanding);
+                                    if (!string.IsNullOrWhiteSpace(res))
+                                    {
+                                        if (res.Length < 200)
+                                        {
+                                            res = EncryptionHelper.Decrypt(res);
+                                            if (res.Length < 100)
+                                            {
+                                                CreV3_PageOption = new System.Web.Script.Serialization.JavaScriptSerializer().Deserialize<Defaults.CreV3_PageOption>(res);
+                                                Defaults.friendlyMapID_creaditorV3.Add(shortLanding, CreV3_PageOption);
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        CreV3_PageOption = new Defaults.CreV3_PageOption();
+                                        Defaults.friendlyMapID_creaditorV3.Add(shortLanding, CreV3_PageOption);
+                                    }
+                                }
+                            }
+                        }
+
+                        if (CreV3_PageOption != null && !string.IsNullOrWhiteSpace(CreV3_PageOption.id))
+                        {
+                            currentUrl = Defaults.toLandingV3(Request, CreV3_PageOption.id);
+                            Context.RewritePath("~/" + currentUrl);
+                        }
+                    }
+                }
+
+
+                if (((!string.IsNullOrWhiteSpace(Request.Url.LocalPath) && ((!Request.Url.LocalPath.ToLower().Contains("minisites.aspx")) && (!Request.Url.LocalPath.ToLower().Contains("landingv3.aspx"))))) && domains != null && domains.Length > 0)
+                {
+                    var subDomain = domains[0].ToLower();
+                    //if ((!Request.IsLocal) && !baseSubDomain.Contains(subDomain))
+                    //if (!Request.IsLocal)
+                    {
+                        string domainPath = host.Remove(0, (subDomain.Length + 1));
+                        //var domain = Domain.DomainArr.FirstOrDefault(d => d.Value.SecureSitePath.Contains(domainPath));
+                        var domain = Domain.DomainArr.FirstOrDefault(d => d.Value.CookieDomain == domainPath || d.Value.Psl == domainPath);
+
+                        if (!string.IsNullOrWhiteSpace(domain.Key))
+                        {
+                            int DomainID = 0;
+                            if (int.TryParse(domain.Key, out DomainID))
+                            {
+                                if (Request.Url.Segments.Length > 1)
+                                {
+                                    int _friendlySite = 0;
+
+
+                                    friendlyUrl = Server.UrlDecode(Request.Url.Segments[1]);
+                                    friendlyUrlArray = friendlyUrl.Split('?');
+                                    friendlyUrl = friendlyUrlArray[0];
+                                    string sql1 = "SELECT SiteID FROM sendermsg.tblManagers Left Join TblSites ON manSiteID = siteID where replace(replace(manUn,'.',''),'_','')= '" + subDomain.FixSqlInjection() + "' AND siteDomainID=" + DomainID + " limit 1";
+
+                                    using (MySql.Data.MySqlClient.MySqlConnection con2 = new MySql.Data.MySqlClient.MySqlConnection(Defaults.ConnStr))
+                                    {
+                                        MySql.Data.MySqlClient.MySqlDataReader MyReader2;
+                                        con2.Open();
+                                        MySql.Data.MySqlClient.MySqlCommand cmd2 = new MySql.Data.MySqlClient.MySqlCommand(sql1, con2);
+                                        MyReader2 = cmd2.ExecuteReader();
+                                        if (MyReader2.Read())
+                                        {
+                                            int.TryParse(MyReader2["SiteID"].ToString(), out _friendlySite);
+                                            MyReader2.Close();
+
+
+                                            if (_friendlySite > 0)
+                                            {
+                                                string sql2 = "SELECT CONCAT('/Minisites.aspx?p=' , landingID , '-' , ((SiteID + 3) * landingID * 36) , '-' , SiteID) AS LandingUrl FROM landingpages WHERE landingFriendly='" + friendlyUrl.Replace("'", "''") + "' AND siteID=" + _friendlySite;
+
+                                                cmd2.CommandText = sql2;
+                                                MyReader2 = cmd2.ExecuteReader();
+
+                                                if (MyReader2.Read())
+                                                {
+                                                    currentUrl = MyReader2["LandingUrl"].ToString();
+                                                    if (isMobile)
+                                                    {
+                                                        currentUrl += "&ismobile=true";
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    currentUrl = "noFURL";
+                                                }
+                                                MyReader2.Close();
+                                                con2.Close();
+                                            }
+
+                                            if (currentUrl != Server.UrlDecode(HttpContext.Current.Request.Url.PathAndQuery) && !skip)
+                                            {
+                                                if (currentUrl == "noFURL")
+                                                {
+                                                    try
+                                                    {
+                                                        Response.Redirect("https://n.sendmsg.co.il/Minisites.aspx");
+                                                    }
+                                                    catch (Exception ex) { }
+                                                }
+                                                else
+                                                {
+                                                    if (friendlyUrlArray.Length > 1)
+                                                    {
+                                                        Context.RewritePath((currentUrl.StartsWith("~") ? currentUrl : "~" + currentUrl) + "&" + friendlyUrlArray[1]);
+                                                    }
+                                                    else
+                                                    {
+                                                        Context.RewritePath(currentUrl.StartsWith("~") ? currentUrl : "~" + currentUrl);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        MyReader2.Close();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+                string item = Request.Url.ToString();// "/f7569/form";
+                Regex myreg = new Regex(@"\/f(\d+)\/([\S,\s]+)");
+                Match myMatch = myreg.Match(item);
+                if (myMatch.Success)
+                {
+                    //   Response.Write("OK " + myMatch.Groups[2].ToString() + myMatch.Groups[2].ToString());
+                    // }
+
+                    //if (Request.Url.ToString().Contains("/f") && Request.Url.ToString().Substring(Request.Url.ToString().IndexOf("/f") + 1).Contains("/"))//checks to see if a friendly url exists.
+                    //{
+
+                    string ConnStr = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString1"].ConnectionString;
+                    //friendlySite = Request.Url.ToString().Substring(Request.Url.ToString().IndexOf("/f") + 2);
+                    //friendlySite = friendlySite.Remove(friendlySite.IndexOf("/", friendlySite.IndexOf("/f") + 1));//gets the siteID                  
+                    //friendlyUrl = Request.Url.ToString().Substring(Request.Url.ToString().IndexOf("/", Request.Url.ToString().IndexOf("/f") + 1) + 1);//gets the friendly url by checking what's beyond the first "/" that is after the /f                                         
+                    friendlySite = myMatch.Groups[1].ToString();
+                    friendlyUrl = myMatch.Groups[2].ToString();
+                    if (friendlyUrl.Contains("/"))
+                    {
+                        friendlyUrl = friendlyUrl.Remove(friendlyUrl.IndexOf("/"));
+                    }
+
+                    if (friendlyUrl.ToLower().Contains("_ismobile"))
+                    {
+                        friendlyUrl = friendlyUrl.ToLower().Replace("_ismobile", "");
+                        isMobile = true;
+                    }
+
+                    friendlyUrlArray = friendlyUrl.Split('?');
+                    friendlyUrl = friendlyUrlArray[0];
+                    string sql2 = "SELECT CONCAT('/Minisites.aspx?p=' , landingID , '-' , ((SiteID + 3) * landingID * 36) , '-' , SiteID) AS LandingUrl FROM landingpages WHERE landingFriendly='" + friendlyUrl.Replace("'", "''") + "' AND siteID=" + friendlySite;
+                    using (MySql.Data.MySqlClient.MySqlConnection con2 = new MySql.Data.MySqlClient.MySqlConnection(ConnStr))
+                    {
+                        MySql.Data.MySqlClient.MySqlDataReader MyReader2;
+                        con2.Open();
+                        MySql.Data.MySqlClient.MySqlCommand cmd2 = new MySql.Data.MySqlClient.MySqlCommand(sql2, con2);
+                        MyReader2 = cmd2.ExecuteReader();
+
+                        if (MyReader2.Read())
+                        {
+                            currentUrl = MyReader2["LandingUrl"].ToString();
+                            if (isMobile)
+                            {
+                                currentUrl += "&ismobile=true";
+                            }
+                        }
+                        else
+                        {
+                            currentUrl = "noFURL";
+                        }
+                        MyReader2.Close();
+                        con2.Close();
+                    }
+                }
+                else if (Request.Url.ToString().Contains("/?"))
+                {
+                    currentUrl = currentUrl.Replace("/?", "/default.aspx/?");
+                }
+
+                if (currentUrl != Server.UrlDecode(HttpContext.Current.Request.Url.PathAndQuery) && !skip)
+                {
+                    if (currentUrl == "noFURL")
+                    {
+                        try
+                        {
+                            Response.Redirect("https://n.sendmsg.co.il/Minisites.aspx");
+                        }
+                        catch (Exception ex) { }
+                    }
+                    else
+                    {
+                        if (friendlyUrlArray.Length > 1)
+                        {
+                            Context.RewritePath((currentUrl.StartsWith("~") ? currentUrl : "~" + currentUrl) + "&" + friendlyUrlArray[1]);
+                        }
+                        else
+                        {
+                            Context.RewritePath(currentUrl.StartsWith("~") ? currentUrl : "~" + currentUrl);
+                        }
+
+                    }
+                }
+
+
+            }
+            else if (currentUrl.StartsWith("/") && currentUrl.EndsWith(".html")) // like "/06jubhn4smpfvsyizuc5nwxotzlz2o.html"
+            {
+                currentUrl = Regex.Replace(currentUrl.Replace("/", ""), ".html", "", RegexOptions.IgnoreCase);
+                Context.RewritePath("getHtmlPage.ashx?htmlName=" + currentUrl);
+            }
+        }
+        catch (Exception ex)
+        {
+            string err = "התקבלה הודעת שגיאה בדפי הנחיתה:\n" +
+                "\n<br />הדף בו קרתה השגיאה: " + Request.Url.ToString() +
+                "\n<br />הודעת השגיאה:" + ex.Message.ToString() +
+                "\n<br /><br />-Stack Trace היה" + ex.StackTrace.ToString().Replace("\n", "<br />").Replace("line ", "<strong>line</strong>") +
+                "\n<br /><br />ה-Stack Trace הפנימי היה:" + ex.StackTrace.ToString().Replace("\n", "<br />").Replace("line ", "<strong>line</strong>");
+            if (HttpContext.Current.Session != null && HttpContext.Current.Session["siteID"] != null)
+            {
+                err += "\nה<br />-SiteID של המשתמש:" + HttpContext.Current.Session["siteID"].ToString();
+            }
+
+            System.Net.Mail.MailMessage myMessage = new System.Net.Mail.MailMessage();
+            System.Net.Mail.SmtpClient mySmtp = new System.Net.Mail.SmtpClient();
+            //myMessage.From = new System.Net.Mail.MailAddress("omer@sendmsg.co.il", "Omer", Encoding.UTF8);
+            myMessage.From = new System.Net.Mail.MailAddress("error@sendmsg.co.il");
+            mySmtp.Host = "wv240.1host.co.il";
+            mySmtp.UseDefaultCredentials = true;
+
+            //mySmtp.Host = "wv240.1host.co.il";
+            //mySmtp.UseDefaultCredentials = true;
+
+            myMessage.Subject = "הוצג דף שגיאה בדפי הנחיתה... " + DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
+            myMessage.SubjectEncoding = Encoding.UTF8;
+            myMessage.IsBodyHtml = true;
+            myMessage.BodyEncoding = Encoding.UTF8;
+            myMessage.Body = err;
+            mySmtp.Port = 25;
+            myMessage.To.Clear();
+            myMessage.To.Add("omer@comstar.co.il");
+
+            try
+            {
+                mySmtp.Send(myMessage);
+            }
+            catch
+            { }
+            if (currentUrl == "noFURL")
+            {
+                Response.Redirect("https://n.sendmsg.co.il/Minisites.aspx");
+            }
+            else
+            {
+                Response.Redirect("https://n.sendmsg.co.il/default.aspx");
+
+            }
+        }
+    }
+
+    void Application_End(object sender, EventArgs e)
+    {
+        //  Code that runs on application shutdown
+
+    }
+
+    void Application_Error(object sender, EventArgs e)
+    {
+        try
+        {
+            string IP_client = Request.ServerVariables["REMOTE_ADDR"];
+
+            Defaults.insertOrUpdateToListError(IP_client, DateTime.Now);
+
+
+        }
+        catch
+        {
+        }
+        Exception objErr = Server.GetLastError().GetBaseException();
+
+        if (!Request.Url.ToString().Contains("aspx/connector.aspx") && !Request.Url.ToString().ToLower().Contains("favicon.ico") && !objErr.Message.Contains("Failed to Execute URL"))
+        {
+            string err = "התקבלה הודעת שגיאה בדפי הנחיתה:\n" +
+                "\n<br />הדף בו קרתה השגיאה: " + Request.Url.ToString() +
+                "\n<br />הודעת השגיאה:" + objErr.Message.ToString() +
+                "\n<br /><br />-Stack Trace היה" + Server.GetLastError().StackTrace.ToString().Replace("\n", "<br />").Replace("line ", "<strong>line</strong>") +
+                "\n<br /><br />ה-Stack Trace הפנימי היה:" + objErr.StackTrace.ToString().Replace("\n", "<br />").Replace("line ", "<strong>line</strong>");
+            if (HttpContext.Current.Session != null && HttpContext.Current.Session["siteID"] != null)
+                err += "\nה<br />-SiteID של המשתמש:" + HttpContext.Current.Session["siteID"].ToString();
+
+            try
+            {
+                if (Request.Form.AllKeys.Length > 0)
+                {
+                    err += "<br /><br />ה-querystring שנשלחה: ";
+                    for (int i = 0; i < Request.Form.AllKeys.Length; i++)
+                    {
+                        err += Request.Form.GetKey(i) + "" + Request.Form.GetValues(i);
+                    }
+
+                }
+            }
+            catch { }
+
+            try
+            {
+                err += "<br /><br />SQL DATA: " + ((MySql.Data.MySqlClient.MySqlException)objErr).Data;
+                err += "<br /><br />SQL Error: " + ((MySql.Data.MySqlClient.MySqlException)objErr).Message;
+            }
+            catch { }
+
+            try
+            {
+                err += "<br /><br />IP: " + Request.UserHostAddress;
+            }
+            catch { }
+
+            System.Net.Mail.MailMessage myMessage = new System.Net.Mail.MailMessage();
+            System.Net.Mail.SmtpClient mySmtp = new System.Net.Mail.SmtpClient();
+            //myMessage.From = new System.Net.Mail.MailAddress("omer@sendmsg.co.il", "Omer", Encoding.UTF8);
+            myMessage.From = new System.Net.Mail.MailAddress("error@sendmsg.co.il");
+            mySmtp.Host = "wv240.1host.co.il";
+            mySmtp.UseDefaultCredentials = true;
+
+            //mySmtp.Host = "wv240.1host.co.il";
+            //mySmtp.UseDefaultCredentials = true;
+
+            myMessage.Subject = "הוצג דף שגיאה בדפי הנחיתה " + DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss");
+            myMessage.SubjectEncoding = Encoding.UTF8;
+            myMessage.IsBodyHtml = true;
+            myMessage.BodyEncoding = Encoding.UTF8;
+            myMessage.Body = err;
+            mySmtp.Port = 25;
+            myMessage.To.Clear();
+            myMessage.To.Add("omer@comstar.co.il");
+
+            try
+            {
+                mySmtp.Send(myMessage);
+            }
+            catch (Exception ex)
+            {
+                //    string ConnStr = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString1"].ConnectionString;
+                //    using (MySql.Data.MySqlClient.MySqlConnection con = new MySql.Data.MySqlClient.MySqlConnection(ConnStr))
+                //    {
+                //        con.Open();
+                //        MySql.Data.MySqlClient.MySqlCommand com = new MySql.Data.MySqlClient.MySqlCommand();
+                //        com.CommandText = "UPDATE tblnewslettertpl SET tplContent='MESSAGE ERROR:" + ex.Message.Replace("'", "''") + "<br />" + ex.StackTrace.Replace("'", "''") + "' WHERE tplID = 21226";
+                //        com.Connection = con;
+                //        com.ExecuteNonQuery();
+                //        con.Close();
+            }
+            //}
+        }
+        // Code that runs when an unhandled error occurs
+
+    }
+
+    void Session_Start(object sender, EventArgs e)
+    {
+        // Code that runs when a new session is started
+
+    }
+
+    void Session_End(object sender, EventArgs e)
+    {
+        // Code that runs when a session ends. 
+        // Note: The Session_End event is raised only when the sessionstate mode
+        // is set to InProc in the Web.config file. If session mode is set to StateServer 
+        // or SQLServer, the event is not raised.
+
+    }
+
+</script>

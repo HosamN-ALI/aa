@@ -1,0 +1,132 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
+using MySql.Data.MySqlClient;
+using System.Net;
+using System.Text;
+using System.IO;
+using System.Xml;
+
+public partial class ShowYouTube : System.Web.UI.Page
+{
+    protected string FloatDir = "right";
+    string ConnStr = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionString1"].ConnectionString;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        string vidID = "";
+        int langId = 1;
+        if (Request.QueryString["ytu"] != null)
+        {
+            Regex youTubeRegEx = new Regex(@"youtu(?:\.be|be\.com)/(?:.*v(?:/|=)|(?:.*/)?)([a-zA-Z0-9-_]+)");
+            if (youTubeRegEx.IsMatch(Request.QueryString["ytu"]))
+            {
+                vidID = youTubeRegEx.Match(Request.QueryString["ytu"]).Value.Replace("youtube.com/watch?v=", "");
+            }
+            else
+            {
+                vidID = Request.QueryString["ytu"];
+            }
+            YouTubeCode.Text = "<iframe id=\"youTubeIframe\" style=\"border:solid 5px #004577;margin:auto;\" width=\"840\" height=\"630\" src=\"https://www.youtube.com/embed/" + vidID + "/?autoplay=1&rel=0\" frameborder=\"0\" allowfullscreen></iframe>";
+
+        }
+
+        if (Request.QueryString["showLike"] != null && Request.QueryString["showLike"] == "true")
+        {
+            likeDiv.Visible = true;
+            FacebookLike.Attributes["data-href"] = Request.Url.ToString();
+        }
+
+        if (Request.QueryString["lang"] != null)
+        {
+            int.TryParse(Request.QueryString["lang"], out langId);
+        }
+        string langCode = Defaults.GetLangCodeFromLangID(langId);
+        int domainID = Domain.getDomainByUrl(Request.Url.ToString().Replace("multimedia", "panel"));
+
+        //MySqlDataReader MyReader;
+
+        //using (MySqlConnection con = new MySqlConnection(ConnStr))
+        //{
+        //	string theQS = "";
+        //	if (Request.QueryString != null)
+        //	{
+        //		theQS = Request.QueryString.ToString();
+        //	}
+
+        //	con.Open();
+        //	MySqlCommand cmd = new MySqlCommand();
+        //	cmd.Connection = con;
+        //	//cmd.CommandText = "INSERT INTO sendingusers.tempLandingUsers (IP, VisitedAt,LandingORView,query) VALUES ('" + HttpContext.Current.Request.UserHostAddress + "',now(),1,'" + theQS.Replace("'", "''") + "') ";
+        //	//cmd.ExecuteNonQuery();
+
+        //	MyReader = cmd.ExecuteReader();
+        //	if (MyReader.Read())
+        //	{
+        string langDir = Defaults.GetPages(46, langCode, domainID);
+        PageBody.Style.Add("direction", langDir);
+
+        Page.Title = Defaults.GetPages(81, langCode, domainID) + " - " + vidID;
+        TopTitleText.InnerHtml = Defaults.GetPages(82, langCode, domainID);
+        TopTitleLogoImg.Alt = Defaults.GetPages(83, langCode, domainID);
+        FooterSpan.InnerHtml = Defaults.GetPages(84, langCode, domainID);
+        //	}
+        //	MyReader.Close();
+        //	con.Close();
+        //}
+        //if (langId != 1)
+        //{
+        TopTitleLogoImg.Src = Defaults.SecureSitePath+"/" + Defaults.TopLogo;
+        TopTitleText.Style["direction"] = Defaults.GetPages(62, langCode, domainID);
+        TopTitleLogoLink.Style["direction"] = Defaults.GetPages(61, langCode, domainID);
+        TopTitleLogoImg.Style["float"] = Defaults.GetPages(61, langCode, domainID);
+        TopTitleLogoLink.Style["float"] = Defaults.GetPages(61, langCode, domainID);
+        //}
+
+
+        if (vidID != "")
+        {
+            try
+            {
+
+                WebRequest myHttpWebRequest = (HttpWebRequest)HttpWebRequest.Create("https://gdata.youtube.com/feeds/api/videos/" + vidID + "?v=2");
+                myHttpWebRequest.Method = "GET";
+                myHttpWebRequest.ContentType = "text/xml; encoding='utf-8'";
+
+                //Get Response
+                HttpWebResponse myHttpWebResponse = (HttpWebResponse)myHttpWebRequest.GetResponse();
+
+                //Now load the XML Document
+                XmlDocument myXMLDocument = new XmlDocument();
+
+                //Load response stream into XMLReader
+                XmlTextReader myXMLReader = new XmlTextReader(myHttpWebResponse.GetResponseStream());
+                myXMLDocument.Load(myXMLReader);
+
+                if (myXMLDocument.HasChildNodes)
+                {
+                    XmlNodeList nodeFound = myXMLDocument.GetElementsByTagName("title");
+                    if (nodeFound.Count > 0)
+                    {
+                        Page.Title = nodeFound[0].InnerText;
+                        ogTitle.Content = nodeFound[0].InnerText;
+                    }
+                    else
+                    { }
+
+                    nodeFound = myXMLDocument.GetElementsByTagName("media:thumbnail");
+                    ogImage.Content = nodeFound[0].Attributes["url"].Value;
+
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+            }
+        }
+    }
+}

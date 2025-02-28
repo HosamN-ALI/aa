@@ -1,0 +1,207 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
+using System.Linq;
+using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class LandingV3 : System.Web.UI.Page
+{
+    static Dictionary<string, string> pages = new System.Collections.Generic.Dictionary<string, string>();
+    static readonly object _lock = new object();
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        string pageID = Request.QueryString["pageID"];
+        string html = string.Empty;
+
+        lock (_lock)
+        {
+            try
+            {
+                if (Request.QueryString[Defaults.actionName] == Defaults.rebuildName)
+                {
+                    pages.Remove(pageID);
+                }
+                if (!pages.TryGetValue(pageID, out html))
+                {
+                    //ServicePointManager.Expect100Continue = true;
+                    //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                    //ServicePointManager.ServerCertificateValidationCallback = new System.Net.Security.RemoteCertificateValidationCallback(AcceptAllCertifications);
+                    //ServicePointManager.SecurityProtocol = (SecurityProtocolType)3072;
+
+                    string url = @"https://render.creaditor.ai";
+
+                    url = string.Format("{0}/{1}/?action=rebuild", url, pageID);
+
+                    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                    request.AutomaticDecompression = DecompressionMethods.GZip;
+
+                    using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    using (Stream stream = response.GetResponseStream())
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        html = reader.ReadToEnd();
+                        reader.Close();
+                        stream.Close();
+                        response.Close();
+                        //html = html.Replace("/static/",(adiComp+"static/"));
+                    }
+
+                    ////var ff = File.OpenRead(@"C:\Users\דודי\Downloads\sample-zip-file.zip");
+                    //var ff = File.OpenRead(@"C:\Users\דודי\Downloads\XXX.zip");
+
+                    ////using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                    ////using (Stream stream = response.GetResponseStream())
+                    //{
+                    //    //using (var file = File.OpenRead(path))
+                    //    //using (var zip = new ZipArchive(stream, ZipArchiveMode.Read))
+
+                    //    stremExtractZip(ff, @"C:\test\");
+                    //}
+
+
+
+
+                    //HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("http://www.w3schools.com/images/myw3schoolsimage.jpg");
+                    //webRequest.Method = "GET";
+                    //webRequest.Timeout = 3000;
+                    //Somewhere();
+                    //var ff = webRequest.BeginGetResponse(new AsyncCallback(PlayResponeAsync), webRequest);
+
+
+                    //HttpWebRequest wr = (HttpWebRequest)WebRequest.Create("http://www.w3schools.com/images/myw3schoolsimage.jpg");
+
+
+                    //HttpWebResponse ws = (HttpWebResponse)wr.GetResponse();
+                    //Stream str = ws.GetResponseStream();
+                    //byte[] inBuf = new byte[100000];
+                    //int bytesToRead = (int)inBuf.Length;
+                    //int bytesRead = 0;
+                    //while (bytesToRead > 0)
+                    //{
+                    //    int n = str.Read(inBuf, bytesRead, bytesToRead);
+                    //    if (n == 0)
+                    //        break;
+                    //    bytesRead += n;
+                    //    bytesToRead -= n;
+                    //}
+                    //FileStream fstr = new FileStream("weather.jpg", FileMode.OpenOrCreate,
+                    //FileAccess.Write);
+                    //fstr.Write(inBuf, 0, bytesRead);
+                    //str.Close();
+                    //fstr.Close();
+
+
+
+                    //html = "<img src='/userfiles/site14/images/SMSFUTURES3.png'/>";
+                    pages.Add(pageID, html);
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            finally { }
+        }
+        //Response.WriteFile(@"newLanding/index.html");
+        Response.Write(html);
+
+        Response.End();
+    }
+
+    //public bool AcceptAllCertifications(object sender, System.Security.Cryptography.X509Certificates.X509Certificate certification, System.Security.Cryptography.X509Certificates.X509Chain chain, System.Net.Security.SslPolicyErrors sslPolicyErrors)
+    //{
+    //    return true;
+    //}
+
+    //private void stremExtractZip(Stream stream_data, string path)
+    //{
+    //    if (stream_data != null && (!string.IsNullOrWhiteSpace(path)))
+    //    {
+    //        using (var zip = new ZipArchive(stream_data, ZipArchiveMode.Read))
+    //        {
+    //            MemoryStream ms;
+    //            Stream streamFile;
+    //            byte[] data_byteArry;
+    //            using (ms = new MemoryStream())
+    //            {
+    //                foreach (ZipArchiveEntry entry in zip.Entries)
+    //                {
+
+    //                    if (!string.IsNullOrWhiteSpace(entry.Name))
+    //                    {
+    //                        using (streamFile = entry.Open())
+    //                        {
+    //                            streamFile.CopyTo(ms);
+    //                            data_byteArry = ms.ToArray();
+
+    //                            string ff1 = path + entry.FullName;
+    //                            string _Directory = (path + entry.FullName.Remove(entry.FullName.LastIndexOf(entry.Name) - 1, entry.Name.Length + 1));
+    //                            if (!Directory.Exists(_Directory))
+    //                            {
+    //                                Directory.CreateDirectory(_Directory);
+    //                            }
+
+    //                            if (data_byteArry.Length > 0)
+    //                            {
+    //                                File.WriteAllBytes(ff1, data_byteArry);
+    //                            }
+    //                        }
+    //                        ms.Flush();
+    //                        ms.SetLength(0);
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
+    //private static void PlayResponeAsync(IAsyncResult asyncResult)
+    //{
+    //    long total = 0;
+    //    long received = 0;
+    //    HttpWebRequest webRequest = (HttpWebRequest)asyncResult.AsyncState;
+
+
+    //    ServicePointManager.Expect100Continue = true;
+    //    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+    //    try
+    //    {
+    //        using (HttpWebResponse webResponse = (HttpWebResponse)webRequest.EndGetResponse(asyncResult))
+    //        {
+    //            byte[] buffer = new byte[1024];
+
+
+
+    //            // FileStream fileStream = new FileStream("myw3schoolsimage.jpg", FileMode.CreateNew);
+
+    //            using (var fileStream = new FileStream("myw3schoolsimage.jpg", FileMode.Create))
+    //            using (var writer = new StreamWriter(fileStream))
+
+    //            using (Stream input = webResponse.GetResponseStream())
+    //            {
+    //                total = input.Length;
+
+    //                int size = input.Read(buffer, 0, buffer.Length);
+    //                while (size > 0)
+    //                {
+    //                    fileStream.Write(buffer, 0, size);
+    //                    received += size;
+
+    //                    size = input.Read(buffer, 0, buffer.Length);
+    //                }
+    //            }
+
+    //            //fileStream.Flush();
+    //            //fileStream.Close();
+    //        }
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //    }
+    //}
+}

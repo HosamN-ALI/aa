@@ -1,0 +1,742 @@
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+/// <summary>
+/// Summary description for Domains
+/// </summary>
+public class Domain
+{
+    public static Dictionary<string, Domain> DomainArr = new Dictionary<string, Domain>();
+    public static Dictionary<int, int> siteIdToDomainID = new Dictionary<int, int>();
+
+    public static string DefaultDomainSiteID = "14";
+    public static string DefaultDomainName = "שלח מסר";
+    public static string DefaultDomainName2 = "Sendmsg";
+    public static string DefaultSitePath = "http://panel.sendmsg.co.il";
+    public static string DefaultSecureSitePath = "https://panel.sendmsg.co.il";
+    public static string DefaultMultiMediaPath = "http://multimedia.sendmsg.co.il";
+    public static string DefaultMailPath = "panel.sendmsg.co.il";
+    public static string DefaultEndMailPath = "@sendmsg.co.il";
+    public static string DefaultNewsLetterPath = "https://newsletters.sendmsg.co.il";
+    public static string DefaultNPath = "https://n.sendmsg.co.il";
+    public static string DefaultCourseDomain = "https://course.sendmsg.co.il";
+    public static string DefaultHomeSite = "http://www.sendmsg.co.il";
+    public static string DefaultCookieDomain = "sendmsg.co.il";
+    public static string DefaultSmtpPostfix = "@24sender.com";
+    public static string DefaultSmtpHost = "comstarpostfix3.spd.co.il";
+    public static string DefaultSmtpUserName = "noreply";
+    public static string DefaultSmtpPass = "N93mpw6mBG782";
+    public static string DefaultSupportMail = "send.help@comstar.co.il";
+    public static string DefaultDefaultLang = "Heb";
+    public static string DefaultTopLogo = "images/default2016/MailLogo1.png";
+    public static string DefaultTopLogo2 = "images/logo_eMarketing.png";
+    public static string DefaultTextUnderLogo = "שלח מסר - מערכת דיוור אלקטרוני";
+    public static string DefaultTextUnderLogo2 = "eMarketing System";
+    public static string DefaultLogoLink = "http://www.sendmsg.co.il";
+    public static string DefaultLogoLink2 = "http://www.sendmsg.co";
+    public static string DefaultBottomLogo = "./images/default2016/ComstarLogowhite.svg";
+    public static string DefaultBottomLogo2 = "./images/default2016/ComstarLogowhite.svg";
+    public static string DefaultTextUnderBottomLogo = "&copy; 2009 - "+DateTime.Now.Year.ToString()+" All rights reserved to Comstar Systems Ltd.";
+    public static string DefaultTextUnderBottomLogo2 = "&copy; 2009 - " + DateTime.Now.Year.ToString() + " All rights reserved to Comstar Systems Ltd.";
+    public static string DefaultLoginPanelBg = "#0fc8d6";
+    public static string DefaultCharImage = "./images/default2016/guy.png";
+    public static string DefaultBgImg = "./backgrounds/DefaultBackground.png";
+    public static string DefaultInnerLogo = "images/Theme_1_Tabs/SendMSG_Logo.png";
+    public static string DefaultInnerLogo2 = "images/Theme_1_Tabs/SendMSG_Logo_Eng.png";
+    public static string DefaultFooterCredit = "&copy; פותח על ידי קומסטאר פיתוח מערכות ווב - כל הזכויות שמורות";
+    public static string DefaultFooterCredit2 = "&copy; Developed by Comstar Web development - All Rights Reserved";
+    public static string DefaultHideHomeFooter = "0";
+    public static string DefaultTransLanguages = "AllLangs";
+    public static string DefaultLoginTitle = "פאנל כניסה למערכת דיוור אלקטרוני - שלח מסר";
+    public static string DefaultLoginTitle2 = "eMarketing System Login Panel - Sendmsg";
+    public static string DefaultLoginDescription = "";
+    public static string DefaultLoginDescription2 = "";
+    public static string DefaultInnerTitle = "שלח מסר - מערכת דיוור אלקטרוני | ניוזלטר | פאנל ניהול";
+    public static string DefaultInnerTitle2 = "Sendmsg - eMarketing System | Newsletter | Control Panel";
+    public static string DefaultInnerDescription = "";
+    public static string DefaultInnerDescription2 = "";
+    public static string DefaultLoginHeading = "התחבר לחשבון ותרוויח!";
+    public static string DefaultLoginHeading2 = "Log In And Win!";
+    public static string DefaultLoginPopBg = "#fff";
+    public static string DefaultExpiredMessage = "תוקף המנוי שלך במערכת הסתיים. אנא צור קשר לשם חידושו : 077-4600911";
+    public static string DefaultExpiredMessage2 = "Your subscription has expired. Please contact us to renew it: +972-77-4600600";
+
+    private string domainSiteID;
+    private string domainName;
+    private string domainName2;
+    private string sitePath;
+    private string secureSitePath;
+    private string multiMediaPath;
+    private string mailPath;
+    private string endMailPath;
+    private string newsLetterPath;
+    private string courseDomain;
+    private string nPath;
+    private string homeSite;
+    private string cookieDomain;
+    private string smtpPostfix;
+    private string smtpHost;
+    private string smtpUserName;
+    private string smtpPass;
+    private string supportMail;
+    private string defaultLang;
+    private string topLogo;
+    private string topLogo2;
+    private string textUnderLogo;
+    private string textUnderLogo2;
+    private string logoLink;
+    private string logoLink2;
+    private string bottomLogo;
+    private string bottomLogo2;
+    private string textUnderBottomLogo;
+    private string textUnderBottomLogo2;
+    private string loginPanelBg;
+    private string charImage;
+    private string bgImg;
+    private string innerLogo;
+    private string innerLogo2;
+    private string footerCredit;
+    private string footerCredit2;
+    private string hideHomeFooter;
+    private string transLanguages;
+    private string loginTitle;
+    private string loginTitle2;
+    private string loginDescription;
+    private string loginDescription2;
+    private string innerTitle;
+    private string innerTitle2;
+    private string innerDescription;
+    private string innerDescription2;
+    private string loginHeading;
+    private string loginHeading2;
+    private string loginPopBg;
+    private string expiredMessage;
+    private string expiredMessage2;
+
+
+
+
+    public string DomainSiteID
+    {
+        get { return domainSiteID; }
+        set { if (value != "") { domainSiteID = value; } }
+    }
+    public string SupportMail
+    {
+        get { return supportMail; }
+        set { if (value != "") { supportMail = value; } }
+    }
+
+
+    public string SmtpPass
+    {
+        get { return smtpPass; }
+        set { if (value != "") { smtpPass = value; } }
+    }
+
+
+    public string SmtpUserName
+    {
+        get { return smtpUserName; }
+        set { if (value != "") { smtpUserName = value; } }
+    }
+
+
+    public string SmtpHost
+    {
+        get { return smtpHost; }
+        set { if (value != "") { smtpHost = value; } }
+    }
+
+
+    public string SmtpPostfix
+    {
+        get { return smtpPostfix; }
+        set { if (value != "") { smtpPostfix = value; } }
+    }
+
+
+    public string CookieDomain
+    {
+        get { return cookieDomain; }
+        set { if (value != "") { cookieDomain = value; } }
+    }
+
+
+    public string HomeSite
+    {
+        get { return homeSite; }
+        set { if (value != "") { homeSite = value; } }
+    }
+
+
+    public string NPath
+    {
+        get { return nPath; }
+        set { if (value != "") { nPath = value; } }
+    }
+
+
+    public string NewsLetterPath
+    {
+        get { return newsLetterPath; }
+        set { if (value != "") { newsLetterPath = value; } }
+    }
+    public string CourseDomain
+    {
+        get { return courseDomain; }
+        set { if (value != "") { courseDomain = value; } }
+    }
+
+    public string EndMailPath
+    {
+        get { return endMailPath; }
+        set { if (value != "") { endMailPath = value; } }
+    }
+
+
+    public string MailPath
+    {
+        get { return mailPath; }
+        set { if (value != "") { mailPath = value; } }
+    }
+
+
+    public string MultiMediaPath
+    {
+        get { return multiMediaPath; }
+        set { if (value != "") { multiMediaPath = value; } }
+    }
+
+    public string DomainName
+    {
+        get { return domainName; }
+        set { if (value != "") { domainName = value; } }
+    }
+
+    public string DomainName2
+    {
+        get { return domainName2; }
+        set { if (value != "") { domainName2 = value; } }
+    }
+
+    public string SecureSitePath
+    {
+        get { return secureSitePath; }
+        set { if (value != "") { secureSitePath = value; } }
+    }
+
+
+    public string SitePath
+    {
+        get { return sitePath; }
+        set { if (value != "") { sitePath = value; } }
+    }
+
+    public string DefaultLang
+    {
+        get { return defaultLang; }
+        set { if (value != "") { defaultLang = value; } }
+    }
+
+    public string TopLogo
+    {
+        get { return topLogo; }
+
+        set
+        { if (value != "") { topLogo = value; } }
+    }
+
+    public string TopLogo2
+    {
+        get { return topLogo2; }
+        set { if (value != "") { topLogo2 = value; } }
+    }
+
+    public string TextUnderLogo
+    {
+        get { return textUnderLogo; }
+        set { if (value != "") { textUnderLogo = value; } }
+    }
+
+    public string TextUnderLogo2
+    {
+        get { return textUnderLogo2; }
+        set { if (value != "") { textUnderLogo2 = value; } }
+    }
+
+    public string LogoLink
+    {
+        get { return logoLink; }
+        set { if (value != "") { logoLink = value; } }
+    }
+
+    public string LogoLink2
+    {
+        get { return logoLink2; }
+        set { if (value != "") { logoLink2 = value; } }
+    }
+
+    public string BottomLogo
+    {
+        get { return bottomLogo; }
+        set { if (value != "") { bottomLogo = value; } }
+    }
+
+    public string BottomLogo2
+    {
+        get { return bottomLogo2; }
+        set { if (value != "") { bottomLogo2 = value; } }
+    }
+
+    public string TextUnderBottomLogo
+    {
+        get { return "&copy; 2009 - " + DateTime.Now.Year.ToString() + " "+textUnderBottomLogo; }
+        set { if (value != "") { textUnderBottomLogo = value; } }
+    }
+
+    public string TextUnderBottomLogo2
+    {
+        get { return "&copy; 2009 - " + DateTime.Now.Year.ToString() + " "+textUnderBottomLogo2; }
+        set { if (value != "") { textUnderBottomLogo2 = value; } }
+    }
+
+    public string LoginPanelBg
+    {
+        get { return loginPanelBg; }
+        set { if (value != "") { loginPanelBg = value; } }
+    }
+
+    public string CharImage
+    {
+        get { return charImage; }
+        set { if (value != "") { charImage = value; } }
+    }
+
+    public string BgImg
+    {
+        get { return bgImg; }
+        set { if (value != "") { bgImg = value; } }
+    }
+
+    public string InnerLogo
+    {
+        get { return innerLogo; }
+        set { if (value != "") { innerLogo = value; } }
+    }
+
+    public string InnerLogo2
+    {
+        get { return innerLogo2; }
+        set { if (value != "") { innerLogo2 = value; } }
+    }
+
+    public string FooterCredit
+    {
+        get { return footerCredit; }
+        set { if (value != "") { footerCredit = value; } }
+    }
+
+    public string FooterCredit2
+    {
+        get { return footerCredit2; }
+        set { if (value != "") { footerCredit2 = value; } }
+    }
+
+    public string HideHomeFooter
+    {
+        get { return hideHomeFooter; }
+        set { if (value != "") { hideHomeFooter = value; } }
+    }
+
+    public string TransLanguages
+    {
+        get { return transLanguages; }
+        set { if (value != "") { transLanguages = value; } }
+    }
+
+    public string LoginTitle
+    {
+        get { return loginTitle; }
+        set { if (value != "") { loginTitle = value; } }
+    }
+
+    public string LoginTitle2
+    {
+        get { return loginTitle2; }
+        set { if (value != "") { loginTitle2 = value; } }
+    }
+
+    public string LoginDescription
+    {
+        get { return loginDescription; }
+        set { if (value != "") { loginDescription = value; } }
+    }
+
+    public string LoginDescription2
+    {
+        get { return loginDescription2; }
+        set { if (value != "") { loginDescription2 = value; } }
+    }
+
+    public string InnerTitle
+    {
+        get { return innerTitle; }
+        set { if (value != "") { innerTitle = value; } }
+    }
+
+    public string InnerTitle2
+    {
+        get { return innerTitle2; }
+        set { if (value != "") { innerTitle2 = value; } }
+    }
+
+    public string InnerDescription
+    {
+        get { return innerDescription; }
+        set { if (value != "") { innerDescription = value; } }
+    }
+
+    public string InnerDescription2
+    {
+        get { return innerDescription2; }
+        set { if (value != "") { innerDescription2 = value; } }
+    }
+
+    public string LoginHeading
+    {
+        get { return loginHeading; }
+        set { if (value != "") { loginHeading = value; } }
+    }
+    public string LoginHeading2
+    {
+        get { return loginHeading2; }
+        set { if (value != "") { loginHeading2 = value; } }
+    }
+    public string LoginPopBg
+    {
+        get { return loginPopBg; }
+        set { if (value != "") { loginPopBg = value; } }
+    }
+
+    public string ExpiredMessage
+    {
+        get { return expiredMessage; }
+        set { if (value != "") { expiredMessage = value; } }
+    }
+    public string ExpiredMessage2
+    {
+        get { return expiredMessage2; }
+        set { if (value != "") { expiredMessage2 = value; } }
+    }
+
+
+
+    public static void LoadDomains()
+    {
+        using (MySqlConnection con = new MySqlConnection(Defaults.ConnStr))
+        {
+            con.Open();
+
+            string sql = "SELECT SiteDomainID,DomainMasterSite,DomainName,DomainName2,PanelUrl,WebsiteUrl,newsletterUrl,MultimediaUrl,CookieUrl,CourseDomain,LandingUrl,EmailMX,EmailTestServer,EmailTestUser,EmailTestPass,supportMail, DefaultLang,TopLogo,TopLogo2,TextUnderLogo,TextUnderLogo2,LogoLink,BottomLogo,BottomLogo2,TextUnderBottomLogo,TextUnderBottomLogo2,LoginPanelBg,CharImage,BgImg,InnerLogo,InnerLogo2,FooterCredit,FooterCredit2,HideHomeFooter,loginTitle,loginTitle2,loginDescription,loginDescription2,innerTitle,innerTitle2,innerDescription,innerDescription2,loginHeading,loginHeading2,loginPopBg,expiredMessage,expiredMessage2,(SELECT Group_Concat(LangCode) FROM sitedomainsLangs WHERE sitedomainsLangs.SiteDomainID = sitedomains.SiteDomainID) AS TransLanguages FROM sitedomains;";
+            MySqlCommand cmd = new MySqlCommand(sql, con);
+            MySqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                if (!DomainArr.ContainsKey(dr["SiteDomainID"].ToString()))
+                {
+                    Domain TempDomainInfo = new Domain();
+
+                    TempDomainInfo.DomainSiteID = dr["DomainMasterSite"].ToString();
+                    TempDomainInfo.DomainName = dr["DomainName"].ToString();
+                    TempDomainInfo.DomainName2 = dr["DomainName2"].ToString();
+                    TempDomainInfo.SitePath = "http://" + dr["PanelUrl"].ToString().ToLower().Replace("http://", "").Replace("https://", "");
+                    TempDomainInfo.SecureSitePath = "https://" + dr["PanelUrl"].ToString().ToLower().Replace("http://", "").Replace("https://", "");
+                    TempDomainInfo.MultiMediaPath = "https://" + dr["MultimediaUrl"].ToString().ToLower().Replace("http://", "").Replace("https://", "");
+                    TempDomainInfo.MailPath = dr["PanelUrl"].ToString().ToLower().Replace("http://", "").Replace("https://", "");
+                    TempDomainInfo.EndMailPath = "@" + dr["EmailMX"].ToString().Replace("@", "");
+                    TempDomainInfo.NewsLetterPath = "https://" + dr["newsletterUrl"].ToString().ToLower().Replace("http://", "").Replace("https://", "");
+                    TempDomainInfo.NPath = "https://" + dr["LandingUrl"].ToString().ToLower().Replace("http://", "").Replace("https://", "");
+                    TempDomainInfo.CourseDomain = dr["CourseDomain"].ToString();
+                    TempDomainInfo.HomeSite = "http://" + dr["WebsiteUrl"].ToString().ToLower().Replace("http://", "").Replace("https://", "");
+                    TempDomainInfo.CookieDomain = dr["CookieUrl"].ToString();
+                    TempDomainInfo.SmtpPostfix = "@" + dr["EmailMX"].ToString().Replace("@", "");
+                    TempDomainInfo.SmtpHost = dr["EmailTestServer"].ToString();
+                    TempDomainInfo.SmtpUserName = dr["EmailTestUser"].ToString();
+                    TempDomainInfo.SmtpPass = dr["EmailTestPass"].ToString();
+                    TempDomainInfo.SupportMail = dr["supportMail"].ToString();
+                    TempDomainInfo.DefaultLang = dr["DefaultLang"].ToString();
+                    TempDomainInfo.TopLogo = dr["TopLogo"].ToString();
+                    TempDomainInfo.TopLogo2 = dr["TopLogo2"].ToString();
+                    TempDomainInfo.TextUnderLogo = dr["TextUnderLogo"].ToString();
+                    TempDomainInfo.TextUnderLogo2 = dr["TextUnderLogo2"].ToString();
+                    TempDomainInfo.LogoLink = "https://" + dr["LogoLink"].ToString().ToLower().Replace("http://", "").Replace("https://", "");
+                    TempDomainInfo.BottomLogo = dr["BottomLogo"].ToString();
+                    TempDomainInfo.BottomLogo2 = dr["BottomLogo2"].ToString();
+                    TempDomainInfo.TextUnderBottomLogo = dr["TextUnderBottomLogo"].ToString().Replace("[[year]]", DateTime.Now.Year.ToString("yyyy"));
+                    TempDomainInfo.TextUnderBottomLogo2 = dr["TextUnderBottomLogo2"].ToString().Replace("[[year]]", DateTime.Now.Year.ToString("yyyy"));
+                    TempDomainInfo.LoginPanelBg = dr["LoginPanelBg"].ToString();
+                    TempDomainInfo.CharImage = dr["CharImage"].ToString();
+                    TempDomainInfo.BgImg = dr["BgImg"].ToString();
+                    TempDomainInfo.InnerLogo = dr["InnerLogo"].ToString();
+                    TempDomainInfo.InnerLogo2 = dr["InnerLogo2"].ToString();
+                    TempDomainInfo.FooterCredit = dr["FooterCredit"].ToString();
+                    TempDomainInfo.FooterCredit2 = dr["FooterCredit2"].ToString();
+                    TempDomainInfo.HideHomeFooter = dr["HideHomeFooter"].ToString();
+                    TempDomainInfo.TransLanguages = dr["TransLanguages"].ToString();
+                    TempDomainInfo.LoginTitle = dr["LoginTitle"].ToString();
+                    TempDomainInfo.LoginTitle2 = dr["LoginTitle2"].ToString();
+                    TempDomainInfo.LoginDescription = dr["LoginDescription"].ToString();
+                    TempDomainInfo.LoginDescription2 = dr["LoginDescription2"].ToString();
+                    TempDomainInfo.InnerTitle = dr["InnerTitle"].ToString();
+                    TempDomainInfo.InnerTitle2 = dr["InnerTitle2"].ToString();
+                    TempDomainInfo.InnerDescription = dr["InnerDescription"].ToString();
+                    TempDomainInfo.InnerDescription2 = dr["InnerDescription2"].ToString();
+                    TempDomainInfo.LoginHeading = dr["LoginHeading"].ToString();
+                    TempDomainInfo.LoginHeading2 = dr["LoginHeading2"].ToString();
+                    TempDomainInfo.LoginPopBg = dr["LoginPopBg"].ToString();
+                    TempDomainInfo.ExpiredMessage = dr["ExpiredMessage"].ToString();
+                    TempDomainInfo.ExpiredMessage2 = dr["ExpiredMessage2"].ToString();
+
+                    lock (DomainArr)
+                    {
+                        DomainArr.Add(dr["SiteDomainID"].ToString(), TempDomainInfo);
+                    }
+                }
+
+            }
+            dr.Close();
+            con.Close();
+        }
+    }
+
+    public static void ReloadDomains()
+    {
+        lock (DomainArr)
+        {
+            DomainArr.Clear();
+        }
+        Domain.LoadDomains();
+    }
+
+    public static bool isDefaultLang()
+    {
+        if (HttpContext.Current.Session["SiteDomain"] != null && HttpContext.Current.Session["SiteDomain"].ToString() != "" && HttpContext.Current.Session["SiteDomain"].ToString() != "0" && HttpContext.Current.Session["Lang"] != null)
+        {
+            if (HttpContext.Current.Session["SiteDomain"] == HttpContext.Current.Session["Lang"])
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    public static int getDomainByUrl()
+    {
+        return getDomainByUrl(HttpContext.Current.Request.Url.Host.ToString());
+    }
+
+    public static int getDomainByUrl(string DomainUrl)
+    {
+        int tempDomainID = 0;
+        int.TryParse(DomainArr.FirstOrDefault(x => x.Value.NPath.Replace("https://", "") == DomainUrl.ToLower().Replace("http://", "").Replace("https://", "") || x.Value.NewsLetterPath.Replace("https://", "") == DomainUrl.ToLower().Replace("http://", "").Replace("https://", "")).Key, out tempDomainID);
+        return tempDomainID;
+    }
+
+    public static string getParamsByDomain(siteParamType paramType)
+    {
+        int domainID = 0;
+        if (HttpContext.Current != null && HttpContext.Current.Session != null && HttpContext.Current.Session["SiteDomain"] != null)
+        {
+            int.TryParse(HttpContext.Current.Session["SiteDomain"].ToString(), out domainID);
+        }
+        else
+        {
+            try
+            {
+                domainID = getDomainByUrl();
+            }
+            catch
+            { }
+        }
+        return getParamsByDomain(paramType, domainID);
+    }
+
+    public static string getParamsByDomain(siteParamType paramType, int domainID)
+    {
+        string domainParameterValueFromReflection = "https://panel.sendmsg.co.il";
+
+        //using reflections to get the paraneter from the array entry (of type Domain):
+        if (DomainArr.ContainsKey(domainID.ToString()) && typeof(Domain).GetProperty(Defaults.UppercaseFirstLetter(paramType.ToString())).GetValue(DomainArr[domainID.ToString()],null) != null)
+        {
+            //gets the vaue from DomainArr for the specific "paramType" that was sent (for example SitePath). this way, if paramType == siteParamType.SithPath then it will return DomainArr[domainID.ToString()].SithPath
+            domainParameterValueFromReflection = (string)typeof(Domain).GetProperty(Defaults.UppercaseFirstLetter(paramType.ToString())).GetValue(DomainArr[domainID.ToString()],null);
+        }
+        else
+        {
+            //gets the default static value from Domain (for example DefaultSitePath)
+            domainParameterValueFromReflection = (string)typeof(Domain).GetField("Default" + Defaults.UppercaseFirstLetter(paramType.ToString())).GetValue(null);
+        }
+
+        return domainParameterValueFromReflection;
+
+    }
+
+    public static string getSiteDomainParam(siteParamType paramType, int siteID)
+    {
+        string returnString = "https://panel.sendmsg.co.il";
+        int SiteDomainID = getDomainIDFromSiteID(siteID);
+
+        returnString = getParamsByDomain(paramType, SiteDomainID);
+
+        return returnString;
+    }
+
+    public static int getDomainIDFromSiteID(int siteID)
+    {
+        int SiteDomainID = 0;
+        if (siteIdToDomainID.ContainsKey(siteID))
+        {
+            SiteDomainID = siteIdToDomainID[siteID];
+        }
+        else
+        {
+            using (MySqlConnection conn = new MySqlConnection(Defaults.ConnStr))
+            {
+                string sql = "SELECT SiteDomainID FROM tblsites where siteID=" + siteID;
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    if (!string.IsNullOrEmpty(dr["SiteDomainID"].ToString()))
+                    {
+                        int.TryParse(dr["SiteDomainID"].ToString(), out SiteDomainID);
+                    }
+                }
+                dr.Close();
+                conn.Close();
+            }
+            lock (siteIdToDomainID)
+            {
+                if (!siteIdToDomainID.ContainsKey(siteID))
+                {
+                    siteIdToDomainID.Add(siteID, SiteDomainID);
+                }
+            }
+        }
+        return SiteDomainID;
+    }
+
+    public Domain()
+    {
+
+    }
+
+    //DefaultLang,
+    //TopLogo,
+    //TopLogo2,
+    //TextUnderLogo,
+    //TextUnderLogo2,
+    //LogoLink,
+    //BottomLogo,
+    //BottomLogo2,
+    //TextUnderBottomLogo,
+    //TextUnderBottomLogo2,
+    //LoginPanelBg,
+    //CharImage,
+    //BgImg,
+    //InnerLogo, 
+    //InnerLogo2,
+    //FooterCredit,
+    //FooterCredit2,
+    //HideHomeFooter,
+    //TransLanguages,
+
+    //loginTitle,
+    //loginTitle2,
+    //loginDescription,
+    //loginDescription2,
+    //innerTitle, 
+    //innerTitle2, 
+    //innerDescription, *** not implemented
+    //innerDescription2, *** not implemented
+    //loginHeading,
+    ///loginHeading2,
+    //loginPopBg,
+    //expiredMessage, 
+    //expiredMessage2,
+
+
+}
+
+
+
+
+
+public enum siteParamType
+{
+    DomainSiteID,
+    DomainName,
+    DomainName2,
+    sitePath,
+    secureSitePath,
+    multiMediaPath,
+    mailPath,
+    endMailPath,
+    newsLetterPath,
+    courseDomain,
+    nPath,
+    homeSite,
+    cookieDomain,
+    smtpPostfix,
+    smtpHost,
+    smtpUserName,
+    smtpPass,
+    supportMail,
+    DefaultLang,
+    TopLogo,
+    TopLogo2,
+    TextUnderLogo,
+    TextUnderLogo2,
+    LogoLink,
+    LogoLink2,
+    BottomLogo,
+    BottomLogo2,
+    TextUnderBottomLogo,
+    TextUnderBottomLogo2,
+    LoginPanelBg,
+    CharImage,
+    BgImg,
+    InnerLogo,
+    InnerLogo2,
+    FooterCredit,
+    FooterCredit2,
+    HideHomeFooter,
+    TransLanguages,
+    LoginTitle,
+    LoginTitle2,
+    LoginDescription,
+    LoginDescription2,
+    InnerTitle,
+    InnerTitle2,
+    InnerDescription,
+    InnerDescription2,
+    LoginHeading,
+    LoginHeading2,
+    LoginPopBg,
+    ExpiredMessage,
+    ExpiredMessage2
+
+}
