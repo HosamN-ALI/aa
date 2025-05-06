@@ -1,0 +1,2965 @@
+HTTP/1.1 200 OK
+Date: Tue, 06 May 2025 06:15:33 GMT
+Server: Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips PHP/5.4.16 Phusion_Passenger/4.0.58
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 1; mode=block
+X-Content-Type-Options: nosniff
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 76a1547a-d518-41bd-9204-00b47cb3a5b2
+X-Runtime: 0.812982
+X-Powered-By: Phusion Passenger 4.0.58
+ETag: "23915a6ae05dd768e98a4a7bd3346c61"
+Status: 200 OK
+Keep-Alive: timeout=5, max=100
+Connection: Keep-Alive
+Content-Type: text/html; charset=utf-8
+Content-Length: 187048
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <title>ZeroPlex VoIP Platform Server providers</title>
+  <script type="text/javascript">
+      var mor_web_dir = '/billing';
+  </script>
+  <link href="/billing/assets/application.css" media="screen" rel="stylesheet" />
+  <link href="/billing/assets/jquery.treetable.css" media="screen" rel="stylesheet" />
+  <link href="/billing/assets/jquery.treetable.theme.default.css" media="screen" rel="stylesheet" />
+  <script src="/billing/assets/application.js"></script>
+  <script src="/billing/assets/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript">
+      document.write('<style type="text/css">body{display:none}</style>');
+      jQuery(function($) { $('body').css('display','block'); });
+      $j = jQuery.noConflict();
+  </script>
+  <script src="/billing/assets/jquery.treetable.js"></script>
+  <script src="/billing/assets/jqwidgets/jqxcore.js"></script>
+  <script src="/billing/assets/jquery-ui.min.js"></script>
+  <link href="/billing/assets/jqx.base.css" media="screen" rel="stylesheet" />
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="6hpvs8VVBuNECvzxpklQhuryMwOsB8W5QKygsIh0c6o=" name="csrf-token" />
+  
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <link rel="shortcut icon" href="/billing/favicon.ico" />
+</head>
+<body style="overflow-y: hidden">
+
+
+<script src="/billing/assets/dtree.js"></script>
+<script src="/billing/assets/wz_tooltip.js"></script>
+
+<!--Header-->
+<script src="/billing/assets/load_line.js"></script>
+<div class='load_bar' id='bar1'></div>
+<table width="100%" id="page_header_table">
+  <tr id="page_header">
+    <td>
+      <table width="100%">
+        <tr>
+          <!--LOGO-->
+          <td valign="top" id="td_logo">
+                <a href="/billing/" id="company_logo" title="ZeroPlex B.V."><img alt="Zeroplex logo 800x240" src="/billing/images/logo/Zeroplex_logo_800x240.png" style="max-height:70px;" /></a>
+          </td>
+          <!--User/Language/Logout-->
+          <td align="right">
+            <table style="padding-right: 5px;">
+              <tr>
+                <td>
+                  <div id="page_header_username" class='page_header_right_side_div'>
+                        <a href="/billing/users/personal_details/0">System Admin</a>
+                  </div>
+                </td>
+
+                    <td>
+                      <div class='page_header_right_side_div'>
+                        <ul class="language_selection_dropdown">
+                          <li>
+                            <span class="language_selection_dropdown_selected"><img alt="Gbr" src="/billing/images/flags/gbr.jpg" style="border-style:none" title="English" /></span>
+                            <ul>
+                              <li><a href='?lang=en'> <img alt="Gbr" src="/billing/images/flags/gbr.jpg" style="border-style:none; padding-left: 18px;" title="English" /></a></li><li><a href='?lang=nl'> <img alt="Nld" src="/billing/images/flags/nld.jpg" style="border-style:none; padding-left: 18px;" title="Dutch/Nederlands/Nederlands/Nederlands/Nederlands/Nederlands/Nederlands/Nederlands/Nederlands/Nederlands/Nederlands/Nederlands/Nederlands/Nederlands/Nederlands/Nederlands/Nederlands/Nederlands/Nederlands" /></a></li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                    </td>
+
+                <td>
+                  <div class='page_header_right_side_div'>
+                        <a href="/billing/active_processor/callc/logout"><img alt="Control power" src="/billing/images/icons/control_power.png" title="Logout" /></a>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<!--Menu/Page Title/Page Content-->
+<table style="width: 100%; table-layout: fixed; border-collapse: collapse;">
+  <tr valign="top">
+    <!--Menu-->
+        <td id="slide_1" class="left_menu" style="width: 220px" rowspan="6">
+          <div id="menu_left">
+            <span class="icon application_side_expand" id="application_side_expand" title="Show menus"></span>
+            <span class="icon application_side_contract" id="application_side_expand" title="Hide menus"></span>
+            <br/><br/><br/>
+
+                <div id="settings_menu_div" class="tree_menu"></div>
+
+                <div id="addons_menu_div" class="tree_menu"></div>
+
+                <div id="statistics_menu_div" class="tree_menu"></div>
+
+
+
+            <div id="personal_menu_div" class="tree_menu"></div>
+          </div>
+        </td>
+
+    <!--Page Title-->
+    <td id="up_right_page_title" class="up_right_page_title">
+      <div class="page_title_new">
+            Server providers
+      </div>
+
+      <div id="spinner" style="display: none;">
+        <img alt="Indicator" border="0" src="/billing/images/indicator.gif" />
+      </div>
+      <div id="spinner2" class="spinny" style="display: none;">
+        <span><i class="fa fa-cog fa-spin fa-2x"></i></span>
+        <p>working...</p>
+      </div>
+    </td>
+  </tr>
+
+
+
+
+  <tr>
+    <!--Page Content-->
+    <td align="left" class="main_window">
+      <div id="window_main" >
+            <br/>
+
+        <div class="nb">
+          <img alt="Server" src="/billing/images/icons/server.png" /> Server  : <b>127.0.0.1 / 127.0.0.1</b>
+<br/>
+<br/>
+
+<table width="100%" class="maintable">
+  <tr>
+    <th id="id_num" align="left">ID</th>
+    <th id="provider" align="left">Provider</th>
+    <th id="tech" align="left">Technology</th>
+    <th id="channel" align="left">Channel</th>
+    <th id="login" align="left">Login</th>
+    <th id="password" align="left">Password</th>
+    <th id="hostname_server_ip" align="left">Hostname/Server IP</th>
+    <th id="tariff" align="left">Tariff</th>
+    <th id="rules" align="center">Rules</th>
+    <th id="calls" align="center">Calls</th>
+    <th></th>
+
+  </tr>
+
+      <tr class="row1">
+
+        <td id="prov_id">5</td>
+        <td id="prov_ani_5"><a href="/billing/providers/edit/5">0 Motto Outbound Trunk</a></td>
+        <td id="prov_tech_5">SIP</td>
+        <td id="prov_channel_5"></td>
+        <td id="prov_login_5">809052</td>
+        <td id="prov_password_5">zuncB4Hr</td>
+        <td id="prov_server_ip_5">sip.mottovoip.nl</td>
+        <td id="prov_tariff_5">Ink_Motto</td>
+        <td id="prov_rules_5" align="center"><a href="/billing/providers/provider_rules/5"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_5" align="center"><a href="/billing/stats/last_calls?s_provider=5" id="calls_link_5"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/5?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">6</td>
+        <td id="prov_ani_6"><a href="/billing/providers/edit/6">0 MT Outbound Trunk</a></td>
+        <td id="prov_tech_6">SIP</td>
+        <td id="prov_channel_6"></td>
+        <td id="prov_login_6">77704002322</td>
+        <td id="prov_password_6">uieduwyj</td>
+        <td id="prov_server_ip_6">sip.mtsip.nl</td>
+        <td id="prov_tariff_6">Ink_MT</td>
+        <td id="prov_rules_6" align="center"><a href="/billing/providers/provider_rules/6"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_6" align="center"><a href="/billing/stats/last_calls?s_provider=6" id="calls_link_6"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/6?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">7</td>
+        <td id="prov_ani_7"><a href="/billing/providers/edit/7">Motto ZPHQ</a></td>
+        <td id="prov_tech_7">SIP</td>
+        <td id="prov_channel_7"></td>
+        <td id="prov_login_7">230962</td>
+        <td id="prov_password_7">NYKggN8w</td>
+        <td id="prov_server_ip_7">sip.mottovoip.nl</td>
+        <td id="prov_tariff_7">Ink_Motto</td>
+        <td id="prov_rules_7" align="center"><a href="/billing/providers/provider_rules/7"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_7" align="center"><a href="/billing/stats/last_calls?s_provider=7" id="calls_link_7"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/7?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">11</td>
+        <td id="prov_ani_11"><a href="/billing/providers/edit/11">Motto BESGroep</a></td>
+        <td id="prov_tech_11">SIP</td>
+        <td id="prov_channel_11"></td>
+        <td id="prov_login_11">804452</td>
+        <td id="prov_password_11">BDTRaH2x</td>
+        <td id="prov_server_ip_11">sip.mottovoip.nl</td>
+        <td id="prov_tariff_11">Ink_Motto</td>
+        <td id="prov_rules_11" align="center"><a href="/billing/providers/provider_rules/11"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_11" align="center"><a href="/billing/stats/last_calls?s_provider=11" id="calls_link_11"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/11?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">12</td>
+        <td id="prov_ani_12"><a href="/billing/providers/edit/12">0 Pocos Outbound Trunk</a></td>
+        <td id="prov_tech_12">SIP</td>
+        <td id="prov_channel_12"></td>
+        <td id="prov_login_12">sip59466</td>
+        <td id="prov_password_12">cryH9PVuY5Yi8ub</td>
+        <td id="prov_server_ip_12">sip.itco.nl</td>
+        <td id="prov_tariff_12">Ink_Motto</td>
+        <td id="prov_rules_12" align="center"><a href="/billing/providers/provider_rules/12"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_12" align="center"><a href="/billing/stats/last_calls?s_provider=12" id="calls_link_12"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/12?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">14</td>
+        <td id="prov_ani_14"><a href="/billing/providers/edit/14">Motto Kempen Transport</a></td>
+        <td id="prov_tech_14">SIP</td>
+        <td id="prov_channel_14"></td>
+        <td id="prov_login_14">218038</td>
+        <td id="prov_password_14">2TexbFwn</td>
+        <td id="prov_server_ip_14">sip.mottovoip.nl</td>
+        <td id="prov_tariff_14">Ink_Motto</td>
+        <td id="prov_rules_14" align="center"><a href="/billing/providers/provider_rules/14"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_14" align="center"><a href="/billing/stats/last_calls?s_provider=14" id="calls_link_14"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/14?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">15</td>
+        <td id="prov_ani_15"><a href="/billing/providers/edit/15">Motto MERU</a></td>
+        <td id="prov_tech_15">SIP</td>
+        <td id="prov_channel_15"></td>
+        <td id="prov_login_15">801824</td>
+        <td id="prov_password_15">bfqfSH3M</td>
+        <td id="prov_server_ip_15">sip.mottovoip.nl</td>
+        <td id="prov_tariff_15">Ink_Motto</td>
+        <td id="prov_rules_15" align="center"><a href="/billing/providers/provider_rules/15"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_15" align="center"><a href="/billing/stats/last_calls?s_provider=15" id="calls_link_15"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/15?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">16</td>
+        <td id="prov_ani_16"><a href="/billing/providers/edit/16">Motto Hendrix Fruit</a></td>
+        <td id="prov_tech_16">SIP</td>
+        <td id="prov_channel_16"></td>
+        <td id="prov_login_16">232563</td>
+        <td id="prov_password_16">e4MgrJzS</td>
+        <td id="prov_server_ip_16">sip.mottovoip.nl</td>
+        <td id="prov_tariff_16">Ink_Motto</td>
+        <td id="prov_rules_16" align="center"><a href="/billing/providers/provider_rules/16"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_16" align="center"><a href="/billing/stats/last_calls?s_provider=16" id="calls_link_16"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/16?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">18</td>
+        <td id="prov_ani_18"><a href="/billing/providers/edit/18">Z_ Unused DIDs</a></td>
+        <td id="prov_tech_18">SIP</td>
+        <td id="prov_channel_18"></td>
+        <td id="prov_login_18">changeme</td>
+        <td id="prov_password_18">changeme</td>
+        <td id="prov_server_ip_18">8.8.8.8</td>
+        <td id="prov_tariff_18">Ink_Motto</td>
+        <td id="prov_rules_18" align="center"><a href="/billing/providers/provider_rules/18"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_18" align="center"><a href="/billing/stats/last_calls?s_provider=18" id="calls_link_18"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/18?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">19</td>
+        <td id="prov_ani_19"><a href="/billing/providers/edit/19">Motto Nijha</a></td>
+        <td id="prov_tech_19">SIP</td>
+        <td id="prov_channel_19"></td>
+        <td id="prov_login_19">223288</td>
+        <td id="prov_password_19">mtRrYpUE</td>
+        <td id="prov_server_ip_19">sip.mottovoip.nl</td>
+        <td id="prov_tariff_19">Ink_Motto</td>
+        <td id="prov_rules_19" align="center"><a href="/billing/providers/provider_rules/19"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_19" align="center"><a href="/billing/stats/last_calls?s_provider=19" id="calls_link_19"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/19?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">20</td>
+        <td id="prov_ani_20"><a href="/billing/providers/edit/20">Motto 0 IP Auth AMS3</a></td>
+        <td id="prov_tech_20">SIP</td>
+        <td id="prov_channel_20"></td>
+        <td id="prov_login_20"></td>
+        <td id="prov_password_20"></td>
+        <td id="prov_server_ip_20">91.212.215.228</td>
+        <td id="prov_tariff_20">Ink_Motto</td>
+        <td id="prov_rules_20" align="center"><a href="/billing/providers/provider_rules/20"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_20" align="center"><a href="/billing/stats/last_calls?s_provider=20" id="calls_link_20"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/20?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">21</td>
+        <td id="prov_ani_21"><a href="/billing/providers/edit/21">Ziggo 0 IP Auth</a></td>
+        <td id="prov_tech_21">SIP</td>
+        <td id="prov_channel_21"></td>
+        <td id="prov_login_21"></td>
+        <td id="prov_password_21"></td>
+        <td id="prov_server_ip_21">212.54.40.109</td>
+        <td id="prov_tariff_21">Ink_Motto</td>
+        <td id="prov_rules_21" align="center"><a href="/billing/providers/provider_rules/21"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_21" align="center"><a href="/billing/stats/last_calls?s_provider=21" id="calls_link_21"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/21?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">22</td>
+        <td id="prov_ani_22"><a href="/billing/providers/edit/22">Ziggo Trimaxx Test</a></td>
+        <td id="prov_tech_22">SIP</td>
+        <td id="prov_channel_22"></td>
+        <td id="prov_login_22">31778200984</td>
+        <td id="prov_password_22">6gd6kxv</td>
+        <td id="prov_server_ip_22">voip.sipnl.net</td>
+        <td id="prov_tariff_22">Ink_Motto</td>
+        <td id="prov_rules_22" align="center"><a href="/billing/providers/provider_rules/22"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_22" align="center"><a href="/billing/stats/last_calls?s_provider=22" id="calls_link_22"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/22?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">23</td>
+        <td id="prov_ani_23"><a href="/billing/providers/edit/23">Motto Hafkamp</a></td>
+        <td id="prov_tech_23">SIP</td>
+        <td id="prov_channel_23"></td>
+        <td id="prov_login_23">804698</td>
+        <td id="prov_password_23">VUJCkFqr</td>
+        <td id="prov_server_ip_23">sip.mottovoip.nl</td>
+        <td id="prov_tariff_23">Ink_Motto</td>
+        <td id="prov_rules_23" align="center"><a href="/billing/providers/provider_rules/23"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_23" align="center"><a href="/billing/stats/last_calls?s_provider=23" id="calls_link_23"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/23?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">25</td>
+        <td id="prov_ani_25"><a href="/billing/providers/edit/25">Motto van Haren</a></td>
+        <td id="prov_tech_25">SIP</td>
+        <td id="prov_channel_25"></td>
+        <td id="prov_login_25">805180</td>
+        <td id="prov_password_25">0wsBu8BQ</td>
+        <td id="prov_server_ip_25">sip.mottovoip.nl</td>
+        <td id="prov_tariff_25">Ink_Motto</td>
+        <td id="prov_rules_25" align="center"><a href="/billing/providers/provider_rules/25"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_25" align="center"><a href="/billing/stats/last_calls?s_provider=25" id="calls_link_25"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/25?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">26</td>
+        <td id="prov_ani_26"><a href="/billing/providers/edit/26">Ziggo Technique Plastique</a></td>
+        <td id="prov_tech_26">SIP</td>
+        <td id="prov_channel_26"></td>
+        <td id="prov_login_26">31495625457</td>
+        <td id="prov_password_26">GcsTBzm33OcU.JI-</td>
+        <td id="prov_server_ip_26">voip.sipnl.net</td>
+        <td id="prov_tariff_26">Ink_Motto</td>
+        <td id="prov_rules_26" align="center"><a href="/billing/providers/provider_rules/26"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_26" align="center"><a href="/billing/stats/last_calls?s_provider=26" id="calls_link_26"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/26?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">27</td>
+        <td id="prov_ani_27"><a href="/billing/providers/edit/27">Motto ZeroPlex VOIP</a></td>
+        <td id="prov_tech_27">SIP</td>
+        <td id="prov_channel_27"></td>
+        <td id="prov_login_27">805244</td>
+        <td id="prov_password_27">K7RfQ7AN</td>
+        <td id="prov_server_ip_27">sip.mottovoip.nl</td>
+        <td id="prov_tariff_27">Ink_Motto</td>
+        <td id="prov_rules_27" align="center"><a href="/billing/providers/provider_rules/27"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_27" align="center"><a href="/billing/stats/last_calls?s_provider=27" id="calls_link_27"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/27?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">29</td>
+        <td id="prov_ani_29"><a href="/billing/providers/edit/29">Motto Deur Manchet</a></td>
+        <td id="prov_tech_29">SIP</td>
+        <td id="prov_channel_29"></td>
+        <td id="prov_login_29">805326</td>
+        <td id="prov_password_29">Af1WpqMV</td>
+        <td id="prov_server_ip_29">sip.mottovoip.nl</td>
+        <td id="prov_tariff_29">Ink_Motto</td>
+        <td id="prov_rules_29" align="center"><a href="/billing/providers/provider_rules/29"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_29" align="center"><a href="/billing/stats/last_calls?s_provider=29" id="calls_link_29"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/29?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">30</td>
+        <td id="prov_ani_30"><a href="/billing/providers/edit/30">Ziggo - Deurmanchet Service Ud</a></td>
+        <td id="prov_tech_30">SIP</td>
+        <td id="prov_channel_30"></td>
+        <td id="prov_login_30">31413264472</td>
+        <td id="prov_password_30">jfp06v7</td>
+        <td id="prov_server_ip_30">voip.sipnl.net</td>
+        <td id="prov_tariff_30">Ink_Motto</td>
+        <td id="prov_rules_30" align="center"><a href="/billing/providers/provider_rules/30"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_30" align="center"><a href="/billing/stats/last_calls?s_provider=30" id="calls_link_30"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/30?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">31</td>
+        <td id="prov_ani_31"><a href="/billing/providers/edit/31">Ziggo Lizet Uitvaartverzorging</a></td>
+        <td id="prov_tech_31">SIP</td>
+        <td id="prov_channel_31"></td>
+        <td id="prov_login_31">31485820010</td>
+        <td id="prov_password_31">1qP3uiyQlg6Tk0Hwismij</td>
+        <td id="prov_server_ip_31">voip.sipnl.net</td>
+        <td id="prov_tariff_31">Ink_Motto</td>
+        <td id="prov_rules_31" align="center"><a href="/billing/providers/provider_rules/31"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_31" align="center"><a href="/billing/stats/last_calls?s_provider=31" id="calls_link_31"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/31?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">32</td>
+        <td id="prov_ani_32"><a href="/billing/providers/edit/32">Motto Beurskens</a></td>
+        <td id="prov_tech_32">SIP</td>
+        <td id="prov_channel_32"></td>
+        <td id="prov_login_32">805248</td>
+        <td id="prov_password_32">wV5Kkktq</td>
+        <td id="prov_server_ip_32">sip.mottovoip.nl</td>
+        <td id="prov_tariff_32">Ink_Motto</td>
+        <td id="prov_rules_32" align="center"><a href="/billing/providers/provider_rules/32"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_32" align="center"><a href="/billing/stats/last_calls?s_provider=32" id="calls_link_32"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/32?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">33</td>
+        <td id="prov_ani_33"><a href="/billing/providers/edit/33">Motto Biermans</a></td>
+        <td id="prov_tech_33">SIP</td>
+        <td id="prov_channel_33"></td>
+        <td id="prov_login_33">805511</td>
+        <td id="prov_password_33">ar2qmf6z</td>
+        <td id="prov_server_ip_33">sip.mottovoip.nl</td>
+        <td id="prov_tariff_33">Ink_Motto</td>
+        <td id="prov_rules_33" align="center"><a href="/billing/providers/provider_rules/33"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_33" align="center"><a href="/billing/stats/last_calls?s_provider=33" id="calls_link_33"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/33?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">34</td>
+        <td id="prov_ani_34"><a href="/billing/providers/edit/34">Motto NHA</a></td>
+        <td id="prov_tech_34">SIP</td>
+        <td id="prov_channel_34"></td>
+        <td id="prov_login_34">805642</td>
+        <td id="prov_password_34">hnt22zuF</td>
+        <td id="prov_server_ip_34">sip.mottovoip.nl</td>
+        <td id="prov_tariff_34">Ink_Motto</td>
+        <td id="prov_rules_34" align="center"><a href="/billing/providers/provider_rules/34"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_34" align="center"><a href="/billing/stats/last_calls?s_provider=34" id="calls_link_34"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/34?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">37</td>
+        <td id="prov_ani_37"><a href="/billing/providers/edit/37">Motto Mercuur</a></td>
+        <td id="prov_tech_37">SIP</td>
+        <td id="prov_channel_37"></td>
+        <td id="prov_login_37">805712</td>
+        <td id="prov_password_37">CB5UqRPU</td>
+        <td id="prov_server_ip_37">sip.mottovoip.nl</td>
+        <td id="prov_tariff_37">Ink_Motto</td>
+        <td id="prov_rules_37" align="center"><a href="/billing/providers/provider_rules/37"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_37" align="center"><a href="/billing/stats/last_calls?s_provider=37" id="calls_link_37"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/37?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">39</td>
+        <td id="prov_ani_39"><a href="/billing/providers/edit/39">Motto Reijnen Mechanisatie</a></td>
+        <td id="prov_tech_39">SIP</td>
+        <td id="prov_channel_39"></td>
+        <td id="prov_login_39">805732</td>
+        <td id="prov_password_39">PuH5wypy</td>
+        <td id="prov_server_ip_39">sip.mottovoip.nl</td>
+        <td id="prov_tariff_39">Ink_Motto</td>
+        <td id="prov_rules_39" align="center"><a href="/billing/providers/provider_rules/39"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_39" align="center"><a href="/billing/stats/last_calls?s_provider=39" id="calls_link_39"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/39?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">40</td>
+        <td id="prov_ani_40"><a href="/billing/providers/edit/40">Motto JobPrecision</a></td>
+        <td id="prov_tech_40">SIP</td>
+        <td id="prov_channel_40"></td>
+        <td id="prov_login_40">803493</td>
+        <td id="prov_password_40">VeDQ9hyH</td>
+        <td id="prov_server_ip_40">sip.mottovoip.nl</td>
+        <td id="prov_tariff_40">Ink_Motto</td>
+        <td id="prov_rules_40" align="center"><a href="/billing/providers/provider_rules/40"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_40" align="center"><a href="/billing/stats/last_calls?s_provider=40" id="calls_link_40"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/40?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">41</td>
+        <td id="prov_ani_41"><a href="/billing/providers/edit/41">Motto 0 IP Auth AMS5</a></td>
+        <td id="prov_tech_41">SIP</td>
+        <td id="prov_channel_41"></td>
+        <td id="prov_login_41"></td>
+        <td id="prov_password_41"></td>
+        <td id="prov_server_ip_41">91.236.192.231</td>
+        <td id="prov_tariff_41">Ink_Motto</td>
+        <td id="prov_rules_41" align="center"><a href="/billing/providers/provider_rules/41"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_41" align="center"><a href="/billing/stats/last_calls?s_provider=41" id="calls_link_41"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/41?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">42</td>
+        <td id="prov_ani_42"><a href="/billing/providers/edit/42">Motto Prowise</a></td>
+        <td id="prov_tech_42">SIP</td>
+        <td id="prov_channel_42"></td>
+        <td id="prov_login_42">806361</td>
+        <td id="prov_password_42">NcRQW9NU</td>
+        <td id="prov_server_ip_42">sip.mottovoip.nl</td>
+        <td id="prov_tariff_42">Ink_Motto</td>
+        <td id="prov_rules_42" align="center"><a href="/billing/providers/provider_rules/42"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_42" align="center"><a href="/billing/stats/last_calls?s_provider=42" id="calls_link_42"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/42?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">43</td>
+        <td id="prov_ani_43"><a href="/billing/providers/edit/43">HLN-NET IP Auth AMS3</a></td>
+        <td id="prov_tech_43">SIP</td>
+        <td id="prov_channel_43"></td>
+        <td id="prov_login_43">OZMO 3</td>
+        <td id="prov_password_43">please_change</td>
+        <td id="prov_server_ip_43">91.212.215.56</td>
+        <td id="prov_tariff_43">Ink_Motto</td>
+        <td id="prov_rules_43" align="center"><a href="/billing/providers/provider_rules/43"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_43" align="center"><a href="/billing/stats/last_calls?s_provider=43" id="calls_link_43"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/43?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">44</td>
+        <td id="prov_ani_44"><a href="/billing/providers/edit/44">Motto Thomassen Interieurs</a></td>
+        <td id="prov_tech_44">SIP</td>
+        <td id="prov_channel_44"></td>
+        <td id="prov_login_44">806226</td>
+        <td id="prov_password_44">3tUgNRe4</td>
+        <td id="prov_server_ip_44">sip.mottovoip.nl</td>
+        <td id="prov_tariff_44">Ink_Motto</td>
+        <td id="prov_rules_44" align="center"><a href="/billing/providers/provider_rules/44"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_44" align="center"><a href="/billing/stats/last_calls?s_provider=44" id="calls_link_44"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/44?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">45</td>
+        <td id="prov_ani_45"><a href="/billing/providers/edit/45">Motto voor de zaak</a></td>
+        <td id="prov_tech_45">SIP</td>
+        <td id="prov_channel_45"></td>
+        <td id="prov_login_45">806157</td>
+        <td id="prov_password_45">Ej5Pg8VZ</td>
+        <td id="prov_server_ip_45">sip.mottovoip.nl</td>
+        <td id="prov_tariff_45">Ink_Motto</td>
+        <td id="prov_rules_45" align="center"><a href="/billing/providers/provider_rules/45"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_45" align="center"><a href="/billing/stats/last_calls?s_provider=45" id="calls_link_45"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/45?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">46</td>
+        <td id="prov_ani_46"><a href="/billing/providers/edit/46">Motto MindMedia</a></td>
+        <td id="prov_tech_46">SIP</td>
+        <td id="prov_channel_46"></td>
+        <td id="prov_login_46">801843</td>
+        <td id="prov_password_46">xzcJjXqr</td>
+        <td id="prov_server_ip_46">sip.mottovoip.nl</td>
+        <td id="prov_tariff_46">Ink_Motto</td>
+        <td id="prov_rules_46" align="center"><a href="/billing/providers/provider_rules/46"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_46" align="center"><a href="/billing/stats/last_calls?s_provider=46" id="calls_link_46"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/46?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">47</td>
+        <td id="prov_ani_47"><a href="/billing/providers/edit/47">Motto CTV</a></td>
+        <td id="prov_tech_47">SIP</td>
+        <td id="prov_channel_47"></td>
+        <td id="prov_login_47">807041</td>
+        <td id="prov_password_47">VKhEBWqd</td>
+        <td id="prov_server_ip_47">sip.mottovoip.nl</td>
+        <td id="prov_tariff_47">Ink_Motto</td>
+        <td id="prov_rules_47" align="center"><a href="/billing/providers/provider_rules/47"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_47" align="center"><a href="/billing/stats/last_calls?s_provider=47" id="calls_link_47"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/47?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">48</td>
+        <td id="prov_ani_48"><a href="/billing/providers/edit/48">Motto Christiaans</a></td>
+        <td id="prov_tech_48">SIP</td>
+        <td id="prov_channel_48"></td>
+        <td id="prov_login_48">807079</td>
+        <td id="prov_password_48">N8bQNXrZ</td>
+        <td id="prov_server_ip_48">sip.mottovoip.nl</td>
+        <td id="prov_tariff_48">Ink_Motto</td>
+        <td id="prov_rules_48" align="center"><a href="/billing/providers/provider_rules/48"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_48" align="center"><a href="/billing/stats/last_calls?s_provider=48" id="calls_link_48"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/48?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">49</td>
+        <td id="prov_ani_49"><a href="/billing/providers/edit/49">Motto Keiser Europe</a></td>
+        <td id="prov_tech_49">SIP</td>
+        <td id="prov_channel_49"></td>
+        <td id="prov_login_49">803772</td>
+        <td id="prov_password_49">rNJBVFwA</td>
+        <td id="prov_server_ip_49">sip.mottovoip.nl</td>
+        <td id="prov_tariff_49">Ink_Motto</td>
+        <td id="prov_rules_49" align="center"><a href="/billing/providers/provider_rules/49"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_49" align="center"><a href="/billing/stats/last_calls?s_provider=49" id="calls_link_49"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/49?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">50</td>
+        <td id="prov_ani_50"><a href="/billing/providers/edit/50">0 ITCO IP Auth</a></td>
+        <td id="prov_tech_50">SIP</td>
+        <td id="prov_channel_50"></td>
+        <td id="prov_login_50"></td>
+        <td id="prov_password_50"></td>
+        <td id="prov_server_ip_50">109.235.32.55</td>
+        <td id="prov_tariff_50">Ink_Motto</td>
+        <td id="prov_rules_50" align="center"><a href="/billing/providers/provider_rules/50"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_50" align="center"><a href="/billing/stats/last_calls?s_provider=50" id="calls_link_50"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/50?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">51</td>
+        <td id="prov_ani_51"><a href="/billing/providers/edit/51">0 ITCO IP Auth 2</a></td>
+        <td id="prov_tech_51">SIP</td>
+        <td id="prov_channel_51"></td>
+        <td id="prov_login_51"></td>
+        <td id="prov_password_51"></td>
+        <td id="prov_server_ip_51">109.235.32.56</td>
+        <td id="prov_tariff_51">Ink_Motto</td>
+        <td id="prov_rules_51" align="center"><a href="/billing/providers/provider_rules/51"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_51" align="center"><a href="/billing/stats/last_calls?s_provider=51" id="calls_link_51"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/51?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">52</td>
+        <td id="prov_ani_52"><a href="/billing/providers/edit/52">Motto QUOLE</a></td>
+        <td id="prov_tech_52">SIP</td>
+        <td id="prov_channel_52"></td>
+        <td id="prov_login_52">806556</td>
+        <td id="prov_password_52">kCnHf6Ng</td>
+        <td id="prov_server_ip_52">sip.mottovoip.nl</td>
+        <td id="prov_tariff_52">Ink_Motto</td>
+        <td id="prov_rules_52" align="center"><a href="/billing/providers/provider_rules/52"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_52" align="center"><a href="/billing/stats/last_calls?s_provider=52" id="calls_link_52"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/52?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">53</td>
+        <td id="prov_ani_53"><a href="/billing/providers/edit/53">Motto Garage Hendriks</a></td>
+        <td id="prov_tech_53">SIP</td>
+        <td id="prov_channel_53"></td>
+        <td id="prov_login_53">807274</td>
+        <td id="prov_password_53">t96mWZ2Q</td>
+        <td id="prov_server_ip_53">sip.mottovoip.nl</td>
+        <td id="prov_tariff_53">Ink_Motto</td>
+        <td id="prov_rules_53" align="center"><a href="/billing/providers/provider_rules/53"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_53" align="center"><a href="/billing/stats/last_calls?s_provider=53" id="calls_link_53"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/53?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">55</td>
+        <td id="prov_ani_55"><a href="/billing/providers/edit/55">Motto Bureau vet</a></td>
+        <td id="prov_tech_55">SIP</td>
+        <td id="prov_channel_55"></td>
+        <td id="prov_login_55">807402</td>
+        <td id="prov_password_55">v7UW3G7S</td>
+        <td id="prov_server_ip_55">sip.mottovoip.nl</td>
+        <td id="prov_tariff_55">Ink_Motto</td>
+        <td id="prov_rules_55" align="center"><a href="/billing/providers/provider_rules/55"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_55" align="center"><a href="/billing/stats/last_calls?s_provider=55" id="calls_link_55"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/55?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">56</td>
+        <td id="prov_ani_56"><a href="/billing/providers/edit/56">Motto Fysio Centrum Tegelen</a></td>
+        <td id="prov_tech_56">SIP</td>
+        <td id="prov_channel_56"></td>
+        <td id="prov_login_56">807231</td>
+        <td id="prov_password_56">zbBNumVr</td>
+        <td id="prov_server_ip_56">sip.mottovoip.nl</td>
+        <td id="prov_tariff_56">Ink_Motto</td>
+        <td id="prov_rules_56" align="center"><a href="/billing/providers/provider_rules/56"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_56" align="center"><a href="/billing/stats/last_calls?s_provider=56" id="calls_link_56"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/56?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">57</td>
+        <td id="prov_ani_57"><a href="/billing/providers/edit/57">Motto van Lier Schoenen</a></td>
+        <td id="prov_tech_57">SIP</td>
+        <td id="prov_channel_57"></td>
+        <td id="prov_login_57">807322</td>
+        <td id="prov_password_57">FFMRA3DF</td>
+        <td id="prov_server_ip_57">sip.mottovoip.nl</td>
+        <td id="prov_tariff_57">Ink_Motto</td>
+        <td id="prov_rules_57" align="center"><a href="/billing/providers/provider_rules/57"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_57" align="center"><a href="/billing/stats/last_calls?s_provider=57" id="calls_link_57"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/57?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">58</td>
+        <td id="prov_ani_58"><a href="/billing/providers/edit/58">Motto Werff Media</a></td>
+        <td id="prov_tech_58">SIP</td>
+        <td id="prov_channel_58"></td>
+        <td id="prov_login_58">808420</td>
+        <td id="prov_password_58">SncHHjXU</td>
+        <td id="prov_server_ip_58">sip.mottovoip.nl</td>
+        <td id="prov_tariff_58">Ink_Motto</td>
+        <td id="prov_rules_58" align="center"><a href="/billing/providers/provider_rules/58"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_58" align="center"><a href="/billing/stats/last_calls?s_provider=58" id="calls_link_58"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/58?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">59</td>
+        <td id="prov_ani_59"><a href="/billing/providers/edit/59">Motto Venloop</a></td>
+        <td id="prov_tech_59">SIP</td>
+        <td id="prov_channel_59"></td>
+        <td id="prov_login_59">808597</td>
+        <td id="prov_password_59">6QNhNT8j</td>
+        <td id="prov_server_ip_59">sip.mottovoip.nl</td>
+        <td id="prov_tariff_59">Ink_Motto</td>
+        <td id="prov_rules_59" align="center"><a href="/billing/providers/provider_rules/59"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_59" align="center"><a href="/billing/stats/last_calls?s_provider=59" id="calls_link_59"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/59?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">60</td>
+        <td id="prov_ani_60"><a href="/billing/providers/edit/60">Motto Middelpas</a></td>
+        <td id="prov_tech_60">SIP</td>
+        <td id="prov_channel_60"></td>
+        <td id="prov_login_60">808581</td>
+        <td id="prov_password_60">hpzfUZ7r</td>
+        <td id="prov_server_ip_60">sip.mottovoip.nl</td>
+        <td id="prov_tariff_60">Ink_Motto</td>
+        <td id="prov_rules_60" align="center"><a href="/billing/providers/provider_rules/60"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_60" align="center"><a href="/billing/stats/last_calls?s_provider=60" id="calls_link_60"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/60?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">61</td>
+        <td id="prov_ani_61"><a href="/billing/providers/edit/61">Motto Stickerkoning</a></td>
+        <td id="prov_tech_61">SIP</td>
+        <td id="prov_channel_61"></td>
+        <td id="prov_login_61">807895</td>
+        <td id="prov_password_61">wzpPE78z</td>
+        <td id="prov_server_ip_61">sip.mottovoip.nl</td>
+        <td id="prov_tariff_61">Ink_Motto</td>
+        <td id="prov_rules_61" align="center"><a href="/billing/providers/provider_rules/61"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_61" align="center"><a href="/billing/stats/last_calls?s_provider=61" id="calls_link_61"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/61?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">62</td>
+        <td id="prov_ani_62"><a href="/billing/providers/edit/62">Motto Moonen</a></td>
+        <td id="prov_tech_62">SIP</td>
+        <td id="prov_channel_62"></td>
+        <td id="prov_login_62">808845</td>
+        <td id="prov_password_62">9zTKaby4</td>
+        <td id="prov_server_ip_62">sip.mottovoip.nl</td>
+        <td id="prov_tariff_62">Ink_Motto</td>
+        <td id="prov_rules_62" align="center"><a href="/billing/providers/provider_rules/62"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_62" align="center"><a href="/billing/stats/last_calls?s_provider=62" id="calls_link_62"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/62?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">63</td>
+        <td id="prov_ani_63"><a href="/billing/providers/edit/63">Motto TSB</a></td>
+        <td id="prov_tech_63">SIP</td>
+        <td id="prov_channel_63"></td>
+        <td id="prov_login_63">219151</td>
+        <td id="prov_password_63">CnGvfZuf</td>
+        <td id="prov_server_ip_63">sip2.mottovoip.nl</td>
+        <td id="prov_tariff_63">Ink_Motto</td>
+        <td id="prov_rules_63" align="center"><a href="/billing/providers/provider_rules/63"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_63" align="center"><a href="/billing/stats/last_calls?s_provider=63" id="calls_link_63"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/63?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">64</td>
+        <td id="prov_ani_64"><a href="/billing/providers/edit/64">Motto Verhoex</a></td>
+        <td id="prov_tech_64">SIP</td>
+        <td id="prov_channel_64"></td>
+        <td id="prov_login_64">234283</td>
+        <td id="prov_password_64">KzXAthjD</td>
+        <td id="prov_server_ip_64">sip.mottovoip.nl</td>
+        <td id="prov_tariff_64">Ink_Motto</td>
+        <td id="prov_rules_64" align="center"><a href="/billing/providers/provider_rules/64"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_64" align="center"><a href="/billing/stats/last_calls?s_provider=64" id="calls_link_64"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/64?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">65</td>
+        <td id="prov_ani_65"><a href="/billing/providers/edit/65">Motto E-Bike Nederland</a></td>
+        <td id="prov_tech_65">SIP</td>
+        <td id="prov_channel_65"></td>
+        <td id="prov_login_65">221356</td>
+        <td id="prov_password_65">prcpZzB5</td>
+        <td id="prov_server_ip_65">sip.mottovoip.nl</td>
+        <td id="prov_tariff_65">Ink_Motto</td>
+        <td id="prov_rules_65" align="center"><a href="/billing/providers/provider_rules/65"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_65" align="center"><a href="/billing/stats/last_calls?s_provider=65" id="calls_link_65"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/65?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">66</td>
+        <td id="prov_ani_66"><a href="/billing/providers/edit/66">Motto Inbev</a></td>
+        <td id="prov_tech_66">SIP</td>
+        <td id="prov_channel_66"></td>
+        <td id="prov_login_66">809058</td>
+        <td id="prov_password_66">Wtwe7cjK</td>
+        <td id="prov_server_ip_66">sip.mottovoip.nl</td>
+        <td id="prov_tariff_66">Ink_Motto</td>
+        <td id="prov_rules_66" align="center"><a href="/billing/providers/provider_rules/66"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_66" align="center"><a href="/billing/stats/last_calls?s_provider=66" id="calls_link_66"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/66?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">68</td>
+        <td id="prov_ani_68"><a href="/billing/providers/edit/68">DIDWW Inbound</a></td>
+        <td id="prov_tech_68">SIP</td>
+        <td id="prov_channel_68"></td>
+        <td id="prov_login_68"></td>
+        <td id="prov_password_68"></td>
+        <td id="prov_server_ip_68">46.19.210.14</td>
+        <td id="prov_tariff_68">Ink_Motto</td>
+        <td id="prov_rules_68" align="center"><a href="/billing/providers/provider_rules/68"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_68" align="center"><a href="/billing/stats/last_calls?s_provider=68" id="calls_link_68"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/68?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">69</td>
+        <td id="prov_ani_69"><a href="/billing/providers/edit/69">Motto CNC</a></td>
+        <td id="prov_tech_69">SIP</td>
+        <td id="prov_channel_69"></td>
+        <td id="prov_login_69">Motto CNC</td>
+        <td id="prov_password_69">please_change</td>
+        <td id="prov_server_ip_69"></td>
+        <td id="prov_tariff_69">Ink_Motto</td>
+        <td id="prov_rules_69" align="center"><a href="/billing/providers/provider_rules/69"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_69" align="center"><a href="/billing/stats/last_calls?s_provider=69" id="calls_link_69"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/69?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">70</td>
+        <td id="prov_ani_70"><a href="/billing/providers/edit/70">Ziggo CNC Moerdijk</a></td>
+        <td id="prov_tech_70">SIP</td>
+        <td id="prov_channel_70"></td>
+        <td id="prov_login_70">31168332300</td>
+        <td id="prov_password_70">sb_UEHW5Qt9aBM5-</td>
+        <td id="prov_server_ip_70">voip.sipnl.net</td>
+        <td id="prov_tariff_70">Ink_Motto</td>
+        <td id="prov_rules_70" align="center"><a href="/billing/providers/provider_rules/70"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_70" align="center"><a href="/billing/stats/last_calls?s_provider=70" id="calls_link_70"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/70?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">71</td>
+        <td id="prov_ani_71"><a href="/billing/providers/edit/71">Ziggo CNC Milsbeek</a></td>
+        <td id="prov_tech_71">SIP</td>
+        <td id="prov_channel_71"></td>
+        <td id="prov_login_71">31485516541</td>
+        <td id="prov_password_71">K-vzyFUD9AjSjtZ</td>
+        <td id="prov_server_ip_71">voip.sipnl.net</td>
+        <td id="prov_tariff_71">Ink_Motto</td>
+        <td id="prov_rules_71" align="center"><a href="/billing/providers/provider_rules/71"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_71" align="center"><a href="/billing/stats/last_calls?s_provider=71" id="calls_link_71"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/71?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">72</td>
+        <td id="prov_ani_72"><a href="/billing/providers/edit/72">Motto Leenen Advies</a></td>
+        <td id="prov_tech_72">SIP</td>
+        <td id="prov_channel_72"></td>
+        <td id="prov_login_72">808914</td>
+        <td id="prov_password_72">zMEkD772</td>
+        <td id="prov_server_ip_72">sip.mottovoip.nl</td>
+        <td id="prov_tariff_72">Ink_Motto</td>
+        <td id="prov_rules_72" align="center"><a href="/billing/providers/provider_rules/72"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_72" align="center"><a href="/billing/stats/last_calls?s_provider=72" id="calls_link_72"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/72?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">74</td>
+        <td id="prov_ani_74"><a href="/billing/providers/edit/74">Motto MyShifts</a></td>
+        <td id="prov_tech_74">SIP</td>
+        <td id="prov_channel_74"></td>
+        <td id="prov_login_74">809077</td>
+        <td id="prov_password_74">nFwyh4Wt</td>
+        <td id="prov_server_ip_74">sip.mottovoip.nl</td>
+        <td id="prov_tariff_74">Ink_Motto</td>
+        <td id="prov_rules_74" align="center"><a href="/billing/providers/provider_rules/74"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_74" align="center"><a href="/billing/stats/last_calls?s_provider=74" id="calls_link_74"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/74?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">75</td>
+        <td id="prov_ani_75"><a href="/billing/providers/edit/75">Motto ENJOB</a></td>
+        <td id="prov_tech_75">SIP</td>
+        <td id="prov_channel_75"></td>
+        <td id="prov_login_75">229327</td>
+        <td id="prov_password_75">94DtxcwA</td>
+        <td id="prov_server_ip_75">sip.mottovoip.nl</td>
+        <td id="prov_tariff_75">Ink_Motto</td>
+        <td id="prov_rules_75" align="center"><a href="/billing/providers/provider_rules/75"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_75" align="center"><a href="/billing/stats/last_calls?s_provider=75" id="calls_link_75"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/75?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">76</td>
+        <td id="prov_ani_76"><a href="/billing/providers/edit/76">Motto JansenMachiningTech</a></td>
+        <td id="prov_tech_76">SIP</td>
+        <td id="prov_channel_76"></td>
+        <td id="prov_login_76">803654</td>
+        <td id="prov_password_76">QZrAqbm3</td>
+        <td id="prov_server_ip_76">sip.mottovoip.nl</td>
+        <td id="prov_tariff_76">Ink_Motto</td>
+        <td id="prov_rules_76" align="center"><a href="/billing/providers/provider_rules/76"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_76" align="center"><a href="/billing/stats/last_calls?s_provider=76" id="calls_link_76"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/76?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">77</td>
+        <td id="prov_ani_77"><a href="/billing/providers/edit/77">Motto VanTienenMileu</a></td>
+        <td id="prov_tech_77">SIP</td>
+        <td id="prov_channel_77"></td>
+        <td id="prov_login_77">223538</td>
+        <td id="prov_password_77">d5PT56mu</td>
+        <td id="prov_server_ip_77">sip.mottovoip.nl</td>
+        <td id="prov_tariff_77">Ink_Motto</td>
+        <td id="prov_rules_77" align="center"><a href="/billing/providers/provider_rules/77"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_77" align="center"><a href="/billing/stats/last_calls?s_provider=77" id="calls_link_77"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/77?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">78</td>
+        <td id="prov_ani_78"><a href="/billing/providers/edit/78">Motto Volantis</a></td>
+        <td id="prov_tech_78">SIP</td>
+        <td id="prov_channel_78"></td>
+        <td id="prov_login_78">239186</td>
+        <td id="prov_password_78">F4jua2aj</td>
+        <td id="prov_server_ip_78">sip.mottovoip.nl</td>
+        <td id="prov_tariff_78">Ink_Motto</td>
+        <td id="prov_rules_78" align="center"><a href="/billing/providers/provider_rules/78"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_78" align="center"><a href="/billing/stats/last_calls?s_provider=78" id="calls_link_78"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/78?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">79</td>
+        <td id="prov_ani_79"><a href="/billing/providers/edit/79">Motto Freshfilter</a></td>
+        <td id="prov_tech_79">SIP</td>
+        <td id="prov_channel_79"></td>
+        <td id="prov_login_79">228750</td>
+        <td id="prov_password_79">tJeUFg5u</td>
+        <td id="prov_server_ip_79">sip.mottovoip.nl</td>
+        <td id="prov_tariff_79">Ink_Motto</td>
+        <td id="prov_rules_79" align="center"><a href="/billing/providers/provider_rules/79"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_79" align="center"><a href="/billing/stats/last_calls?s_provider=79" id="calls_link_79"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/79?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">80</td>
+        <td id="prov_ani_80"><a href="/billing/providers/edit/80">Motto Zeroplex Lab</a></td>
+        <td id="prov_tech_80">SIP</td>
+        <td id="prov_channel_80"></td>
+        <td id="prov_login_80">236523</td>
+        <td id="prov_password_80">6CVtbEcd</td>
+        <td id="prov_server_ip_80">sip.mottovoip.nl</td>
+        <td id="prov_tariff_80">Ink_Motto</td>
+        <td id="prov_rules_80" align="center"><a href="/billing/providers/provider_rules/80"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_80" align="center"><a href="/billing/stats/last_calls?s_provider=80" id="calls_link_80"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/80?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">81</td>
+        <td id="prov_ani_81"><a href="/billing/providers/edit/81">Ziggo Mobers en Smolenaers</a></td>
+        <td id="prov_tech_81">SIP</td>
+        <td id="prov_channel_81"></td>
+        <td id="prov_login_81">31773071490</td>
+        <td id="prov_password_81">fprjsu5s</td>
+        <td id="prov_server_ip_81">voip.sipnl.net</td>
+        <td id="prov_tariff_81">Ink_Motto</td>
+        <td id="prov_rules_81" align="center"><a href="/billing/providers/provider_rules/81"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_81" align="center"><a href="/billing/stats/last_calls?s_provider=81" id="calls_link_81"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/81?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">82</td>
+        <td id="prov_ani_82"><a href="/billing/providers/edit/82">Ziggo Deinum</a></td>
+        <td id="prov_tech_82">SIP</td>
+        <td id="prov_channel_82"></td>
+        <td id="prov_login_82">31773820000</td>
+        <td id="prov_password_82">Trimaxx4321!</td>
+        <td id="prov_server_ip_82">voip.sipnl.net</td>
+        <td id="prov_tariff_82">Ink_Motto</td>
+        <td id="prov_rules_82" align="center"><a href="/billing/providers/provider_rules/82"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_82" align="center"><a href="/billing/stats/last_calls?s_provider=82" id="calls_link_82"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/82?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">83</td>
+        <td id="prov_ani_83"><a href="/billing/providers/edit/83">Motto LSE</a></td>
+        <td id="prov_tech_83">SIP</td>
+        <td id="prov_channel_83"></td>
+        <td id="prov_login_83">808836</td>
+        <td id="prov_password_83">vrgJWS89</td>
+        <td id="prov_server_ip_83">sip.mottovoip.nl</td>
+        <td id="prov_tariff_83">Ink_Motto</td>
+        <td id="prov_rules_83" align="center"><a href="/billing/providers/provider_rules/83"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_83" align="center"><a href="/billing/stats/last_calls?s_provider=83" id="calls_link_83"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/83?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">84</td>
+        <td id="prov_ani_84"><a href="/billing/providers/edit/84">Motto ACB Transportbanden</a></td>
+        <td id="prov_tech_84">SIP</td>
+        <td id="prov_channel_84"></td>
+        <td id="prov_login_84">809251</td>
+        <td id="prov_password_84">ruFkrRVf</td>
+        <td id="prov_server_ip_84">sip.mottovoip.nl</td>
+        <td id="prov_tariff_84">Ink_Motto</td>
+        <td id="prov_rules_84" align="center"><a href="/billing/providers/provider_rules/84"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_84" align="center"><a href="/billing/stats/last_calls?s_provider=84" id="calls_link_84"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/84?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">85</td>
+        <td id="prov_ani_85"><a href="/billing/providers/edit/85">Motto Gemeente Bergen</a></td>
+        <td id="prov_tech_85">SIP</td>
+        <td id="prov_channel_85"></td>
+        <td id="prov_login_85">809685</td>
+        <td id="prov_password_85">r2tgGKJ9</td>
+        <td id="prov_server_ip_85">sip.mottovoip.nl</td>
+        <td id="prov_tariff_85">Ink_Motto</td>
+        <td id="prov_rules_85" align="center"><a href="/billing/providers/provider_rules/85"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_85" align="center"><a href="/billing/stats/last_calls?s_provider=85" id="calls_link_85"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/85?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">86</td>
+        <td id="prov_ani_86"><a href="/billing/providers/edit/86">Motto Store33</a></td>
+        <td id="prov_tech_86">SIP</td>
+        <td id="prov_channel_86"></td>
+        <td id="prov_login_86">809675</td>
+        <td id="prov_password_86">9eGgfrmN</td>
+        <td id="prov_server_ip_86">sip.mottovoip.nl</td>
+        <td id="prov_tariff_86">Ink_Motto</td>
+        <td id="prov_rules_86" align="center"><a href="/billing/providers/provider_rules/86"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_86" align="center"><a href="/billing/stats/last_calls?s_provider=86" id="calls_link_86"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/86?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">87</td>
+        <td id="prov_ani_87"><a href="/billing/providers/edit/87">Motto Boermans Juwelier</a></td>
+        <td id="prov_tech_87">SIP</td>
+        <td id="prov_channel_87"></td>
+        <td id="prov_login_87">809834</td>
+        <td id="prov_password_87">XKPCwJKw</td>
+        <td id="prov_server_ip_87">sip.mottovoip.nl</td>
+        <td id="prov_tariff_87">Ink_Motto</td>
+        <td id="prov_rules_87" align="center"><a href="/billing/providers/provider_rules/87"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_87" align="center"><a href="/billing/stats/last_calls?s_provider=87" id="calls_link_87"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/87?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">88</td>
+        <td id="prov_ani_88"><a href="/billing/providers/edit/88">Motto Profitt</a></td>
+        <td id="prov_tech_88">SIP</td>
+        <td id="prov_channel_88"></td>
+        <td id="prov_login_88">809721</td>
+        <td id="prov_password_88">gz6W9nKD</td>
+        <td id="prov_server_ip_88">sip.mottovoip.nl</td>
+        <td id="prov_tariff_88">Ink_Motto</td>
+        <td id="prov_rules_88" align="center"><a href="/billing/providers/provider_rules/88"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_88" align="center"><a href="/billing/stats/last_calls?s_provider=88" id="calls_link_88"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/88?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">89</td>
+        <td id="prov_ani_89"><a href="/billing/providers/edit/89">Motto Hoezen</a></td>
+        <td id="prov_tech_89">SIP</td>
+        <td id="prov_channel_89"></td>
+        <td id="prov_login_89">809941</td>
+        <td id="prov_password_89">DAZd9tdj</td>
+        <td id="prov_server_ip_89">sip.mottovoip.nl</td>
+        <td id="prov_tariff_89">Ink_Motto</td>
+        <td id="prov_rules_89" align="center"><a href="/billing/providers/provider_rules/89"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_89" align="center"><a href="/billing/stats/last_calls?s_provider=89" id="calls_link_89"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/89?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">90</td>
+        <td id="prov_ani_90"><a href="/billing/providers/edit/90">Motto De Mulder</a></td>
+        <td id="prov_tech_90">SIP</td>
+        <td id="prov_channel_90"></td>
+        <td id="prov_login_90">809858</td>
+        <td id="prov_password_90">VU9XpwkG</td>
+        <td id="prov_server_ip_90">sip.mottovoip.nl</td>
+        <td id="prov_tariff_90">Ink_Motto</td>
+        <td id="prov_rules_90" align="center"><a href="/billing/providers/provider_rules/90"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_90" align="center"><a href="/billing/stats/last_calls?s_provider=90" id="calls_link_90"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/90?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">91</td>
+        <td id="prov_ani_91"><a href="/billing/providers/edit/91">Motto Plantencentrum Velden</a></td>
+        <td id="prov_tech_91">SIP</td>
+        <td id="prov_channel_91"></td>
+        <td id="prov_login_91">810166</td>
+        <td id="prov_password_91">jCk8bjHc</td>
+        <td id="prov_server_ip_91">sip.mottovoip.nl</td>
+        <td id="prov_tariff_91">Ink_Motto</td>
+        <td id="prov_rules_91" align="center"><a href="/billing/providers/provider_rules/91"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_91" align="center"><a href="/billing/stats/last_calls?s_provider=91" id="calls_link_91"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/91?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">92</td>
+        <td id="prov_ani_92"><a href="/billing/providers/edit/92">Motto Vakantiepark Leukermeer</a></td>
+        <td id="prov_tech_92">SIP</td>
+        <td id="prov_channel_92"></td>
+        <td id="prov_login_92">810277</td>
+        <td id="prov_password_92">jmvBd5MR</td>
+        <td id="prov_server_ip_92">sip.mottovoip.nl</td>
+        <td id="prov_tariff_92">Ink_Motto</td>
+        <td id="prov_rules_92" align="center"><a href="/billing/providers/provider_rules/92"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_92" align="center"><a href="/billing/stats/last_calls?s_provider=92" id="calls_link_92"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/92?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">93</td>
+        <td id="prov_ani_93"><a href="/billing/providers/edit/93">Motto Mareck Lichttechniek BV</a></td>
+        <td id="prov_tech_93">SIP</td>
+        <td id="prov_channel_93"></td>
+        <td id="prov_login_93">810164</td>
+        <td id="prov_password_93">Nqn6DnjH</td>
+        <td id="prov_server_ip_93">sip.mottovoip.nl</td>
+        <td id="prov_tariff_93">Ink_Motto</td>
+        <td id="prov_rules_93" align="center"><a href="/billing/providers/provider_rules/93"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_93" align="center"><a href="/billing/stats/last_calls?s_provider=93" id="calls_link_93"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/93?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">94</td>
+        <td id="prov_ani_94"><a href="/billing/providers/edit/94">Motto Nizza</a></td>
+        <td id="prov_tech_94">SIP</td>
+        <td id="prov_channel_94"></td>
+        <td id="prov_login_94">218086</td>
+        <td id="prov_password_94">jCR1jfCy</td>
+        <td id="prov_server_ip_94">sip.mottovoip.nl</td>
+        <td id="prov_tariff_94">Ink_Motto</td>
+        <td id="prov_rules_94" align="center"><a href="/billing/providers/provider_rules/94"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_94" align="center"><a href="/billing/stats/last_calls?s_provider=94" id="calls_link_94"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/94?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">95</td>
+        <td id="prov_ani_95"><a href="/billing/providers/edit/95">Motto Texis</a></td>
+        <td id="prov_tech_95">SIP</td>
+        <td id="prov_channel_95"></td>
+        <td id="prov_login_95">809643</td>
+        <td id="prov_password_95">HtxU3Skj</td>
+        <td id="prov_server_ip_95">sip.mottovoip.nl</td>
+        <td id="prov_tariff_95">Ink_Motto</td>
+        <td id="prov_rules_95" align="center"><a href="/billing/providers/provider_rules/95"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_95" align="center"><a href="/billing/stats/last_calls?s_provider=95" id="calls_link_95"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/95?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">96</td>
+        <td id="prov_ani_96"><a href="/billing/providers/edit/96">Motto Esseveldt-Looman</a></td>
+        <td id="prov_tech_96">SIP</td>
+        <td id="prov_channel_96"></td>
+        <td id="prov_login_96">810009</td>
+        <td id="prov_password_96">XedM6Zy8</td>
+        <td id="prov_server_ip_96">sip.mottovoip.nl</td>
+        <td id="prov_tariff_96">Ink_Motto</td>
+        <td id="prov_rules_96" align="center"><a href="/billing/providers/provider_rules/96"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_96" align="center"><a href="/billing/stats/last_calls?s_provider=96" id="calls_link_96"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/96?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">97</td>
+        <td id="prov_ani_97"><a href="/billing/providers/edit/97">Motto Rope IT and Finance BV</a></td>
+        <td id="prov_tech_97">SIP</td>
+        <td id="prov_channel_97"></td>
+        <td id="prov_login_97">810523</td>
+        <td id="prov_password_97">5RyQzu6x</td>
+        <td id="prov_server_ip_97">sip.mottovoip.nl</td>
+        <td id="prov_tariff_97">Ink_Motto</td>
+        <td id="prov_rules_97" align="center"><a href="/billing/providers/provider_rules/97"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_97" align="center"><a href="/billing/stats/last_calls?s_provider=97" id="calls_link_97"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/97?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">99</td>
+        <td id="prov_ani_99"><a href="/billing/providers/edit/99">Motto PartyXplosion</a></td>
+        <td id="prov_tech_99">SIP</td>
+        <td id="prov_channel_99"></td>
+        <td id="prov_login_99">238464</td>
+        <td id="prov_password_99">Ce51rf7H</td>
+        <td id="prov_server_ip_99">sip.mottovoip.nl</td>
+        <td id="prov_tariff_99">Ink_Motto</td>
+        <td id="prov_rules_99" align="center"><a href="/billing/providers/provider_rules/99"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_99" align="center"><a href="/billing/stats/last_calls?s_provider=99" id="calls_link_99"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/99?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">100</td>
+        <td id="prov_ani_100"><a href="/billing/providers/edit/100">Motto Technique Plastique</a></td>
+        <td id="prov_tech_100">SIP</td>
+        <td id="prov_channel_100"></td>
+        <td id="prov_login_100">810460</td>
+        <td id="prov_password_100">wqvXSF7R</td>
+        <td id="prov_server_ip_100">sip.mottovoip.nl</td>
+        <td id="prov_tariff_100">Ink_Motto</td>
+        <td id="prov_rules_100" align="center"><a href="/billing/providers/provider_rules/100"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_100" align="center"><a href="/billing/stats/last_calls?s_provider=100" id="calls_link_100"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/100?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">101</td>
+        <td id="prov_ani_101"><a href="/billing/providers/edit/101">Motto VAEX</a></td>
+        <td id="prov_tech_101">SIP</td>
+        <td id="prov_channel_101"></td>
+        <td id="prov_login_101">228176</td>
+        <td id="prov_password_101">MWZ3tDTh</td>
+        <td id="prov_server_ip_101">sip.mottovoip.nl</td>
+        <td id="prov_tariff_101">Ink_Motto</td>
+        <td id="prov_rules_101" align="center"><a href="/billing/providers/provider_rules/101"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_101" align="center"><a href="/billing/stats/last_calls?s_provider=101" id="calls_link_101"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/101?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">102</td>
+        <td id="prov_ani_102"><a href="/billing/providers/edit/102">Motto AxisEuroLink</a></td>
+        <td id="prov_tech_102">SIP</td>
+        <td id="prov_channel_102"></td>
+        <td id="prov_login_102">236303</td>
+        <td id="prov_password_102">2gBkrWEn</td>
+        <td id="prov_server_ip_102">sip.mottovoip.nl</td>
+        <td id="prov_tariff_102">Ink_Motto</td>
+        <td id="prov_rules_102" align="center"><a href="/billing/providers/provider_rules/102"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_102" align="center"><a href="/billing/stats/last_calls?s_provider=102" id="calls_link_102"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/102?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">103</td>
+        <td id="prov_ani_103"><a href="/billing/providers/edit/103">Motto WeJeBe</a></td>
+        <td id="prov_tech_103">SIP</td>
+        <td id="prov_channel_103"></td>
+        <td id="prov_login_103">810639</td>
+        <td id="prov_password_103">fgv87MHh</td>
+        <td id="prov_server_ip_103">sip.mottovoip.nl</td>
+        <td id="prov_tariff_103">Ink_Motto</td>
+        <td id="prov_rules_103" align="center"><a href="/billing/providers/provider_rules/103"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_103" align="center"><a href="/billing/stats/last_calls?s_provider=103" id="calls_link_103"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/103?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">104</td>
+        <td id="prov_ani_104"><a href="/billing/providers/edit/104">Motto Caris en Zonen RTH</a></td>
+        <td id="prov_tech_104">SIP</td>
+        <td id="prov_channel_104"></td>
+        <td id="prov_login_104">811068</td>
+        <td id="prov_password_104">ztjuJrqV</td>
+        <td id="prov_server_ip_104">sip.mottovoip.nl</td>
+        <td id="prov_tariff_104">Ink_Motto</td>
+        <td id="prov_rules_104" align="center"><a href="/billing/providers/provider_rules/104"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_104" align="center"><a href="/billing/stats/last_calls?s_provider=104" id="calls_link_104"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/104?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">105</td>
+        <td id="prov_ani_105"><a href="/billing/providers/edit/105">Motto J. van Vegchel</a></td>
+        <td id="prov_tech_105">SIP</td>
+        <td id="prov_channel_105"></td>
+        <td id="prov_login_105">811050</td>
+        <td id="prov_password_105">xdRUt3mJ</td>
+        <td id="prov_server_ip_105">sip.mottovoip.nl</td>
+        <td id="prov_tariff_105">Ink_Motto</td>
+        <td id="prov_rules_105" align="center"><a href="/billing/providers/provider_rules/105"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_105" align="center"><a href="/billing/stats/last_calls?s_provider=105" id="calls_link_105"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/105?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">106</td>
+        <td id="prov_ani_106"><a href="/billing/providers/edit/106">Motto Meldon Plastics</a></td>
+        <td id="prov_tech_106">SIP</td>
+        <td id="prov_channel_106"></td>
+        <td id="prov_login_106">810842</td>
+        <td id="prov_password_106">RD3bjKEW</td>
+        <td id="prov_server_ip_106">sip.mottovoip.nl</td>
+        <td id="prov_tariff_106">Ink_Motto</td>
+        <td id="prov_rules_106" align="center"><a href="/billing/providers/provider_rules/106"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_106" align="center"><a href="/billing/stats/last_calls?s_provider=106" id="calls_link_106"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/106?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">107</td>
+        <td id="prov_ani_107"><a href="/billing/providers/edit/107">Motto Roodbeen</a></td>
+        <td id="prov_tech_107">SIP</td>
+        <td id="prov_channel_107"></td>
+        <td id="prov_login_107">811422</td>
+        <td id="prov_password_107">pPpdYNwf</td>
+        <td id="prov_server_ip_107">sip.mottovoip.nl</td>
+        <td id="prov_tariff_107">Ink_Motto</td>
+        <td id="prov_rules_107" align="center"><a href="/billing/providers/provider_rules/107"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_107" align="center"><a href="/billing/stats/last_calls?s_provider=107" id="calls_link_107"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/107?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">108</td>
+        <td id="prov_ani_108"><a href="/billing/providers/edit/108">Motto PreAct</a></td>
+        <td id="prov_tech_108">SIP</td>
+        <td id="prov_channel_108"></td>
+        <td id="prov_login_108">811502</td>
+        <td id="prov_password_108">fdnEy3fW</td>
+        <td id="prov_server_ip_108">sip.mottovoip.nl</td>
+        <td id="prov_tariff_108">Ink_Motto</td>
+        <td id="prov_rules_108" align="center"><a href="/billing/providers/provider_rules/108"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_108" align="center"><a href="/billing/stats/last_calls?s_provider=108" id="calls_link_108"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/108?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">109</td>
+        <td id="prov_ani_109"><a href="/billing/providers/edit/109">Motto Gielen Dakbedekkingen</a></td>
+        <td id="prov_tech_109">SIP</td>
+        <td id="prov_channel_109"></td>
+        <td id="prov_login_109">811489</td>
+        <td id="prov_password_109">3xC9fZRB</td>
+        <td id="prov_server_ip_109">sip.mottovoip.nl</td>
+        <td id="prov_tariff_109">Ink_Motto</td>
+        <td id="prov_rules_109" align="center"><a href="/billing/providers/provider_rules/109"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_109" align="center"><a href="/billing/stats/last_calls?s_provider=109" id="calls_link_109"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/109?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">110</td>
+        <td id="prov_ani_110"><a href="/billing/providers/edit/110">Motto Timmerwerken van Dijk</a></td>
+        <td id="prov_tech_110">SIP</td>
+        <td id="prov_channel_110"></td>
+        <td id="prov_login_110">811363</td>
+        <td id="prov_password_110">reavcMMq</td>
+        <td id="prov_server_ip_110">sip.mottovoip.nl</td>
+        <td id="prov_tariff_110">Ink_Motto</td>
+        <td id="prov_rules_110" align="center"><a href="/billing/providers/provider_rules/110"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_110" align="center"><a href="/billing/stats/last_calls?s_provider=110" id="calls_link_110"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/110?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">111</td>
+        <td id="prov_ani_111"><a href="/billing/providers/edit/111">Motto MH Woodworks</a></td>
+        <td id="prov_tech_111">SIP</td>
+        <td id="prov_channel_111"></td>
+        <td id="prov_login_111">811364</td>
+        <td id="prov_password_111">3MQAbS2m</td>
+        <td id="prov_server_ip_111">sip.mottovoip.nl</td>
+        <td id="prov_tariff_111">Ink_Motto</td>
+        <td id="prov_rules_111" align="center"><a href="/billing/providers/provider_rules/111"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_111" align="center"><a href="/billing/stats/last_calls?s_provider=111" id="calls_link_111"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/111?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">112</td>
+        <td id="prov_ani_112"><a href="/billing/providers/edit/112">Motto Orthopedische schoentech</a></td>
+        <td id="prov_tech_112">SIP</td>
+        <td id="prov_channel_112"></td>
+        <td id="prov_login_112">811692</td>
+        <td id="prov_password_112">XcsVADYf</td>
+        <td id="prov_server_ip_112">sip.mottovoip.nl</td>
+        <td id="prov_tariff_112">Ink_Motto</td>
+        <td id="prov_rules_112" align="center"><a href="/billing/providers/provider_rules/112"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_112" align="center"><a href="/billing/stats/last_calls?s_provider=112" id="calls_link_112"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/112?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">113</td>
+        <td id="prov_ani_113"><a href="/billing/providers/edit/113">Motto Plaza Grafica</a></td>
+        <td id="prov_tech_113">SIP</td>
+        <td id="prov_channel_113"></td>
+        <td id="prov_login_113">811479</td>
+        <td id="prov_password_113">4rcVaksv</td>
+        <td id="prov_server_ip_113">sip.mottovoip.nl</td>
+        <td id="prov_tariff_113">Ink_Motto</td>
+        <td id="prov_rules_113" align="center"><a href="/billing/providers/provider_rules/113"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_113" align="center"><a href="/billing/stats/last_calls?s_provider=113" id="calls_link_113"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/113?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">114</td>
+        <td id="prov_ani_114"><a href="/billing/providers/edit/114">Motto Van Zandvoort Elektrotec</a></td>
+        <td id="prov_tech_114">SIP</td>
+        <td id="prov_channel_114"></td>
+        <td id="prov_login_114">811377</td>
+        <td id="prov_password_114">dewQSmxN</td>
+        <td id="prov_server_ip_114">sip.mottovoip.nl</td>
+        <td id="prov_tariff_114">Ink_Motto</td>
+        <td id="prov_rules_114" align="center"><a href="/billing/providers/provider_rules/114"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_114" align="center"><a href="/billing/stats/last_calls?s_provider=114" id="calls_link_114"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/114?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">115</td>
+        <td id="prov_ani_115"><a href="/billing/providers/edit/115">Motto Interring BV</a></td>
+        <td id="prov_tech_115">SIP</td>
+        <td id="prov_channel_115"></td>
+        <td id="prov_login_115">811928</td>
+        <td id="prov_password_115">UqQzEwTA</td>
+        <td id="prov_server_ip_115">sip.mottovoip.nl</td>
+        <td id="prov_tariff_115">Ink_Motto</td>
+        <td id="prov_rules_115" align="center"><a href="/billing/providers/provider_rules/115"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_115" align="center"><a href="/billing/stats/last_calls?s_provider=115" id="calls_link_115"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/115?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">116</td>
+        <td id="prov_ani_116"><a href="/billing/providers/edit/116">Motto Blue Engineering</a></td>
+        <td id="prov_tech_116">SIP</td>
+        <td id="prov_channel_116"></td>
+        <td id="prov_login_116">812142</td>
+        <td id="prov_password_116">h6syuECh</td>
+        <td id="prov_server_ip_116">sip.mottovoip.nl</td>
+        <td id="prov_tariff_116">Ink_Motto</td>
+        <td id="prov_rules_116" align="center"><a href="/billing/providers/provider_rules/116"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_116" align="center"><a href="/billing/stats/last_calls?s_provider=116" id="calls_link_116"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/116?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">117</td>
+        <td id="prov_ani_117"><a href="/billing/providers/edit/117">Motto Kerobei</a></td>
+        <td id="prov_tech_117">SIP</td>
+        <td id="prov_channel_117"></td>
+        <td id="prov_login_117">812085</td>
+        <td id="prov_password_117">e5WWmEms</td>
+        <td id="prov_server_ip_117">sip.mottovoip.nl</td>
+        <td id="prov_tariff_117">Ink_Motto</td>
+        <td id="prov_rules_117" align="center"><a href="/billing/providers/provider_rules/117"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_117" align="center"><a href="/billing/stats/last_calls?s_provider=117" id="calls_link_117"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/117?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">118</td>
+        <td id="prov_ani_118"><a href="/billing/providers/edit/118">M Plantenkwekerij P. de Mulder</a></td>
+        <td id="prov_tech_118">SIP</td>
+        <td id="prov_channel_118"></td>
+        <td id="prov_login_118">812307</td>
+        <td id="prov_password_118">M8nrmUd2</td>
+        <td id="prov_server_ip_118">sip.mottovoip.nl</td>
+        <td id="prov_tariff_118">Ink_Motto</td>
+        <td id="prov_rules_118" align="center"><a href="/billing/providers/provider_rules/118"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_118" align="center"><a href="/billing/stats/last_calls?s_provider=118" id="calls_link_118"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/118?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">119</td>
+        <td id="prov_ani_119"><a href="/billing/providers/edit/119">Motto Baggen Oogkliniek</a></td>
+        <td id="prov_tech_119">SIP</td>
+        <td id="prov_channel_119"></td>
+        <td id="prov_login_119">812323</td>
+        <td id="prov_password_119">Yr2Sue8E</td>
+        <td id="prov_server_ip_119">sip.mottovoip.nl</td>
+        <td id="prov_tariff_119">Ink_Motto</td>
+        <td id="prov_rules_119" align="center"><a href="/billing/providers/provider_rules/119"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_119" align="center"><a href="/billing/stats/last_calls?s_provider=119" id="calls_link_119"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/119?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">120</td>
+        <td id="prov_ani_120"><a href="/billing/providers/edit/120">Motto FSV</a></td>
+        <td id="prov_tech_120">SIP</td>
+        <td id="prov_channel_120"></td>
+        <td id="prov_login_120">229200</td>
+        <td id="prov_password_120">ngMFt815</td>
+        <td id="prov_server_ip_120">sip.mottovoip.nl</td>
+        <td id="prov_tariff_120">Ink_Motto</td>
+        <td id="prov_rules_120" align="center"><a href="/billing/providers/provider_rules/120"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_120" align="center"><a href="/billing/stats/last_calls?s_provider=120" id="calls_link_120"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/120?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">121</td>
+        <td id="prov_ani_121"><a href="/billing/providers/edit/121">Motto Makelaar Schreinemachers</a></td>
+        <td id="prov_tech_121">SIP</td>
+        <td id="prov_channel_121"></td>
+        <td id="prov_login_121">812528</td>
+        <td id="prov_password_121">6F4SeEtg</td>
+        <td id="prov_server_ip_121">sip.mottovoip.nl</td>
+        <td id="prov_tariff_121">Ink_Motto</td>
+        <td id="prov_rules_121" align="center"><a href="/billing/providers/provider_rules/121"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_121" align="center"><a href="/billing/stats/last_calls?s_provider=121" id="calls_link_121"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/121?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">122</td>
+        <td id="prov_ani_122"><a href="/billing/providers/edit/122">Motto Karel Hermans Transport</a></td>
+        <td id="prov_tech_122">SIP</td>
+        <td id="prov_channel_122"></td>
+        <td id="prov_login_122">812743</td>
+        <td id="prov_password_122">AxsttY9E</td>
+        <td id="prov_server_ip_122">sip.mottovoip.nl</td>
+        <td id="prov_tariff_122">Ink_Motto</td>
+        <td id="prov_rules_122" align="center"><a href="/billing/providers/provider_rules/122"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_122" align="center"><a href="/billing/stats/last_calls?s_provider=122" id="calls_link_122"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/122?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">123</td>
+        <td id="prov_ani_123"><a href="/billing/providers/edit/123">Motto Metaalfabriek Limburgia</a></td>
+        <td id="prov_tech_123">SIP</td>
+        <td id="prov_channel_123"></td>
+        <td id="prov_login_123">812960</td>
+        <td id="prov_password_123">3XzUedGR</td>
+        <td id="prov_server_ip_123">sip.mottovoip.nl</td>
+        <td id="prov_tariff_123">Ink_Motto</td>
+        <td id="prov_rules_123" align="center"><a href="/billing/providers/provider_rules/123"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_123" align="center"><a href="/billing/stats/last_calls?s_provider=123" id="calls_link_123"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/123?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">124</td>
+        <td id="prov_ani_124"><a href="/billing/providers/edit/124">Motto X-Celerate</a></td>
+        <td id="prov_tech_124">SIP</td>
+        <td id="prov_channel_124"></td>
+        <td id="prov_login_124">813023</td>
+        <td id="prov_password_124">u8EahZPU</td>
+        <td id="prov_server_ip_124">sip.mottovoip.nl</td>
+        <td id="prov_tariff_124">Ink_Motto</td>
+        <td id="prov_rules_124" align="center"><a href="/billing/providers/provider_rules/124"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_124" align="center"><a href="/billing/stats/last_calls?s_provider=124" id="calls_link_124"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/124?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">125</td>
+        <td id="prov_ani_125"><a href="/billing/providers/edit/125">Motto Bart Faassen</a></td>
+        <td id="prov_tech_125">SIP</td>
+        <td id="prov_channel_125"></td>
+        <td id="prov_login_125">813123</td>
+        <td id="prov_password_125">2QcRrUCX</td>
+        <td id="prov_server_ip_125">sip.mottovoip.nl</td>
+        <td id="prov_tariff_125">Ink_Motto</td>
+        <td id="prov_rules_125" align="center"><a href="/billing/providers/provider_rules/125"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_125" align="center"><a href="/billing/stats/last_calls?s_provider=125" id="calls_link_125"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/125?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">126</td>
+        <td id="prov_ani_126"><a href="/billing/providers/edit/126">0 DIDWW Outbound</a></td>
+        <td id="prov_tech_126">SIP</td>
+        <td id="prov_channel_126"></td>
+        <td id="prov_login_126">vgjr11voos</td>
+        <td id="prov_password_126">tjv9vu22gf</td>
+        <td id="prov_server_ip_126">fra.eu.out.didww.com</td>
+        <td id="prov_tariff_126">Ink_Motto</td>
+        <td id="prov_rules_126" align="center"><a href="/billing/providers/provider_rules/126"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_126" align="center"><a href="/billing/stats/last_calls?s_provider=126" id="calls_link_126"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/126?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">127</td>
+        <td id="prov_ani_127"><a href="/billing/providers/edit/127">0 CM.COM</a></td>
+        <td id="prov_tech_127">SIP</td>
+        <td id="prov_channel_127"></td>
+        <td id="prov_login_127">ZeroPlexfCs</td>
+        <td id="prov_password_127">SGyKAkUXNc9RBu2NaodM</td>
+        <td id="prov_server_ip_127">nl.voip.cm.com</td>
+        <td id="prov_tariff_127">Ink_CM</td>
+        <td id="prov_rules_127" align="center"><a href="/billing/providers/provider_rules/127"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_127" align="center"><a href="/billing/stats/last_calls?s_provider=127" id="calls_link_127"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/127?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">128</td>
+        <td id="prov_ani_128"><a href="/billing/providers/edit/128">Motto Doing Goods</a></td>
+        <td id="prov_tech_128">SIP</td>
+        <td id="prov_channel_128"></td>
+        <td id="prov_login_128">812239</td>
+        <td id="prov_password_128">Ae3rrte8</td>
+        <td id="prov_server_ip_128">sip.mottovoip.nl</td>
+        <td id="prov_tariff_128">Ink_Motto</td>
+        <td id="prov_rules_128" align="center"><a href="/billing/providers/provider_rules/128"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_128" align="center"><a href="/billing/stats/last_calls?s_provider=128" id="calls_link_128"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/128?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">130</td>
+        <td id="prov_ani_130"><a href="/billing/providers/edit/130">Motto Gemaksshop</a></td>
+        <td id="prov_tech_130">SIP</td>
+        <td id="prov_channel_130"></td>
+        <td id="prov_login_130">813746</td>
+        <td id="prov_password_130">7zwrJu9G</td>
+        <td id="prov_server_ip_130">sip.mottovoip.nl</td>
+        <td id="prov_tariff_130">Ink_Motto</td>
+        <td id="prov_rules_130" align="center"><a href="/billing/providers/provider_rules/130"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_130" align="center"><a href="/billing/stats/last_calls?s_provider=130" id="calls_link_130"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/130?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">131</td>
+        <td id="prov_ani_131"><a href="/billing/providers/edit/131">Motto Tuincentrum Leurs</a></td>
+        <td id="prov_tech_131">SIP</td>
+        <td id="prov_channel_131"></td>
+        <td id="prov_login_131">814043</td>
+        <td id="prov_password_131">aSxQ8FeN</td>
+        <td id="prov_server_ip_131">sip.mottovoip.nl</td>
+        <td id="prov_tariff_131">Ink_Motto</td>
+        <td id="prov_rules_131" align="center"><a href="/billing/providers/provider_rules/131"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_131" align="center"><a href="/billing/stats/last_calls?s_provider=131" id="calls_link_131"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/131?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">132</td>
+        <td id="prov_ani_132"><a href="/billing/providers/edit/132">Motto Hauzer</a></td>
+        <td id="prov_tech_132">SIP</td>
+        <td id="prov_channel_132"></td>
+        <td id="prov_login_132">814004</td>
+        <td id="prov_password_132">Q62mw2rJ</td>
+        <td id="prov_server_ip_132">sip.mottovoip.nl</td>
+        <td id="prov_tariff_132">Ink_Motto</td>
+        <td id="prov_rules_132" align="center"><a href="/billing/providers/provider_rules/132"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_132" align="center"><a href="/billing/stats/last_calls?s_provider=132" id="calls_link_132"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/132?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">133</td>
+        <td id="prov_ani_133"><a href="/billing/providers/edit/133">Motto Holland Fashion Label</a></td>
+        <td id="prov_tech_133">SIP</td>
+        <td id="prov_channel_133"></td>
+        <td id="prov_login_133">814047</td>
+        <td id="prov_password_133">7xBGnj2r</td>
+        <td id="prov_server_ip_133">sip.mottovoip.nl</td>
+        <td id="prov_tariff_133">Ink_Motto</td>
+        <td id="prov_rules_133" align="center"><a href="/billing/providers/provider_rules/133"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_133" align="center"><a href="/billing/stats/last_calls?s_provider=133" id="calls_link_133"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/133?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">134</td>
+        <td id="prov_ani_134"><a href="/billing/providers/edit/134">Motto Rooskens</a></td>
+        <td id="prov_tech_134">SIP</td>
+        <td id="prov_channel_134"></td>
+        <td id="prov_login_134">814131</td>
+        <td id="prov_password_134">UDWeT8vR</td>
+        <td id="prov_server_ip_134">sip.mottovoip.nl</td>
+        <td id="prov_tariff_134">Ink_Motto</td>
+        <td id="prov_rules_134" align="center"><a href="/billing/providers/provider_rules/134"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_134" align="center"><a href="/billing/stats/last_calls?s_provider=134" id="calls_link_134"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/134?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">135</td>
+        <td id="prov_ani_135"><a href="/billing/providers/edit/135">Motto Dejatech</a></td>
+        <td id="prov_tech_135">SIP</td>
+        <td id="prov_channel_135"></td>
+        <td id="prov_login_135">814169</td>
+        <td id="prov_password_135">qcuxzzPy</td>
+        <td id="prov_server_ip_135">sip.mottovoip.nl</td>
+        <td id="prov_tariff_135">Ink_Motto</td>
+        <td id="prov_rules_135" align="center"><a href="/billing/providers/provider_rules/135"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_135" align="center"><a href="/billing/stats/last_calls?s_provider=135" id="calls_link_135"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/135?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">136</td>
+        <td id="prov_ani_136"><a href="/billing/providers/edit/136">Motto Kusters</a></td>
+        <td id="prov_tech_136">SIP</td>
+        <td id="prov_channel_136"></td>
+        <td id="prov_login_136">814184</td>
+        <td id="prov_password_136">S6xdJbdz</td>
+        <td id="prov_server_ip_136">sip.mottovoip.nl</td>
+        <td id="prov_tariff_136">Ink_Motto</td>
+        <td id="prov_rules_136" align="center"><a href="/billing/providers/provider_rules/136"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_136" align="center"><a href="/billing/stats/last_calls?s_provider=136" id="calls_link_136"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/136?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">137</td>
+        <td id="prov_ani_137"><a href="/billing/providers/edit/137">Motto Reuvers</a></td>
+        <td id="prov_tech_137">SIP</td>
+        <td id="prov_channel_137"></td>
+        <td id="prov_login_137">814309</td>
+        <td id="prov_password_137">Jm27RUSb</td>
+        <td id="prov_server_ip_137">sip.mottovoip.nl</td>
+        <td id="prov_tariff_137">Ink_Motto</td>
+        <td id="prov_rules_137" align="center"><a href="/billing/providers/provider_rules/137"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_137" align="center"><a href="/billing/stats/last_calls?s_provider=137" id="calls_link_137"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/137?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">138</td>
+        <td id="prov_ani_138"><a href="/billing/providers/edit/138">Motto Fabius</a></td>
+        <td id="prov_tech_138">SIP</td>
+        <td id="prov_channel_138"></td>
+        <td id="prov_login_138">217548</td>
+        <td id="prov_password_138">9rMtk8uS</td>
+        <td id="prov_server_ip_138">sip.mottovoip.nl</td>
+        <td id="prov_tariff_138">Ink_Motto</td>
+        <td id="prov_rules_138" align="center"><a href="/billing/providers/provider_rules/138"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_138" align="center"><a href="/billing/stats/last_calls?s_provider=138" id="calls_link_138"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/138?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">139</td>
+        <td id="prov_ani_139"><a href="/billing/providers/edit/139">Motto Versado</a></td>
+        <td id="prov_tech_139">SIP</td>
+        <td id="prov_channel_139"></td>
+        <td id="prov_login_139">801427</td>
+        <td id="prov_password_139">G2p1kSFA</td>
+        <td id="prov_server_ip_139">sip.mottovoip.nl</td>
+        <td id="prov_tariff_139">Ink_Motto</td>
+        <td id="prov_rules_139" align="center"><a href="/billing/providers/provider_rules/139"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_139" align="center"><a href="/billing/stats/last_calls?s_provider=139" id="calls_link_139"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/139?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">140</td>
+        <td id="prov_ani_140"><a href="/billing/providers/edit/140">Motto Jan Kooij</a></td>
+        <td id="prov_tech_140">SIP</td>
+        <td id="prov_channel_140"></td>
+        <td id="prov_login_140">802887</td>
+        <td id="prov_password_140">SGFTa2P5</td>
+        <td id="prov_server_ip_140">sip.mottovoip.nl</td>
+        <td id="prov_tariff_140">Ink_Motto</td>
+        <td id="prov_rules_140" align="center"><a href="/billing/providers/provider_rules/140"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_140" align="center"><a href="/billing/stats/last_calls?s_provider=140" id="calls_link_140"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/140?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">141</td>
+        <td id="prov_ani_141"><a href="/billing/providers/edit/141">Motto Bisschops</a></td>
+        <td id="prov_tech_141">SIP</td>
+        <td id="prov_channel_141"></td>
+        <td id="prov_login_141">225807</td>
+        <td id="prov_password_141">D6pyu2vT</td>
+        <td id="prov_server_ip_141">sip.mottovoip.nl</td>
+        <td id="prov_tariff_141">Ink_Motto</td>
+        <td id="prov_rules_141" align="center"><a href="/billing/providers/provider_rules/141"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_141" align="center"><a href="/billing/stats/last_calls?s_provider=141" id="calls_link_141"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/141?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">142</td>
+        <td id="prov_ani_142"><a href="/billing/providers/edit/142">Motto TTC van Gog</a></td>
+        <td id="prov_tech_142">SIP</td>
+        <td id="prov_channel_142"></td>
+        <td id="prov_login_142">239094</td>
+        <td id="prov_password_142">qrMVWHME</td>
+        <td id="prov_server_ip_142">sip.mottovoip.nl</td>
+        <td id="prov_tariff_142">Ink_Motto</td>
+        <td id="prov_rules_142" align="center"><a href="/billing/providers/provider_rules/142"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_142" align="center"><a href="/billing/stats/last_calls?s_provider=142" id="calls_link_142"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/142?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">143</td>
+        <td id="prov_ani_143"><a href="/billing/providers/edit/143">Motto Orthodontiepraktijk Hert</a></td>
+        <td id="prov_tech_143">SIP</td>
+        <td id="prov_channel_143"></td>
+        <td id="prov_login_143">224467</td>
+        <td id="prov_password_143">hSEtbU0E</td>
+        <td id="prov_server_ip_143">sip.mottovoip.nl</td>
+        <td id="prov_tariff_143">Ink_Motto</td>
+        <td id="prov_rules_143" align="center"><a href="/billing/providers/provider_rules/143"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_143" align="center"><a href="/billing/stats/last_calls?s_provider=143" id="calls_link_143"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/143?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">144</td>
+        <td id="prov_ani_144"><a href="/billing/providers/edit/144">Motto Bartels Sloten</a></td>
+        <td id="prov_tech_144">SIP</td>
+        <td id="prov_channel_144"></td>
+        <td id="prov_login_144">219660</td>
+        <td id="prov_password_144">Hh9PW8eB</td>
+        <td id="prov_server_ip_144">sip.mottovoip.nl</td>
+        <td id="prov_tariff_144">Ink_Motto</td>
+        <td id="prov_rules_144" align="center"><a href="/billing/providers/provider_rules/144"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_144" align="center"><a href="/billing/stats/last_calls?s_provider=144" id="calls_link_144"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/144?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">145</td>
+        <td id="prov_ani_145"><a href="/billing/providers/edit/145">Motto M&amp;D Logistics</a></td>
+        <td id="prov_tech_145">SIP</td>
+        <td id="prov_channel_145"></td>
+        <td id="prov_login_145">217366</td>
+        <td id="prov_password_145">BSuCX1pp</td>
+        <td id="prov_server_ip_145">sip.mottovoip.nl</td>
+        <td id="prov_tariff_145">Ink_Motto</td>
+        <td id="prov_rules_145" align="center"><a href="/billing/providers/provider_rules/145"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_145" align="center"><a href="/billing/stats/last_calls?s_provider=145" id="calls_link_145"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/145?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">146</td>
+        <td id="prov_ani_146"><a href="/billing/providers/edit/146">Motto Hines Fresh Park</a></td>
+        <td id="prov_tech_146">SIP</td>
+        <td id="prov_channel_146"></td>
+        <td id="prov_login_146">240641</td>
+        <td id="prov_password_146">A67Jacen</td>
+        <td id="prov_server_ip_146">sip.mottovoip.nl</td>
+        <td id="prov_tariff_146">Ink_Motto</td>
+        <td id="prov_rules_146" align="center"><a href="/billing/providers/provider_rules/146"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_146" align="center"><a href="/billing/stats/last_calls?s_provider=146" id="calls_link_146"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/146?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">147</td>
+        <td id="prov_ani_147"><a href="/billing/providers/edit/147">Motto Marcelissen</a></td>
+        <td id="prov_tech_147">SIP</td>
+        <td id="prov_channel_147"></td>
+        <td id="prov_login_147">801914</td>
+        <td id="prov_password_147">Z0Ft2tEc</td>
+        <td id="prov_server_ip_147">sip.mottovoip.nl</td>
+        <td id="prov_tariff_147">Ink_Motto</td>
+        <td id="prov_rules_147" align="center"><a href="/billing/providers/provider_rules/147"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_147" align="center"><a href="/billing/stats/last_calls?s_provider=147" id="calls_link_147"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/147?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">148</td>
+        <td id="prov_ani_148"><a href="/billing/providers/edit/148">Motto Broekmans Patisserie</a></td>
+        <td id="prov_tech_148">SIP</td>
+        <td id="prov_channel_148"></td>
+        <td id="prov_login_148">217585</td>
+        <td id="prov_password_148">RmMaZxTK</td>
+        <td id="prov_server_ip_148">sip.mottovoip.nl</td>
+        <td id="prov_tariff_148">Ink_Motto</td>
+        <td id="prov_rules_148" align="center"><a href="/billing/providers/provider_rules/148"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_148" align="center"><a href="/billing/stats/last_calls?s_provider=148" id="calls_link_148"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/148?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">149</td>
+        <td id="prov_ani_149"><a href="/billing/providers/edit/149">Motto Explosive Foods</a></td>
+        <td id="prov_tech_149">SIP</td>
+        <td id="prov_channel_149"></td>
+        <td id="prov_login_149">800022</td>
+        <td id="prov_password_149">FHs9BRbR</td>
+        <td id="prov_server_ip_149">sip.mottovoip.nl</td>
+        <td id="prov_tariff_149">Ink_Motto</td>
+        <td id="prov_rules_149" align="center"><a href="/billing/providers/provider_rules/149"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_149" align="center"><a href="/billing/stats/last_calls?s_provider=149" id="calls_link_149"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/149?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">150</td>
+        <td id="prov_ani_150"><a href="/billing/providers/edit/150">Motto Aannemingsbedrijf Velden</a></td>
+        <td id="prov_tech_150">SIP</td>
+        <td id="prov_channel_150"></td>
+        <td id="prov_login_150">814516</td>
+        <td id="prov_password_150">p8v9NzfG</td>
+        <td id="prov_server_ip_150">sip.mottovoip.nl</td>
+        <td id="prov_tariff_150">Ink_Motto</td>
+        <td id="prov_rules_150" align="center"><a href="/billing/providers/provider_rules/150"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_150" align="center"><a href="/billing/stats/last_calls?s_provider=150" id="calls_link_150"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/150?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">151</td>
+        <td id="prov_ani_151"><a href="/billing/providers/edit/151">Motto Green Earth Produce</a></td>
+        <td id="prov_tech_151">SIP</td>
+        <td id="prov_channel_151"></td>
+        <td id="prov_login_151">814746</td>
+        <td id="prov_password_151">uC268TCP</td>
+        <td id="prov_server_ip_151">sip.mottovoip.nl</td>
+        <td id="prov_tariff_151">Ink_Motto</td>
+        <td id="prov_rules_151" align="center"><a href="/billing/providers/provider_rules/151"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_151" align="center"><a href="/billing/stats/last_calls?s_provider=151" id="calls_link_151"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/151?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">152</td>
+        <td id="prov_ani_152"><a href="/billing/providers/edit/152">Motto Inst. bedrijf Wijnhoven</a></td>
+        <td id="prov_tech_152">SIP</td>
+        <td id="prov_channel_152"></td>
+        <td id="prov_login_152">814784</td>
+        <td id="prov_password_152">ssJXpN9P</td>
+        <td id="prov_server_ip_152">sip.mottovoip.nl</td>
+        <td id="prov_tariff_152">Ink_Motto</td>
+        <td id="prov_rules_152" align="center"><a href="/billing/providers/provider_rules/152"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_152" align="center"><a href="/billing/stats/last_calls?s_provider=152" id="calls_link_152"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/152?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">153</td>
+        <td id="prov_ani_153"><a href="/billing/providers/edit/153">Motto Cuijpers Hekwerk</a></td>
+        <td id="prov_tech_153">SIP</td>
+        <td id="prov_channel_153"></td>
+        <td id="prov_login_153">815042</td>
+        <td id="prov_password_153">bvwv54vf</td>
+        <td id="prov_server_ip_153">sip.mottovoip.nl</td>
+        <td id="prov_tariff_153">Ink_Motto</td>
+        <td id="prov_rules_153" align="center"><a href="/billing/providers/provider_rules/153"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_153" align="center"><a href="/billing/stats/last_calls?s_provider=153" id="calls_link_153"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/153?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">154</td>
+        <td id="prov_ani_154"><a href="/billing/providers/edit/154">0 Ziggo IP Auth</a></td>
+        <td id="prov_tech_154">SIP</td>
+        <td id="prov_channel_154"></td>
+        <td id="prov_login_154"></td>
+        <td id="prov_password_154"></td>
+        <td id="prov_server_ip_154">212.54.51.109</td>
+        <td id="prov_tariff_154">Ink_CM</td>
+        <td id="prov_rules_154" align="center"><a href="/billing/providers/provider_rules/154"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_154" align="center"><a href="/billing/stats/last_calls?s_provider=154" id="calls_link_154"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/154?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">155</td>
+        <td id="prov_ani_155"><a href="/billing/providers/edit/155">Motto Stichting Fortior</a></td>
+        <td id="prov_tech_155">SIP</td>
+        <td id="prov_channel_155"></td>
+        <td id="prov_login_155">815460</td>
+        <td id="prov_password_155">rGh7qHtA</td>
+        <td id="prov_server_ip_155">sip.mottovoip.nl</td>
+        <td id="prov_tariff_155">Ink_Motto</td>
+        <td id="prov_rules_155" align="center"><a href="/billing/providers/provider_rules/155"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_155" align="center"><a href="/billing/stats/last_calls?s_provider=155" id="calls_link_155"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/155?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">156</td>
+        <td id="prov_ani_156"><a href="/billing/providers/edit/156">Motto Kapsalon Gijsbers</a></td>
+        <td id="prov_tech_156">SIP</td>
+        <td id="prov_channel_156"></td>
+        <td id="prov_login_156">815503</td>
+        <td id="prov_password_156">6HdmT6xr</td>
+        <td id="prov_server_ip_156">sip.mottovoip.nl</td>
+        <td id="prov_tariff_156">Ink_Motto</td>
+        <td id="prov_rules_156" align="center"><a href="/billing/providers/provider_rules/156"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_156" align="center"><a href="/billing/stats/last_calls?s_provider=156" id="calls_link_156"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/156?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">157</td>
+        <td id="prov_ani_157"><a href="/billing/providers/edit/157">Motto Fa Gebr van den Broek</a></td>
+        <td id="prov_tech_157">SIP</td>
+        <td id="prov_channel_157"></td>
+        <td id="prov_login_157">815326</td>
+        <td id="prov_password_157">GGQrEedx</td>
+        <td id="prov_server_ip_157">sip.mottovoip.nl</td>
+        <td id="prov_tariff_157">Ink_CM</td>
+        <td id="prov_rules_157" align="center"><a href="/billing/providers/provider_rules/157"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_157" align="center"><a href="/billing/stats/last_calls?s_provider=157" id="calls_link_157"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/157?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">158</td>
+        <td id="prov_ani_158"><a href="/billing/providers/edit/158">Motto Derks Tuinmachines</a></td>
+        <td id="prov_tech_158">SIP</td>
+        <td id="prov_channel_158"></td>
+        <td id="prov_login_158">815724</td>
+        <td id="prov_password_158">8aHf7sT7</td>
+        <td id="prov_server_ip_158">sip.mottovoip.nl</td>
+        <td id="prov_tariff_158">Ink_Motto</td>
+        <td id="prov_rules_158" align="center"><a href="/billing/providers/provider_rules/158"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_158" align="center"><a href="/billing/stats/last_calls?s_provider=158" id="calls_link_158"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/158?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">159</td>
+        <td id="prov_ani_159"><a href="/billing/providers/edit/159">Motto ViNotion</a></td>
+        <td id="prov_tech_159">SIP</td>
+        <td id="prov_channel_159"></td>
+        <td id="prov_login_159">815795</td>
+        <td id="prov_password_159">HrnFhbSz</td>
+        <td id="prov_server_ip_159">sip.mottovoip.nl</td>
+        <td id="prov_tariff_159">Ink_Motto</td>
+        <td id="prov_rules_159" align="center"><a href="/billing/providers/provider_rules/159"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_159" align="center"><a href="/billing/stats/last_calls?s_provider=159" id="calls_link_159"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/159?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">160</td>
+        <td id="prov_ani_160"><a href="/billing/providers/edit/160">Motto Geert &amp; Henk Trading</a></td>
+        <td id="prov_tech_160">SIP</td>
+        <td id="prov_channel_160"></td>
+        <td id="prov_login_160">815996</td>
+        <td id="prov_password_160">AD8Kh9g3</td>
+        <td id="prov_server_ip_160">sip.mottovoip.nl</td>
+        <td id="prov_tariff_160">Ink_Motto</td>
+        <td id="prov_rules_160" align="center"><a href="/billing/providers/provider_rules/160"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_160" align="center"><a href="/billing/stats/last_calls?s_provider=160" id="calls_link_160"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/160?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">161</td>
+        <td id="prov_ani_161"><a href="/billing/providers/edit/161">Motto Giraf Metaal</a></td>
+        <td id="prov_tech_161">SIP</td>
+        <td id="prov_channel_161"></td>
+        <td id="prov_login_161">816236</td>
+        <td id="prov_password_161">wRp7QEgW</td>
+        <td id="prov_server_ip_161">sip.mottovoip.nl</td>
+        <td id="prov_tariff_161">Ink_Motto</td>
+        <td id="prov_rules_161" align="center"><a href="/billing/providers/provider_rules/161"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_161" align="center"><a href="/billing/stats/last_calls?s_provider=161" id="calls_link_161"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/161?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">162</td>
+        <td id="prov_ani_162"><a href="/billing/providers/edit/162">Motto Vilog</a></td>
+        <td id="prov_tech_162">SIP</td>
+        <td id="prov_channel_162"></td>
+        <td id="prov_login_162">816492</td>
+        <td id="prov_password_162">aTtSdy2b</td>
+        <td id="prov_server_ip_162">sip.mottovoip.nl</td>
+        <td id="prov_tariff_162">Ink_Motto</td>
+        <td id="prov_rules_162" align="center"><a href="/billing/providers/provider_rules/162"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_162" align="center"><a href="/billing/stats/last_calls?s_provider=162" id="calls_link_162"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/162?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">163</td>
+        <td id="prov_ani_163"><a href="/billing/providers/edit/163">Motto Arco Solutions</a></td>
+        <td id="prov_tech_163">SIP</td>
+        <td id="prov_channel_163"></td>
+        <td id="prov_login_163">817386</td>
+        <td id="prov_password_163">GquYETgC</td>
+        <td id="prov_server_ip_163">sip.mottovoip.nl</td>
+        <td id="prov_tariff_163">Ink_Motto</td>
+        <td id="prov_rules_163" align="center"><a href="/billing/providers/provider_rules/163"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_163" align="center"><a href="/billing/stats/last_calls?s_provider=163" id="calls_link_163"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/163?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">164</td>
+        <td id="prov_ani_164"><a href="/billing/providers/edit/164">Motto Hairmix</a></td>
+        <td id="prov_tech_164">SIP</td>
+        <td id="prov_channel_164"></td>
+        <td id="prov_login_164">817425</td>
+        <td id="prov_password_164">cBR6KV2q</td>
+        <td id="prov_server_ip_164">sip.mottovoip.nl</td>
+        <td id="prov_tariff_164">Ink_CM</td>
+        <td id="prov_rules_164" align="center"><a href="/billing/providers/provider_rules/164"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_164" align="center"><a href="/billing/stats/last_calls?s_provider=164" id="calls_link_164"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/164?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">165</td>
+        <td id="prov_ani_165"><a href="/billing/providers/edit/165">Motto Fox Kids United</a></td>
+        <td id="prov_tech_165">SIP</td>
+        <td id="prov_channel_165"></td>
+        <td id="prov_login_165">817047</td>
+        <td id="prov_password_165">2M7tenxV</td>
+        <td id="prov_server_ip_165">sip.mottovoip.nl</td>
+        <td id="prov_tariff_165">Ink_CM</td>
+        <td id="prov_rules_165" align="center"><a href="/billing/providers/provider_rules/165"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_165" align="center"><a href="/billing/stats/last_calls?s_provider=165" id="calls_link_165"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/165?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">166</td>
+        <td id="prov_ani_166"><a href="/billing/providers/edit/166">Motto Limburgs Museum</a></td>
+        <td id="prov_tech_166">SIP</td>
+        <td id="prov_channel_166"></td>
+        <td id="prov_login_166">817861</td>
+        <td id="prov_password_166">jm7KHFWH</td>
+        <td id="prov_server_ip_166">sip.mottovoip.nl</td>
+        <td id="prov_tariff_166">Ink_Motto</td>
+        <td id="prov_rules_166" align="center"><a href="/billing/providers/provider_rules/166"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_166" align="center"><a href="/billing/stats/last_calls?s_provider=166" id="calls_link_166"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/166?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">167</td>
+        <td id="prov_ani_167"><a href="/billing/providers/edit/167">Motto A.S.V. Beheer</a></td>
+        <td id="prov_tech_167">SIP</td>
+        <td id="prov_channel_167"></td>
+        <td id="prov_login_167">818094</td>
+        <td id="prov_password_167">Y4bxQ4vv</td>
+        <td id="prov_server_ip_167">sip.mottovoip.nl</td>
+        <td id="prov_tariff_167">Ink_CM</td>
+        <td id="prov_rules_167" align="center"><a href="/billing/providers/provider_rules/167"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_167" align="center"><a href="/billing/stats/last_calls?s_provider=167" id="calls_link_167"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/167?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">168</td>
+        <td id="prov_ani_168"><a href="/billing/providers/edit/168">Motto van den Heuvel</a></td>
+        <td id="prov_tech_168">SIP</td>
+        <td id="prov_channel_168"></td>
+        <td id="prov_login_168">818495</td>
+        <td id="prov_password_168">UKBbddCb</td>
+        <td id="prov_server_ip_168">sip.mottovoip.nl</td>
+        <td id="prov_tariff_168">Ink_CM</td>
+        <td id="prov_rules_168" align="center"><a href="/billing/providers/provider_rules/168"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_168" align="center"><a href="/billing/stats/last_calls?s_provider=168" id="calls_link_168"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/168?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">169</td>
+        <td id="prov_ani_169"><a href="/billing/providers/edit/169">Motto Op het veld</a></td>
+        <td id="prov_tech_169">SIP</td>
+        <td id="prov_channel_169"></td>
+        <td id="prov_login_169">818474</td>
+        <td id="prov_password_169">RvrU9Z4d</td>
+        <td id="prov_server_ip_169">sip.mottovoip.nl</td>
+        <td id="prov_tariff_169">Ink_CM</td>
+        <td id="prov_rules_169" align="center"><a href="/billing/providers/provider_rules/169"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_169" align="center"><a href="/billing/stats/last_calls?s_provider=169" id="calls_link_169"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/169?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">170</td>
+        <td id="prov_ani_170"><a href="/billing/providers/edit/170">Motto Nerva</a></td>
+        <td id="prov_tech_170">SIP</td>
+        <td id="prov_channel_170"></td>
+        <td id="prov_login_170">818623</td>
+        <td id="prov_password_170">JhDnVbVw</td>
+        <td id="prov_server_ip_170">sip.mottovoip.nl</td>
+        <td id="prov_tariff_170">Ink_CM</td>
+        <td id="prov_rules_170" align="center"><a href="/billing/providers/provider_rules/170"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_170" align="center"><a href="/billing/stats/last_calls?s_provider=170" id="calls_link_170"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/170?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">171</td>
+        <td id="prov_ani_171"><a href="/billing/providers/edit/171">Motto M. Baets Handel BV</a></td>
+        <td id="prov_tech_171">SIP</td>
+        <td id="prov_channel_171"></td>
+        <td id="prov_login_171">809190</td>
+        <td id="prov_password_171">MWQK9Er8</td>
+        <td id="prov_server_ip_171">sip.mottovoip.nl</td>
+        <td id="prov_tariff_171">Ink_CM</td>
+        <td id="prov_rules_171" align="center"><a href="/billing/providers/provider_rules/171"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_171" align="center"><a href="/billing/stats/last_calls?s_provider=171" id="calls_link_171"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/171?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">172</td>
+        <td id="prov_ani_172"><a href="/billing/providers/edit/172">Motto Krebbers Logopedie</a></td>
+        <td id="prov_tech_172">SIP</td>
+        <td id="prov_channel_172"></td>
+        <td id="prov_login_172">819426</td>
+        <td id="prov_password_172">D4jGEE3Y</td>
+        <td id="prov_server_ip_172">sip.mottovoip.nl</td>
+        <td id="prov_tariff_172">Ink_CM</td>
+        <td id="prov_rules_172" align="center"><a href="/billing/providers/provider_rules/172"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_172" align="center"><a href="/billing/stats/last_calls?s_provider=172" id="calls_link_172"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/172?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">173</td>
+        <td id="prov_ani_173"><a href="/billing/providers/edit/173">Motto Handelsonderneming Blij</a></td>
+        <td id="prov_tech_173">SIP</td>
+        <td id="prov_channel_173"></td>
+        <td id="prov_login_173">819314</td>
+        <td id="prov_password_173">DApGShkM</td>
+        <td id="prov_server_ip_173">sip.mottovoip.nl</td>
+        <td id="prov_tariff_173">Ink_CM</td>
+        <td id="prov_rules_173" align="center"><a href="/billing/providers/provider_rules/173"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_173" align="center"><a href="/billing/stats/last_calls?s_provider=173" id="calls_link_173"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/173?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row1">
+
+        <td id="prov_id">174</td>
+        <td id="prov_ani_174"><a href="/billing/providers/edit/174">Motto Unibelt</a></td>
+        <td id="prov_tech_174">SIP</td>
+        <td id="prov_channel_174"></td>
+        <td id="prov_login_174">819125</td>
+        <td id="prov_password_174">MWQK9Er8</td>
+        <td id="prov_server_ip_174">sip.mottovoip.nl</td>
+        <td id="prov_tariff_174">Ink_CM</td>
+        <td id="prov_rules_174" align="center"><a href="/billing/providers/provider_rules/174"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_174" align="center"><a href="/billing/stats/last_calls?s_provider=174" id="calls_link_174"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/174?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+      <tr class="row2">
+
+        <td id="prov_id">175</td>
+        <td id="prov_ani_175"><a href="/billing/providers/edit/175">Motto The Jekill &amp; Hide</a></td>
+        <td id="prov_tech_175">SIP</td>
+        <td id="prov_channel_175"></td>
+        <td id="prov_login_175">819631</td>
+        <td id="prov_password_175">mb8y45jj</td>
+        <td id="prov_server_ip_175">sip.mottovoip.nl</td>
+        <td id="prov_tariff_175">Ink_CM</td>
+        <td id="prov_rules_175" align="center"><a href="/billing/providers/provider_rules/175"><img alt="Page white gear" src="/billing/images/icons/page_white_gear.png" title="Provider rules" /> </a></td>
+        <td id="prov_calls_175" align="center"><a href="/billing/stats/last_calls?s_provider=175" id="calls_link_175"><img alt="Call" src="/billing/images/icons/call.png" title="" /> </a></td>
+
+
+        <td align="center"><a data-confirm="Are you sure?" data-method="post" href="/billing/servers/delete/175?sid=1" rel="nofollow"><img alt="Delete" src="/billing/images/icons/delete.png" title="Delete" /> </a></td>
+      </tr>
+
+</table>
+
+<br/><br/>
+
+
+
+<br/>
+
+        </div>
+        <br/>
+      </div>
+    </td>
+  </tr>
+</table>
+
+<!--Footer-->
+<div id="footerbox">
+  <div class="left-element">
+        &nbsp;&nbsp;ZeroPlex VoIP Platform  by <a href="http://www.zeroplex.nl" target="_blank">ZeroPlex</a> 2006 - <span id="current_year"></span><script type="text/javascript"> document.getElementById("current_year").innerHTML = new Date().getFullYear(); </script>
+  </div>
+
+      <div class="right-element">
+        <!--Help Link-->
+          <a href="http://wiki.kolmisoft.com/index.php/Multi_Server_support" target="_blank"><img alt="Help grey" src="/billing/images/icons/help_grey.png" title="Press on this link to get more help about this page. It is possible to turn off this link in SETTINGS." />  Information about this page</a>
+          <a href="http://wiki.kolmisoft.com/index.php/MOR_Manual" target="_blank"><img alt="Pdf" src="/billing/images/icons/pdf.png" title="Manual" /> Manual</a>
+      </div>
+</div>
+
+<script src="/billing/assets/mor/mor.js"></script>
+<script type="text/javascript">
+    read_show_hide_menus();
+
+    $j(".application_side_contract").click(function () {
+        show_hide_menus();
+    });
+
+    $j(".application_side_expand").click(function () {
+        show_hide_menus();
+    });
+
+
+    // Firefox disable form cache on reload
+    $j('input,textarea,select').attr('autocomplete', 'off');
+</script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var value = $j.cookie("hide_menus");
+
+        reSizemain(value != "hide");
+
+        setTimeout(function() {
+            reSizemain(value != "hide");
+        }, 100);
+
+        window.onresize = function(event){
+            value = $j.cookie("hide_menus");
+            reSizemain(value != "hide");
+        };
+
+        var menu_left = document.getElementById("menu_left");
+
+        if (sessionStorage.scrollTop != "undefined" && menu_left != null) {
+            menu_left.scrollTop = sessionStorage.scrollTop;
+        }
+    });
+
+    jQuery(window).unload(function() {
+        var menu_left = document.getElementById("menu_left");
+
+        if(menu_left != null){
+            sessionStorage.scrollTop = menu_left.scrollTop;
+        }
+    });
+</script>
+
+                            <script type="text/javascript">
+        settings_menu = new dTree('settings_menu');
+        settings_menu.config.inOrder = true;
+        settings_menu.add(0, -1, 'SETTINGS');
+            settings_menu.add(1, 0, 'Setup');
+            settings_menu.add(2, 1, 'Settings', '/billing/functions/settings');
+            settings_menu.add(3, 1, 'Default User', '/billing/users/default_user');
+            settings_menu.add(4, 1, 'Default Device', '/billing/devices/default_device');
+            settings_menu.add(7, 1, 'Translations', '/billing/functions/translations');
+            settings_menu.add(8, 1, 'Currencies', '/billing/currencies/currencies');
+            settings_menu.add(9, 1, 'Accountant Permissions', '/billing/permissions/list?group_type=accountant');
+            settings_menu.add(11, 1, 'Cron Actions', '/billing/cron_actions');
+            settings_menu.add(13, 1, 'Emails', '/billing/emails/list');
+            settings_menu.add(14, 1, 'Backups', '/billing/backups/backup_manager');
+            settings_menu.add(15, 1, 'Integrity Check', '/billing/functions/integrity_check');
+            settings_menu.add(16, 1, 'Generate Hash', '/billing/functions/generate_hash');
+            settings_menu.add(17, 1, 'Background Tasks', '/billing/functions/background_tasks');
+            settings_menu.add(18, 1, 'Voices', '/billing/ivrvoices');
+
+            settings_menu.add(117, 0, 'Billing');
+              settings_menu.add(118, 117, 'Servers', '/billing/servers/list');
+              settings_menu.add(119, 117, 'Providers', '/billing/providers/list');
+                settings_menu.add(120, 119, 'Terminators', '/billing/terminators/list');
+              settings_menu.add(601, 119, 'Quick Changes', '/billing/providers/quick_changes');
+              settings_menu.add(121, 119, 'Hidden', '/billing/providers/list?s_hidden=1');
+
+                settings_menu.add(123, 117, 'Tariffs', '/billing/tariffs/list');
+                settings_menu.add(124, 123, 'Day Setup', '/billing/tariffs/day_setup');
+                settings_menu.add(130, 123, 'Conversion', '/billing/tariffs/conversion');
+
+                settings_menu.add(125, 117, 'Directions', '/billing/directions/list');
+                settings_menu.add(126, 125, 'Groups', '/billing/destination_groups/list');
+                settings_menu.add(129, 125, 'Unassigned Destinations', '/billing/destination_groups/destinations_to_dg');
+
+                settings_menu.add(127, 117, 'DIDs', '/billing/dids/list');
+                settings_menu.add(128, 127, 'Dial Plans', '/billing/dialplans/dialplans');
+                settings_menu.add(400,127,'Quickforwards');
+                settings_menu.add(401,400,'Settings','/billing/quickforwards_rules/settings');
+                settings_menu.add(402,400,'Rules','/billing/quickforwards_rules/list');
+
+
+          settings_menu.add(150, 117, 'CDR');
+          settings_menu.add(160, 150, 'Export');
+          settings_menu.add(170, 160, 'Templates', '/billing/cdr/export_templates');
+          settings_menu.add(171, 160, 'Automatic', '/billing/cdr/automatic_export_list');
+
+          settings_menu.add(151, 150, 'Import', '/billing/cdr/import_csv');
+          settings_menu.add(173, 151, 'Templates', '/billing/cdr/import_templates');
+
+         settings_menu.add(172, 150, 'Disputes', '/billing/cdr_disputes/list');
+          settings_menu.add(152, 150, 'Rerating', '/billing/cdr/rerating');
+
+          settings_menu.add(153, 117, 'Functions');
+            settings_menu.add(154, 153, 'Localization', '/billing/locations/localization');
+            settings_menu.add(15444, 154, 'Location Groups', '/billing/locationgroups/list');
+            settings_menu.add(156, 153, 'Number Pools', '/billing/number_pools/pool_list');
+            settings_menu.add(155, 153, 'Call Tracing', '/billing/functions/call_tracing');
+
+          settings_menu.add(701, 0, 'Routing');
+          settings_menu.add(702, 701, 'LCR', '/billing/lcrs/list');
+          settings_menu.add(703, 702, 'Copy LCR', '/billing/lcrs/clone_options');
+
+          settings_menu.add(234, 0, 'Accounting');
+              settings_menu.add(235, 234, 'Services', '/billing/services/list');
+              settings_menu.add(236, 235, 'Subscriptions', '/billing/services/subscriptions');
+            settings_menu.add(237, 234, 'Invoices', '/billing/accounting/invoices');
+            settings_menu.add(246, 234, 'Credit Notes', '/billing/credit_note/list');
+            settings_menu.add(247, 234, 'Financial Statements', '/billing/accounting/financial_statements');
+            settings_menu.add(238, 234, 'Payments', '/billing/payments/list');
+
+          settings_menu.add(340, 0, 'Users', '/billing/users/list');
+            settings_menu.add(339, 340, 'First Activity', '/billing/stats/first_activity');
+          settings_menu.add(341, 340, 'Hidden', '/billing/users/hidden');
+            settings_menu.add(342, 340, 'Devices', '/billing/devices/devices_all');
+            settings_menu.add(343, 342, 'CLIs', '/billing/devices/clis');
+            settings_menu.add(349, 342, 'Blocked Devices', '/billing/devices/hidden_devices');
+            settings_menu.add(350, 342, 'Device Rule Groups', '/billing/device_rule_groups/list');
+            settings_menu.add(344, 340, 'Import', '/billing/functions/import_user_data');
+            settings_menu.add(347, 340, 'Login as', '/billing/functions/login_as');
+            settings_menu.add(348, 340, 'Permissions', '/billing/simple_user_groups/list');
+
+        $("settings_menu_div").innerHTML = settings_menu.toString();
+    </script>
+
+                          <script type="text/javascript">
+      addons_menu = new dTree('addons_menu');
+      addons_menu.config.inOrder = true;
+
+      addons_menu.add(0, -1, 'ADDONS');
+
+      addons_menu.add(1, 0, 'Advanced Routing');
+
+      addons_menu.add(2, 1, 'Quality Routing', '/billing/quality_routings/list');
+      addons_menu.add(3, 2, 'Stats', '/billing/quality_routings/stats');
+
+      addons_menu.add(4, 0, 'Auto Dialer', '/billing/autodialer/campaigns');
+      addons_menu.add(5, 4, 'Campaign Stats', '/billing/autodialer/campaign_statistics');
+        addons_menu.add(5, 0, 'Callback', '/billing/functions/callback_settings');
+
+        addons_menu.add(6, 0, 'Calling Cards', '/billing/cardgroups/list');
+        addons_menu.add(7, 6, 'Settings', '/billing/functions/calling_cards_settings');
+        addons_menu.add(8, 6, 'Stats', '/billing/cardgroups/cardgroups_stats');
+        addons_menu.add(9, 6, 'Aggregate', '/billing/cardgroups/aggregate');
+        addons_menu.add(10, 0, 'Call Shop', '/billing/groups/list');
+
+
+        addons_menu.add(11, 0, 'Monitorings');
+        addons_menu.add(12, 11, 'Alerts', '/billing/alerts');
+        addons_menu.add(13, 12, 'Contacts', '/billing/alerts/contacts');
+        addons_menu.add(14, 12, 'Schedules', '/billing/alerts/schedules');
+        addons_menu.add(15, 12, 'Groups', '/billing/alerts/groups');
+        addons_menu.add(16, 11, 'Blocked IPs', '/billing/monitorings/blocked_ips');
+        addons_menu.add(17, 11, 'Whitelisted IPs', '/billing/monitorings/whitelisted_ips');
+        addons_menu.add(18, 11, 'Blocked Countries', '/billing/monitorings/blocked_countries');
+        addons_menu.add(19, 11, 'Blocked Numbers', '/billing/monitorings/blocked_numbers');
+
+          addons_menu.add(20, 11, 'Provider Deviations', '/billing/provider_deviations/list');
+
+
+            addons_menu.add(21, 12, 'Dynamic Blacklisting');
+            addons_menu.add(22, 21, 'Settings', '/billing/monitorings/settings');
+          addons_menu.add(23, 21, 'CallerIDs (SRC)', '/billing/caller_blacklistings/source_number_list');
+          addons_menu.add(24, 23, 'Prefix Scores', '/billing/caller_blacklistings/source_prefix_list');
+          addons_menu.add(25, 21, 'Destinations (DST)', '/billing/destination_blacklistings/destination_number_list');
+          addons_menu.add(26, 25, 'Prefix Scores', '/billing/destination_blacklistings/destination_prefix_list');
+
+        addons_menu.add(27, 0, 'Payment Gateways');
+          addons_menu.add(28, 27, 'Payments', '/billing/functions/settings_payments');
+          addons_menu.add(29, 27, 'Vouchers', '/billing/vouchers/vouchers');
+         addons_menu.add(30, 0, 'PBX Functions', '/billing/pbx_functions/list');
+          addons_menu.add(31, 30, 'External DIDs', '/billing/functions/pbx_functions');
+          addons_menu.add(32, 30, 'Ring Groups', '/billing/ringgroups');
+          addons_menu.add(33, 30, 'VoiceMail', '/billing/functions/settings_vm');
+          addons_menu.add(34, 30, 'PhoneBook', '/billing/phonebooks/list');
+          addons_menu.add(35, 30, 'Music On Hold', '/billing/functions/mohs');
+          addons_menu.add(36, 30, 'Queues', '/billing/ast_queues/list');
+          addons_menu.add(1000, 36, 'Log', '/billing/ast_queues/log');
+          addons_menu.add(38, 30, 'PBX Pools', '/billing/pbx_functions/pbx_pools_list');
+        addons_menu.add(39, 30, 'BLF', '/billing/blf/list');
+          addons_menu.add(40, 30, 'IVR', '/billing/ivr');
+          addons_menu.add(41, 40, 'Time Periods', '/billing/ivr_time_periods');
+        addons_menu.add(42, 0, 'Provider Billing', '/billing/providers/billing');
+
+          addons_menu.add(43, 0, 'Recordings', '/billing/recordings/recordings', '', '', '', '');
+              addons_menu.add(44, 43, 'Settings', '/billing/functions/recordings_settings');
+            addons_menu.add(45, 43, 'Users', '/billing/recordings/list_users');
+              addons_menu.add(46, 43, 'Quality Test', '/billing/recordings/quality_test');
+       addons_menu.add(47, 0, 'Resellers', '/billing/stats/resellers');
+       addons_menu.add(48, 47, 'Common Use Providers ', '/billing/common_use_providers');
+       addons_menu.add(49, 47, 'Settings', '/billing/resellers/settings');
+       addons_menu.add(50, 47, 'Permissions', '/billing/permissions/list?group_type=reseller');
+      $("addons_menu_div").innerHTML = addons_menu.toString();
+  </script>
+
+                        <script type="text/javascript">
+    statistics_menu = new dTree('statistics_menu');
+    statistics_menu.config.inOrder = true;
+        statistics_menu.add(0, -1, 'STATISTICS');
+        // calls
+                statistics_menu.add(1, 0, 'Calls', '/billing/stats/show_user_stats');
+                statistics_menu.add(2, 1, 'Active Calls', '/billing/stats/active_calls');
+              statistics_menu.add(3, 2, 'Graph', '/billing/stats/active_calls_graph');
+              statistics_menu.add(4, 2, 'Provider Active Calls', '/billing/stats/provider_active_calls');
+              statistics_menu.add(50, 1, 'Aggregate', '/billing/aggregates/list');
+              statistics_menu.add(301, 50, 'Templates', '/billing/aggregate_templates');
+              statistics_menu.add(302, 50, 'Auto Export', '/billing/aggregate_export');
+              statistics_menu.add(10, 1, 'Archived Calls', '/billing/stats/old_calls_stats');
+                statistics_menu.add(11, 10, 'Files', '/billing/stats/files');
+                statistics_menu.add(5, 1, 'Calls per Day', '/billing/stats/calls_per_day');
+                statistics_menu.add(18, 1, 'Calls per Hour', '/billing/aggregates/calls_per_hour');
+                statistics_menu.add(17, 1, 'Country Stats', '/billing/stats/country_stats');
+                statistics_menu.add(6, 1, 'Graphs', '/billing/stats/all_users_detailed', '', '', '');
+                statistics_menu.add(7, 1, 'Last Calls', '/billing/stats/last_calls_stats');
+                statistics_menu.add(8, 1, 'Load Stats', '/billing/stats/load_stats');
+                statistics_menu.add(20, 1, 'Local Calls', '/billing/stats/local_calls');
+                statistics_menu.add(9, 1, 'Loss Making Calls', '/billing/stats/loss_making_calls');
+              statistics_menu.add(19, 1, 'Providers', '/billing/stats/providers');
+        statistics_menu.add(12, 0, 'Finances', '/billing/stats/users_finances');
+        statistics_menu.add(13, 12, 'Profit', '/billing/stats/profit');
+            statistics_menu.add(14, 0, 'Various');
+              statistics_menu.add(24, 14, 'DIDs', '/billing/stats/dids');
+              statistics_menu.add(26, 24, 'Usage', '/billing/stats/dids_usage');
+              statistics_menu.add(29, 24, 'Summary', '/billing/dids/summary');
+                statistics_menu.add(23, 14, 'Faxes', '/billing/stats/faxes');
+              statistics_menu.add(27, 14, 'Google Maps', '/billing/stats/google_maps');
+                statistics_menu.add(18, 14, 'Hangup Cause', '/billing/stats/hangup_cause_codes_stats');
+                statistics_menu.add(15, 14, 'System Stats', '/billing/stats/system_stats');
+            statistics_menu.add(26, 0, 'Action Log', '/billing/stats/action_log');
+            statistics_menu.add(27, 0, 'Email Log', '/billing/email_jobs/list');
+            statistics_menu.add(28, 0, 'Search', '/billing/stats/search');
+    $("statistics_menu_div").innerHTML = statistics_menu.toString();
+</script>
+
+                    <script type="text/javascript">
+    personal_menu = new dTree('personal_menu');
+    personal_menu.config.inOrder = true;
+    personal_menu.add(0, -1, 'PERSONAL MENU');
+    personal_menu.add(1, 0, 'Start Page', '/billing/');
+
+
+      personal_menu.add(3, 0, 'Personal Details', '/billing/users/personal_details');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    personal_menu.add(21, 0, 'Logout', '/billing/callc/logout');
+
+    $("personal_menu_div").innerHTML = personal_menu.toString();
+</script>
+
+
+
+</body>
+</html>
